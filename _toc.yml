@@ -1,0 +1,7 @@
+- file: README.md
+
+- part: Tutorials
+  numbered: true
+  chapters:
+  - file: Tutorial1/Setup
+  - file: Tutorial1/Data Files
