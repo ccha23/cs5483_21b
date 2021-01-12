@@ -228,20 +228,62 @@
                 
   <div class="section" id="data-files">
 <h1><span class="section-number">2. </span>Data Files<a class="headerlink" href="#data-files" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">reset</span> -f
+<span class="kn">from</span> <span class="nn">IPython</span> <span class="kn">import</span> <span class="n">display</span>
+</pre></div>
+</div>
+</div>
+</div>
 <div class="section" id="load-data-into-weka-explorer-interface">
 <h2><span class="section-number">2.1. </span>Load data into Weka Explorer Interface<a class="headerlink" href="#load-data-into-weka-explorer-interface" title="Permalink to this headline">¶</a></h2>
 <p>Use Weka to do <a class="reference external" href="https://ebookcentral.proquest.com/lib/cityuhk/reader.action?docID=634862&amp;ppg=595">[Witten11] Exercises 17.1.1 and 17.1.2.</a>.</p>
 <ul class="simple">
-<li><p>For computers in the lab, you can start Weka by</p>
+<li><p>For the computers in CSC teaching studios (e.g., LI 4412), you can start Weka as follows:</p>
 <ol class="simple">
-<li><p>executing <code class="docutils literal notranslate"><span class="pre">G:\weka\3.8\run.bat</span></code>, and</p></li>
-<li><p>load the dataset from<br />
+<li><p>Click the shortcut <code class="docutils literal notranslate"><span class="pre">Work</span> <span class="pre">Desk</span></code> from desktop.</p></li>
+<li><p>Click the link <code class="docutils literal notranslate"><span class="pre">Weka</span> <span class="pre">3.8.x</span></code> for CS Department.</p></li>
+<li><p>Load the dataset from<br />
+<code class="docutils literal notranslate"><span class="pre">C:\Program</span> <span class="pre">Files\Weka-3-8\data\</span></code>.</p></li>
+</ol>
+</li>
+</ul>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># video</span>
+<span class="n">display</span><span class="o">.</span><span class="n">IFrame</span><span class="p">(</span><span class="n">src</span><span class="o">=</span><span class="s2">&quot;https://cityuhk-lms.ap.panopto.com/Panopto/Pages/Embed.aspx?id=72c2a358-a136-42dc-82ce-acae0038f93e&amp;autoplay=false&amp;offerviewer=true&amp;showtitle=true&amp;showbrand=false&amp;start=0&amp;interactivity=all&quot;</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">450</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">800</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+<iframe
+    width="800"
+    height="450"
+    src="https://cityuhk-lms.ap.panopto.com/Panopto/Pages/Embed.aspx?id=72c2a358-a136-42dc-82ce-acae0038f93e&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&start=0&interactivity=all"
+    frameborder="0"
+    allowfullscreen
+></iframe>
+</div></div>
+</div>
+<ul class="simple">
+<li><p>For the computers in CS labs (e.g., MMW 2450), you can start Weka as follows:</p>
+<ol class="simple">
+<li><p>Execute <code class="docutils literal notranslate"><span class="pre">G:\weka\3.8\run.bat</span></code>,</p></li>
+<li><p>Click the <code class="docutils literal notranslate"><span class="pre">Explorer</span></code> button, and</p></li>
+<li><p>Load the dataset from<br />
 <code class="docutils literal notranslate"><span class="pre">C:\temp\Weka-3.8\data</span></code> or <code class="docutils literal notranslate"><span class="pre">G:\weka\3.8\files\data</span></code>.</p></li>
 </ol>
 </li>
-<li><p>If you are using your own computers, the dataset is in the <code class="docutils literal notranslate"><span class="pre">data</span></code> subfolder of your Weka installation path.</p></li>
-<li><p>If you cannot find the dataset, you may download from<br />
-<a class="reference external" href="https://github.com/Waikato/weka-3.8/tree/master/wekadocs/data">https://github.com/Waikato/weka-3.8/tree/master/wekadocs/data</a></p></li>
+<li><p>If you are using your own computers:</p>
+<ol class="simple">
+<li><p>Download and install Weka from <a class="reference external" href="https://waikato.github.io/weka-wiki/downloading_weka/">here</a>, and</p></li>
+<li><p>obtain the data files from</p></li>
+<li><p>the subfolder <code class="docutils literal notranslate"><span class="pre">data</span></code> of your Weka installation path, or</p></li>
+<li><p>download from <a class="reference external" href="https://github.com/Waikato/weka-3.8/tree/master/wekadocs/data">here</a>.</p></li>
+</ol>
+</li>
 </ul>
 <p><strong>Ex 17.1.1</strong>
 What are the values that the attribute temperature can have?</p>
@@ -295,10 +337,32 @@ What are the values that the attribute temperature can have?</p>
 </div>
 </div>
 </div>
+<p>Alternatively, you may use other JupyterHub interfaces to create and edit AND.arff in the this tutorial folder:</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display</span><span class="o">.</span><span class="n">IFrame</span><span class="p">(</span><span class="n">src</span><span class="o">=</span><span class="s2">&quot;https://cityuhk-lms.ap.panopto.com/Panopto/Pages/Embed.aspx?id=db141da7-baf6-47d2-9015-acae003ec8d7&amp;autoplay=false&amp;offerviewer=true&amp;showtitle=true&amp;showbrand=false&amp;start=0&amp;interactivity=all&quot;</span><span class="p">,</span><span class="n">height</span><span class="o">=</span><span class="mi">450</span><span class="p">,</span><span class="n">width</span><span class="o">=</span><span class="mi">800</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+<iframe
+    width="800"
+    height="450"
+    src="https://cityuhk-lms.ap.panopto.com/Panopto/Pages/Embed.aspx?id=db141da7-baf6-47d2-9015-acae003ec8d7&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&start=0&interactivity=all"
+    frameborder="0"
+    allowfullscreen
+></iframe>
+</div></div>
+</div>
 <p>Run the following test cell to see if your file is a valid ARFF file. You may also download and load the ARFF file into WEKA to see if there is any syntax error.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># tests</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Content of AND.arff:&#39;</span><span class="p">)</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+
 <span class="kn">from</span> <span class="nn">scipy.io</span> <span class="kn">import</span> <span class="n">arff</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
