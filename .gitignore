@@ -131,3 +131,4 @@ dmypy.json
 # Jupyter Book
 _build
 _static
+.build
