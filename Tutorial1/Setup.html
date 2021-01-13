@@ -265,6 +265,11 @@
      1.3.4. Version Control
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#terminal">
+     1.3.5. Terminal
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -317,7 +322,7 @@
 <h3><span class="section-number">1.1.2. </span>How to access course notebooks?<a class="headerlink" href="#how-to-access-course-notebooks" title="Permalink to this headline">¶</a></h3>
 <p>The preferred method (with version control built-in) is to</p>
 <ol class="simple">
-<li><p>go to the course homepage, and</p></li>
+<li><p>go to the <a class="reference external" href="https://www.cs.cityu.edu.hk/~ccha23/cs5483/">course homepage</a>, and</p></li>
 <li><p>click a link with the notebook extension (*.ipynb) to open the notebook.</p></li>
 </ol>
 <p>This uses <a class="reference external" href="https://jupyterhub.github.io/nbgitpuller">nbgitpuller</a> to pull the most updated version automatically from the GitHub repository:</p>
@@ -344,7 +349,7 @@
 </div>
 <p>Alternatively, you can also fetch a notebook in the classic notebook interface as follows. Unlike the previous method, this does not refetch and merge changes:</p>
 <ol class="simple">
-<li><p>Click on the <code class="docutils literal notranslate"><span class="pre">Assignments</span></code> tab, and ensure the correct course code is chosen in the drop down list.</p></li>
+<li><p>Click the <code class="docutils literal notranslate"><span class="pre">Assignments</span></code> tab, and ensure the correct course code is chosen in the drop down list.</p></li>
 <li><p>In the <code class="docutils literal notranslate"><span class="pre">Released</span> <span class="pre">assignments</span></code> panel, click the button <code class="docutils literal notranslate"><span class="pre">Fetch</span></code> to download an assignment, if any.</p></li>
 <li><p>If the assignment has been fetched, it should appear in the <code class="docutils literal notranslate"><span class="pre">Downloaded</span> <span class="pre">assignments</span></code> panel.</p></li>
 <li><p>Click the arrow next to the assignment to show its content.</p></li>
@@ -391,7 +396,7 @@ E.g., you can access the notebook as follows:</p>
 <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>by you answers. Do NOT duplicate or delete these special cells.</p>
+<p>by your answers. The line <code class="docutils literal notranslate"><span class="pre">raise</span> <span class="pre">NotImplementedError()</span></code> will raise an error when you execute the cell, to inform you that an answer is needed.</p>
 <p>There may be visible and/or hidden tests to check your answers automatically. The following is a visible test you can run to check your answer: The test returns an assertion error if your program does not print the correct message.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -408,6 +413,7 @@ E.g., you can access the notebook as follows:</p>
 </div>
 <p><strong>Tips</strong></p>
 <ol class="simple">
+<li><p>Do not duplicate or delete a solution or test cell because they must have a unique id attached for auto-grading.</p></li>
 <li><p>You can repeatedly modify your solution and run the test cell until your solution passes the tests.</p></li>
 <li><p>To assess your solution thoroughly, we may run new tests hidden from you after we have collected your notebook.</p></li>
 <li><p>You can click the <code class="docutils literal notranslate"><span class="pre">Validate</span></code> button to run all the visible tests.</p></li>
@@ -466,7 +472,7 @@ E.g., you can access the notebook as follows:</p>
 <div class="section" id="jupyter-lab-and-extensions">
 <h3><span class="section-number">1.3.2. </span>Jupyter Lab and extensions<a class="headerlink" href="#jupyter-lab-and-extensions" title="Permalink to this headline">¶</a></h3>
 <p>Instead of the classic notebook interface, you may also play with the new interface called JupyterLab by visiting <a class="reference external" href="https://ltjh.cs.cityu.edu.hk/user-redirect/lab">https://ltjh.cs.cityu.edu.hk/user-redirect/lab</a>. Note that the new interface does not support the validation and submission of assignments.</p>
-<p>You may use the <a class="reference external" href="https://github.com/jupyterlab/debugger">visual debugger</a> in JupyterLab to debug a jupyter notebook. To do you, you should open the notebook and choose XPython as the kernel.</p>
+<p>You may use the <a class="reference external" href="https://github.com/jupyterlab/debugger">visual debugger</a> in JupyterLab to debug a jupyter notebook. To do so, you should open the notebook with <code class="docutils literal notranslate"><span class="pre">XPython</span></code> as the kernel.</p>
 <p>Both the notebook/lab interface is extensible. For the notebook interface, you can enable extensions from the <a class="reference external" href="https://ltjh.cs.cityu.edu.hk/user-redirect/nbextensions">nbextensions page</a>.</p>
 </div>
 <div class="section" id="visual-studio-code">
@@ -485,8 +491,16 @@ E.g., you can access the notebook as follows:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/jupyterlab/jupyterlab-git">jupyterlab-git</a></p></li>
 <li><p><a class="reference external" href="https://code.visualstudio.com/docs/introvideos/versioncontrol">vscode-git</a></p></li>
+<li><p><a class="reference external" href="https://github.com/tarmstrong/nbdiff">nbdiff</a></p></li>
 </ul>
 <p>See the link to GitHub in the next section and also <a class="reference external" href="https://github.com/cdr/code-server/issues/1883">this post</a> to set up a GitHub login token.</p>
+</div>
+<div class="section" id="terminal">
+<h3><span class="section-number">1.3.5. </span>Terminal<a class="headerlink" href="#terminal" title="Permalink to this headline">¶</a></h3>
+<p>You can launch terminals in both JupyterLab and VSCode interfaces. The Python and XPython kernels uses Anaconda. To activate it in terminal, excute the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="se">\o</span>pt<span class="se">\a</span>naconda<span class="se">\c</span>ondabin<span class="se">\c</span>onda activate
+</pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="optional-signup-of-other-accounts">
