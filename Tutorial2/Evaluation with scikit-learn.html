@@ -306,22 +306,24 @@
 <h3><span class="section-number">3.1.1. </span>About the dataset<a class="headerlink" href="#about-the-dataset" title="Permalink to this headline">¶</a></h3>
 <p>We will use a popular dataset called the <a class="reference external" href="https://en.wikipedia.org/wiki/Iris_flower_data_set"><em>iris dataset</em></a>. Iris is a flower with three different species shown below.</p>
 <span style="text-align: center;">
-    <div style="display: flex;">
-        <div style="padding: 1em;">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/5/56/Kosaciec_szczecinkowaty_Iris_setosa.jpg" alt="Iris Setosa" style="width: 300px;">
-            Iris Setosa
-        </div>
-        <div style="padding: 1em;">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Iris_versicolor_3.jpg" alt="Iris Versicolor" style="width: 300px;">
-            Iris Versicolor
-        </div>
-        <div style="padding: 1em;">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/9/9f/Iris_virginica.jpg" alt="Iris Virginica" style="width: 300px;">
-            Iris Virginica
-        </div>
-    </div>
+<div style="display: flex;">
+<div style="padding: 1em;">     
+<a title="Tiia Monto, CC BY-SA 4.0 &lt;https://creativecommons.org/licenses/by-sa/4.0&gt;, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Iris_setosa_2.jpg"><img width="260" alt="Iris setosa 2" src="https://upload.wikimedia.org/wikipedia/commons/1/11/Iris_setosa_2.jpg"></a>
+<p>Iris Setosa</p>
+</div>
+<div style="padding: 1em;">
+<p><a title="No machine-readable author provided. Dlanglois assumed (based on copyright claims)., CC BY-SA 3.0 &lt;http://creativecommons.org/licenses/by-sa/3.0/&gt;, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Iris_versicolor_3.jpg"><img width="260" alt="Iris versicolor 3" src="https://upload.wikimedia.org/wikipedia/commons/4/41/Iris_versicolor_3.jpg"></a></p>
+<p>Iris Versicolor</p>
+</div>
+<div style="padding: 1em;">
+<a title="Frank Mayfield, CC BY-SA 2.0 &lt;https://creativecommons.org/licenses/by-sa/2.0&gt;, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Iris_virginica.jpg"><img width="260" alt="Iris virginica" src="https://upload.wikimedia.org/wikipedia/commons/9/9f/Iris_virginica.jpg"></a>
+<p>Iris Virginica</p>
+</div>
+</div>
 </span><p>The three iris species differ in the lengths and widths of their <em>petals</em> and <em>sepals</em>.</p>
-<center><img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Petal-sepal.jpg" style="width: 300px" alt="Petal and Sepal"></center><p>A standard data mining task is to train a model that can classify the spieces (<em>target</em>) automatically based on the lengths and widths of the petals and sepals (<em>input features</em>).</p>
+<center>
+<a title="Frank Mayfield, CC BY-SA 3.0 &lt;https://creativecommons.org/licenses/by-sa/3.0/&gt;, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Petal-sepal.jpg"><img width="200" alt="Iris virginica" src="https://upload.wikimedia.org/wikipedia/commons/7/78/Petal-sepal.jpg"></a>
+</center><p>A standard data mining task is to train a model that can classify the spieces (<em>target</em>) automatically based on the lengths and widths of the petals and sepals (<em>input features</em>).</p>
 </div>
 <div class="section" id="load-dataset-from-scikit-learn">
 <h3><span class="section-number">3.1.2. </span>Load dataset from scikit-learn<a class="headerlink" href="#load-dataset-from-scikit-learn" title="Permalink to this headline">¶</a></h3>
@@ -880,7 +882,7 @@ Note that the accuracy is overly optimistic.</p>
 <div class="section" id="stratified-cross-validation">
 <h3><span class="section-number">3.2.2. </span>Stratified cross-validation<a class="headerlink" href="#stratified-cross-validation" title="Permalink to this headline">¶</a></h3>
 <p>Another method of evaluating a classification algorithm is to randomly partition the data into <span class="math notranslate nohighlight">\(k\)</span> <em>folds</em>, which are nearly equal-sized blocks of instances. The score is the average of the accuracies obtained by using each fold to test a classifier trained using the remaining folds.</p>
-<center><img src="https://upload.wikimedia.org/wikipedia/commons/4/4b/KfoldCV.gif" style="width:500px" alt="Cross validation"></center><p>The module <code class="docutils literal notranslate"><span class="pre">sklearn.model_selection</span></code> provides two functions <code class="docutils literal notranslate"><span class="pre">cross_val_predict</span></code> and <code class="docutils literal notranslate"><span class="pre">cross_val_score</span></code> for this purpose.</p>
+<p>The module <code class="docutils literal notranslate"><span class="pre">sklearn.model_selection</span></code> provides two functions <code class="docutils literal notranslate"><span class="pre">cross_val_predict</span></code> and <code class="docutils literal notranslate"><span class="pre">cross_val_score</span></code> for this purpose.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_predict</span><span class="p">,</span> <span class="n">cross_val_score</span><span class="p">,</span> <span class="n">StratifiedKFold</span>

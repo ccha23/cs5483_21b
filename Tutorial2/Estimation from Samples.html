@@ -287,7 +287,7 @@
 <h2><span class="section-number">1.1. </span>Unbiased and Consistent Estimate<a class="headerlink" href="#unbiased-and-consistent-estimate" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="monte-carlo-simulation">
 <h3><span class="section-number">1.1.1. </span>Monte-Carlo Simulation<a class="headerlink" href="#monte-carlo-simulation" title="Permalink to this headline">¶</a></h3>
-<p>We will simulate the process of flipping a possibly biased coin using the module <code class="docutils literal notranslate"><span class="pre">numpy</span></code>), which is often renamed as <code class="docutils literal notranslate"><span class="pre">np</span></code> for convenience.<br />
+<p>We will simulate the process of flipping a possibly biased coin using the module <code class="docutils literal notranslate"><span class="pre">numpy</span></code>, which is often renamed as <code class="docutils literal notranslate"><span class="pre">np</span></code> for convenience.<br />
 See the <a class="reference external" href="https://numpy.org/doc/stable/user/quickstart.html">quickstart.</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -321,12 +321,16 @@ See the <a class="reference external" href="https://numpy.org/doc/stable/user/qu
 <div class="section" id="m-estimation">
 <h3><span class="section-number">1.1.2. </span>M-Estimation<a class="headerlink" href="#m-estimation" title="Permalink to this headline">¶</a></h3>
 <p>We can estimate <span class="math notranslate nohighlight">\(p\)</span> by sample average also called an M-estimate
-$<span class="math notranslate nohighlight">\(\hat{p} := \frac1n \sum_{i=0}^{n-1} z_i,\)</span><span class="math notranslate nohighlight">\(
+$<span class="math notranslate nohighlight">\(
+\hat{p} := \frac1n \sum_{i=0}^{n-1} z_i,
+\)</span><span class="math notranslate nohighlight">\(
 where \)</span>z_1,\dots,z_n<span class="math notranslate nohighlight">\( are i.i.d. samples of
-\)</span><span class="math notranslate nohighlight">\(Z := \begin{cases}
+\)</span><span class="math notranslate nohighlight">\(
+Z := \begin{cases}
 1 &amp; \text{if head comes up}\\
 0 &amp; \text{if tail comes up.}
-\end{cases}\)</span>$</p>
+\end{cases}
+\)</span>$</p>
 <p><span class="math notranslate nohighlight">\(\hat{p}\)</span>, also called the empirical probability, is simply the fraction of heads coming up in <span class="math notranslate nohighlight">\(n\)</span> coin tosses:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -336,7 +340,8 @@ where \)</span>z_1,\dots,z_n<span class="math notranslate nohighlight">\( are i.
 </div>
 </div>
 <p><strong>Exercise</strong> The following proves that <span class="math notranslate nohighlight">\(\hat{p}\)</span> is an unbiased estimate:
-$<span class="math notranslate nohighlight">\(\begin{aligned}
+$<span class="math notranslate nohighlight">\(
+\begin{aligned}
 E[\hat{p}] &amp;= E\left[\frac1n \sum_{i=0}^{n-1} z_i \right]\\
 &amp;= \frac1n \sum_{i=0}^{n-1} \underbrace{E[z_i]}_{\smash{=p}} &amp;&amp; \text{by ___}\\
 &amp;= p.
@@ -344,23 +349,23 @@ E[\hat{p}] &amp;= E\left[\frac1n \sum_{i=0}^{n-1} z_i \right]\\
 \)</span>$
 Fill in the missing reasoning.</p>
 <p>YOUR ANSWER HERE</p>
-<p><strong>Exercise</strong> The following shows that <span class="math notranslate nohighlight">\(\hat{p}\)</span> is a consistent estimate:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
+<p><strong>Exercise</strong> The following shows that <span class="math notranslate nohighlight">\(\hat{p}\)</span> is a consistent estimate:
+$<span class="math notranslate nohighlight">\(
 \begin{aligned}\sigma &amp;:=\sqrt{\operatorname{Var}[\hat{p}]}\\
 &amp;= \sqrt{\operatorname{Var}\left[\frac1{n} \sum_{i=1}^n z_i\right]}\\
 &amp;= \sqrt{\frac1{n^2} \operatorname{Var}\left[\sum_{i=1}^n z_i\right]}\\
 &amp;=\sqrt{\frac1{n^2} \sum_{i=1}^n \underbrace{\operatorname{Var}[z_i]}_{\smash{=p(1-p)}}} &amp;&amp; \text{by ___}\\
 &amp;=\sqrt{\frac{p(1-p)}{n}}, \end{aligned}
-\end{split}\]</div>
-<p>which goes to <span class="math notranslate nohighlight">\(0\)</span> as <span class="math notranslate nohighlight">\(n\)</span> goes to <span class="math notranslate nohighlight">\(\infty\)</span>.</p>
+\)</span><span class="math notranslate nohighlight">\(
+which goes to \)</span>0<span class="math notranslate nohighlight">\( as \)</span>n<span class="math notranslate nohighlight">\( goes to \)</span>\infty$.</p>
 <p>Fill in the missing reasoning.</p>
 <p>YOUR ANSWER HERE</p>
 <p>By the <a class="reference external" href="https://en.wikipedia.org/wiki/Central_limit_theorem">Central Limit Theorem</a> as <span class="math notranslate nohighlight">\(n\)</span> goes to <span class="math notranslate nohighlight">\(\infty\)</span>, the estimate has a gaussian distribution:</p>
 <p><a title="M. W. Toews, CC BY 2.5 &lt;https://creativecommons.org/licenses/by/2.5&gt;, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Standard_deviation_diagram.svg"><img alt="Standard deviation diagram" src="https://upload.wikimedia.org/wikipedia/commons/8/8c/Standard_deviation_diagram.svg"></a></p>
-<p>Over <span class="math notranslate nohighlight">\(95\%\)</span> of the time, the estimator falls within <span class="math notranslate nohighlight">\(2\)</span> standard deviation away from the ground truth, i.e.,</p>
-<div class="math notranslate nohighlight">
-\[\Pr(\hat{p}\in [p-2\sigma, p+2\sigma]) \geq 0.95\]</div>
+<p>Over <span class="math notranslate nohighlight">\(95\%\)</span> of the time, the estimator falls within <span class="math notranslate nohighlight">\(2\)</span> standard deviation away from the ground truth, i.e.,
+$<span class="math notranslate nohighlight">\(
+\Pr(\hat{p}\in [p-2\sigma, p+2\sigma]) \geq 0.95
+\)</span>$</p>
 <p>To illustrate the above qualities of the estimator by plotting the estimate <span class="math notranslate nohighlight">\(\hat{p}\)</span> for different sample size <span class="math notranslate nohighlight">\(n\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -433,8 +438,8 @@ See the <a class="reference external" href="https://matplotlib.org/tutorials/int
 </ol>
 <p><strong>Exercise</strong> With the above strategy:</p>
 <ol class="simple">
-<li><p>Is the chance of winning <span class="math notranslate nohighlight">\(\leq/=/\geq \max_i p_i\)</span>?</p></li>
-<li><p>Is the chance of winning <span class="math notranslate nohighlight">\(\leq/=/\geq E[\max_i \hat{p}_i]\)</span>?</p></li>
+<li><p>Is the chance of winning <span class="math notranslate nohighlight">\(&lt;/=/&gt; \max_i p_i\)</span>?</p></li>
+<li><p>Is the chance of winning <span class="math notranslate nohighlight">\(&lt;/=/&gt; E[\max_i \hat{p}_i]\)</span>?</p></li>
 <li><p>Is the strategy the optimal winning strategy?</p></li>
 </ol>
 <p>YOUR ANSWER HERE</p>
