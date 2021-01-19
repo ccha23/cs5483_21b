@@ -5,3 +5,10 @@
   chapters:
   - file: Tutorial1/Setup
   - file: Tutorial1/Data Files
+  
+- part: Tutorial 2
+  numbered: true
+  chapters:
+  - file: Tutorial2/Estimation from Samples
+  - file: Tutorial2/Evaluation using Weka
+  - file: Tutorial2/Evaluation with scikit-learn
