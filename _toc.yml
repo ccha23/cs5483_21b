@@ -12,3 +12,10 @@
   - file: Tutorial2/Estimation from Samples
   - file: Tutorial2/Evaluation using Weka
   - file: Tutorial2/Evaluation with scikit-learn
+
+- part: Tutorial 3
+  numbered: true
+  chapters:
+  - file: Tutorial3/Information Quantities for Decision Tree Induction
+  - file: Tutorial3/Man vs Machine
+  - file: Tutorial3/Decision Tree Induction with scikit-learn
