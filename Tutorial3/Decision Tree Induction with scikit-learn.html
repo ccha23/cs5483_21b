@@ -1,0 +1,735 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3. Decision Tree Induction with scikit-learn &#8212; CS5483</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
+    <script kind="utterances">
+
+    var commentsRunWhenDOMLoaded = cb => {
+    if (document.readyState != 'loading') {
+        cb()
+    } else if (document.addEventListener) {
+        document.addEventListener('DOMContentLoaded', cb)
+    } else {
+        document.attachEvent('onreadystatechange', function() {
+        if (document.readyState == 'complete') cb()
+        })
+    }
+}
+
+var addUtterances = () => {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src = "https://utteranc.es/client.js";
+    script.async = "async";
+
+    script.setAttribute("repo", "ccha23/cs5483");
+    script.setAttribute("issue-term", "pathname");
+    script.setAttribute("theme", "github-light");
+    script.setAttribute("label", "💬 comment");
+    script.setAttribute("crossorigin", "anonymous");
+
+    sections = document.querySelectorAll("div.section");
+    if (sections !== null) {
+        section = sections[sections.length-1];
+        section.appendChild(script);
+    }
+}
+commentsRunWhenDOMLoaded(addUtterances);
+</script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="2. Man vs Machine" href="Man%20vs%20Machine.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/logo.svg" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">CS5483</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../README.html">
+   Data Warehousing and Data Mining
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Tutorial 1
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Tutorial1/Setup.html">
+   1. Setup
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Tutorial1/Data%20Files.html">
+   2. Data Files
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Tutorial 2
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Tutorial2/Estimation%20from%20Samples.html">
+   1. Estimation from Samples
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Tutorial2/Evaluation%20using%20Weka.html">
+   2. Evaluation using Weka
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Tutorial2/Evaluation%20with%20scikit-learn.html">
+   3. Evaluation with scikit-learn
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Tutorial 3
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Information%20Quantities%20for%20Decision%20Tree%20Induction.html">
+   1. Information Quantities for Decision Tree Induction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Man%20vs%20Machine.html">
+   2. Man vs Machine
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   3. Decision Tree Induction with scikit-learn
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/Tutorial3/Decision Tree Induction with scikit-learn.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        
+        <a class="jupyterhub-button" href="https://ltjh.cs.cityu.edu.hk/hub/user-redirect/git-pull?repo=https://github.com/ccha23/cs5483&urlpath=tree/cs5483/Tutorial3/Decision Tree Induction with scikit-learn.ipynb&branch=main"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch JupyterHub" data-toggle="tooltip"
+                data-placement="left"><img class="jupyterhub-button-logo"
+                    src="../_static/images/logo_jupyterhub.svg"
+                    alt="Interact on JupyterHub">JupyterHub</button></a>
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/ccha23/cs5483/blob/main/Tutorial3/Decision Tree Induction with scikit-learn.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#decision-tree-induction">
+   3.1. Decision Tree Induction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#compute-splitting-criterion">
+   3.2. Compute Splitting Criterion
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#basic-data-analysis-using-pandas">
+     3.2.1. Basic data analysis using
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       pandas
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#compute-impurity">
+     3.2.2. Compute impurity
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#compute-drop-in-impurity-and-best-split">
+     3.2.3. Compute drop in impurity and best split
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="decision-tree-induction-with-scikit-learn">
+<h1><span class="section-number">3. </span>Decision Tree Induction with scikit-learn<a class="headerlink" href="#decision-tree-induction-with-scikit-learn" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">reset</span> -f
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">datasets</span><span class="p">,</span> <span class="n">tree</span>
+<span class="c1"># produce vector inline graphics</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">set_matplotlib_formats</span>
+<span class="n">set_matplotlib_formats</span><span class="p">(</span><span class="s1">&#39;svg&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="decision-tree-induction">
+<h2><span class="section-number">3.1. </span>Decision Tree Induction<a class="headerlink" href="#decision-tree-induction" title="Permalink to this headline">¶</a></h2>
+<p>We first import the <a class="reference external" href="https://en.wikipedia.org/wiki/Iris_flower_data_set"><em>iris dataset</em></a> from <a class="reference external" href="https://scikit-learn.org/stable/datasets/index.html"><code class="docutils literal notranslate"><span class="pre">sklearn.datasets</span></code> package</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">datasets</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">iris</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_iris</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Recall that the classification task is to train a model that can classify the spieces (<em>target</em>) automatically based on the lengths and widths of the petals and sepals (<em>input features</em>).</p>
+<p>To build a decision tree, we simply create a tree using <code class="docutils literal notranslate"><span class="pre">DecisionTreeClassifier</span></code> from <code class="docutils literal notranslate"><span class="pre">sklearn.tree</span></code> and apply its method <code class="docutils literal notranslate"><span class="pre">fit</span></code> on the training set.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clf_gini</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">target</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To display the decision tree, we can use the function <code class="docutils literal notranslate"><span class="pre">plot_tree</span></code> from <code class="docutils literal notranslate"><span class="pre">sklearn.tree</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># to make the tree look better</span>
+<span class="n">options</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;feature_names&#39;</span><span class="p">:</span> <span class="n">iris</span><span class="o">.</span><span class="n">feature_names</span><span class="p">,</span> 
+           <span class="s1">&#39;class_names&#39;</span><span class="p">:</span> <span class="n">iris</span><span class="o">.</span><span class="n">target_names</span><span class="p">,</span>
+           <span class="s1">&#39;filled&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+           <span class="s1">&#39;node_ids&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+           <span class="s1">&#39;rounded&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+           <span class="s1">&#39;fontsize&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">}</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">tree</span><span class="o">.</span><span class="n">plot_tree</span><span class="p">(</span><span class="n">clf_gini</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>For each node:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">___</span> <span class="pre">&lt;=</span> <span class="pre">___</span></code> is the splitting criterion for internal nodes, satisfied only by samples going left.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gini</span> <span class="pre">=</span> <span class="pre">...</span></code> shows the impurity index. By default, the algorithm uses Gini impurity index to find the best binary split. Observe that the index decreases down the tree towards the leafs.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">value</span> <span class="pre">=</span> <span class="pre">[_,</span> <span class="pre">_,</span> <span class="pre">_]</span></code> shows the number of examples for each of the three classes, and <code class="docutils literal notranslate"><span class="pre">class</span> <span class="pre">=</span> <span class="pre">...</span></code> indicates a majority class, which may be used as the decision for a leaf node. The majority classes are also color coded. Observe that the color gets lighter towards the root, as the class distribution is more impure.</p></li>
+</ul>
+<p>In particular, check that iris setosa is distinguished immediately after checking the petal width/length.</p>
+<p>All the information of the decision is stored in the <code class="docutils literal notranslate"><span class="pre">tree_</span></code> attribute of the classifer. For more details:</p>
+<div class="cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">clf_gini</span><span class="o">.</span><span class="n">tree_</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Exercise</strong> Assign to <code class="docutils literal notranslate"><span class="pre">clf_entropy</span></code> the decision tree classifier created using <em>entropy</em> as the impurity measure. You can do so with the keyword argument <code class="docutils literal notranslate"><span class="pre">criterion='entropy'</span></code> in <code class="docutils literal notranslate"><span class="pre">DecisionTreeClassifier</span></code>. Furthermore, Use <code class="docutils literal notranslate"><span class="pre">random_state=0</span></code> and fit the classifier on the entire iris dataset. Check whether the resulting decision tree same as the one created using the Gini impurity index.</p>
+<div class="cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># YOUR CODE HERE</span>
+<span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">tree</span><span class="o">.</span><span class="n">plot_tree</span><span class="p">(</span><span class="n">clf_entropy</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>YOUR ANSWER HERE</p>
+<p>It is important to note that, although one can specify whether to use Gini impurity or entropy, <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> implements neither C4.5 nor CART algorithms. In particular, it supports only binary splits on numerical input attributes, unlike C4.5 which supports multi-way split using information gain ratio.<br />
+(See some <a class="reference external" href="https://stackoverflow.com/questions/38108832/passing-categorical-data-to-sklearn-decision-tree">workarounds</a>.)</p>
+</div>
+<div class="section" id="compute-splitting-criterion">
+<h2><span class="section-number">3.2. </span>Compute Splitting Criterion<a class="headerlink" href="#compute-splitting-criterion" title="Permalink to this headline">¶</a></h2>
+<p>To understand how the decision tree is generated, we will implements the computation of the splitting criterion.</p>
+<div class="section" id="basic-data-analysis-using-pandas">
+<h3><span class="section-number">3.2.1. </span>Basic data analysis using <code class="docutils literal notranslate"><span class="pre">pandas</span></code><a class="headerlink" href="#basic-data-analysis-using-pandas" title="Permalink to this headline">¶</a></h3>
+<p>To have an idea of qualities of the features, create a <a class="reference external" href="https://pandas.pydata.org/docs/user_guide/index.html"><code class="docutils literal notranslate"><span class="pre">pandas</span></code></a> <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html?highlight=dataframe#pandas.DataFrame"><code class="docutils literal notranslate"><span class="pre">DataFrame</span></code></a>
+to operate on the dataset.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># write the input features first</span>
+<span class="n">iris_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">iris</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">iris</span><span class="o">.</span><span class="n">feature_names</span><span class="p">)</span>
+
+<span class="c1"># append the target values to the last column</span>
+<span class="n">iris_df</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">target</span>
+<span class="n">iris_df</span><span class="o">.</span><span class="n">target</span> <span class="o">=</span> <span class="n">iris_df</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;category&#39;</span><span class="p">)</span>
+<span class="n">iris_df</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">cat</span><span class="o">.</span><span class="n">categories</span> <span class="o">=</span> <span class="p">[</span><span class="n">iris</span><span class="o">.</span><span class="n">target_names</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)]</span>
+<span class="n">iris_df</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To display some statistics of the input features for different classes:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iris_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;target&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">rot</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">iris_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;target&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span><span class="s1">&#39;std&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Exercise</strong> Identify good feature(s) based on the above statistics. Does you choice agree with the decision tree generated by <code class="docutils literal notranslate"><span class="pre">DecisionTreeClassifier</span></code>?</p>
+<p>YOUR ANSWER HERE</p>
+</div>
+<div class="section" id="compute-impurity">
+<h3><span class="section-number">3.2.2. </span>Compute impurity<a class="headerlink" href="#compute-impurity" title="Permalink to this headline">¶</a></h3>
+<p>Given a distribution <span class="math notranslate nohighlight">\(\boldsymbol{p}=(p_1,p_2,\dots)\)</span> where <span class="math notranslate nohighlight">\(p_k\in [0,1]\)</span> and <span class="math notranslate nohighlight">\(\sum_k p_k =1\)</span>, the Gini impurity index is defined as:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-c10f4572-1cf0-4f3f-94b8-68107868e5cc">
+<span class="eqno">(3.1)<a class="headerlink" href="#equation-c10f4572-1cf0-4f3f-94b8-68107868e5cc" title="Permalink to this equation">¶</a></span>\[\begin{align}
+\operatorname{Gini}(\boldsymbol{p}) = \operatorname{Gini}(p_1,p_2,\dots) &amp;:= \sum_k p_k(1-p_k)\\
+&amp;= 1- \sum_k p_k^2.
+\end{align}\]</div>
+<p>We can represent a distribution simply as a <code class="docutils literal notranslate"><span class="pre">numpy</span></code> array. To return the empirical class distributions of the iris dataset:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">dist</span><span class="p">(</span><span class="n">values</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Returns the empirical distribution of the given 1D array of values as a </span>
+<span class="sd">    1D array of probabilites.&#39;&#39;&#39;</span>
+    <span class="n">counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">return_counts</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">counts</span> <span class="o">/</span> <span class="n">counts</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Distribution of target: </span><span class="si">{</span><span class="n">dist</span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">target</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The Gini impurity index can be computed as follows:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gini</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Returns the Gini impurity of distribution p.&#39;&#39;&#39;</span>
+    <span class="k">return</span> <span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="n">p</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Gini impurity of target: </span><span class="si">{</span><span class="n">gini</span><span class="p">(</span><span class="n">dist</span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">target</span><span class="p">))</span><span class="si">:</span><span class="s2">.4g</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Exercise</strong> Complete the following function to compute the entropy of a distribution:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-4d905259-bb7d-49dd-adfc-0f2a11d656a9">
+<span class="eqno">(3.2)<a class="headerlink" href="#equation-4d905259-bb7d-49dd-adfc-0f2a11d656a9" title="Permalink to this equation">¶</a></span>\[\begin{align}
+h(\boldsymbol{p}) = h(p_1,p_2,\dots) &amp;= \sum_k - p_k \log_2 p_k\\
+&amp;= \sum_{k:p_k&gt;0} - p_k \log_2 p_k.
+\end{align}\]</div>
+<p>You may use the function <code class="docutils literal notranslate"><span class="pre">log2</span></code> from <code class="docutils literal notranslate"><span class="pre">numpy</span></code> to calculate the logarithm base 2. Note that logarithm of <span class="math notranslate nohighlight">\(0\)</span> is undefined, we use the last expression of the entropy to avoid taking the limit <span class="math notranslate nohighlight">\(\lim_{p\to 0} p\log p=0\)</span>.</p>
+<p>You solution should look like:</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">entropy</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
+    <span class="o">...</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">p</span> <span class="o">*</span> <span class="n">___</span> <span class="o">*</span> <span class="n">___</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">entropy</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Returns the entropy of distribution p.&#39;&#39;&#39;</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">p</span><span class="p">[(</span><span class="n">p</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">p</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">)]</span>  <span class="c1"># 0 log 0 = 1 log 1 = 0</span>
+    <span class="c1"># YOUR CODE HERE</span>
+    <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># tests</span>
+<span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">entropy</span><span class="p">([</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">]),</span> <span class="mi">1</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">entropy</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]),</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="compute-drop-in-impurity-and-best-split">
+<h3><span class="section-number">3.2.3. </span>Compute drop in impurity and best split<a class="headerlink" href="#compute-drop-in-impurity-and-best-split" title="Permalink to this headline">¶</a></h3>
+<p>Now, to compute the drop in impurity for given splitting criterion:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-b45ac22b-c8ae-4f3d-a253-822ad2549034">
+<span class="eqno">(3.3)<a class="headerlink" href="#equation-b45ac22b-c8ae-4f3d-a253-822ad2549034" title="Permalink to this equation">¶</a></span>\[\begin{align}
+\Delta \operatorname{Gini}_{X\leq s}(Y) = \operatorname{Gini}(P_Y) - \left[\Pr\{X\leq s\} \operatorname{Gini}(P_{Y|X\leq s}) + \Pr\{X&gt; s\}\operatorname{Gini}(P_{Y|X&gt; s})\right]
+\end{align}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">drop_in_gini</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">split_pt</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Returns the drop in Gini impurity of Y for the split X &lt;= split_pt.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    X: 1D array the values of a feature for different instances</span>
+<span class="sd">    Y: 1D array of the corresponding target values</span>
+<span class="sd">    split_pt: the value of the split point</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">S</span> <span class="o">=</span> <span class="n">X</span> <span class="o">&lt;=</span> <span class="n">split_pt</span>
+    <span class="n">q</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">gini</span><span class="p">(</span><span class="n">dist</span><span class="p">(</span><span class="n">Y</span><span class="p">))</span> <span class="o">-</span> <span class="n">q</span> <span class="o">*</span> <span class="n">gini</span><span class="p">(</span><span class="n">dist</span><span class="p">(</span><span class="n">Y</span><span class="p">[</span><span class="n">S</span><span class="p">]))</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">q</span><span class="p">)</span> <span class="o">*</span> <span class="n">gini</span><span class="p">(</span><span class="n">dist</span><span class="p">(</span><span class="n">Y</span><span class="p">[</span><span class="o">~</span><span class="n">S</span><span class="p">]))</span>
+
+<span class="n">X</span><span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">iris_df</span><span class="p">[</span><span class="s1">&#39;petal width (cm)&#39;</span><span class="p">],</span> <span class="n">iris_df</span><span class="o">.</span><span class="n">target</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Drop in Gini: </span><span class="si">{</span><span class="n">drop_in_gini</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">)</span><span class="si">:</span><span class="s2">.4g</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To compute the best split point for a feature, we check every consecutive mid-points of the possible feature values:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">find_best_split_pt</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">gain_function</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Return the best split point s and the maximum gain evaluated using </span>
+<span class="sd">    gain_function for the split X &lt;= s and target Y.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    X: 1D array the values of a feature for different instances</span>
+<span class="sd">    Y: 1D array of the corresponding target values</span>
+<span class="sd">    gain_function: a function such as drop_in_gini for evaluating a split</span>
+<span class="sd">    </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    A tuple (s, g) where s is the best split point and g is the maximum gain.</span>
+<span class="sd">    </span>
+<span class="sd">    See also</span>
+<span class="sd">    --------</span>
+<span class="sd">    drop_in_gini</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">X</span><span class="p">))</span>
+    <span class="n">split_pts</span> <span class="o">=</span> <span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">+</span> <span class="n">values</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span>
+    <span class="n">gain</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">gain_function</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">split_pts</span><span class="p">])</span>
+    <span class="n">max_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">gain</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">split_pts</span><span class="p">[</span><span class="n">max_index</span><span class="p">],</span> <span class="n">gain</span><span class="p">[</span><span class="n">max_index</span><span class="p">]</span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;Best split point: </span><span class="si">{0:.4g}</span><span class="s1"></span>
+<span class="s1">Maximum gain: </span><span class="si">{1:.4g}</span><span class="s1">&#39;&#39;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">*</span><span class="n">find_best_split_pt</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">drop_in_gini</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The following ranks the features according to the gains of their best binary splits:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rank_by_gini</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;feature&#39;</span><span class="p">:</span> <span class="n">feature</span><span class="p">,</span>
+    <span class="o">**</span><span class="p">(</span><span class="k">lambda</span> <span class="n">s</span><span class="p">,</span> <span class="n">g</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;split point&#39;</span><span class="p">:</span> <span class="n">s</span><span class="p">,</span>
+        <span class="s1">&#39;gain&#39;</span><span class="p">:</span> <span class="n">g</span>
+    <span class="p">})(</span><span class="o">*</span><span class="n">find_best_split_pt</span><span class="p">(</span><span class="n">iris_df</span><span class="p">[</span><span class="n">feature</span><span class="p">],</span> <span class="n">iris_df</span><span class="o">.</span><span class="n">target</span><span class="p">,</span> <span class="n">drop_in_gini</span><span class="p">))</span>
+<span class="p">}</span> <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">iris</span><span class="o">.</span><span class="n">feature_names</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;gain&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">rank_by_gini</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Exercise</strong> Complete the following function to calculate the <em>information gain</em> for a binary split <span class="math notranslate nohighlight">\(X\leq s\)</span> and target <span class="math notranslate nohighlight">\(Y\)</span>:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-b06a3fe7-322c-4840-9159-d95508a6a0a7">
+<span class="eqno">(3.4)<a class="headerlink" href="#equation-b06a3fe7-322c-4840-9159-d95508a6a0a7" title="Permalink to this equation">¶</a></span>\[\begin{align}
+\operatorname{Gain}_{X\leq s}(Y) := h(P_Y) - \left[\Pr(X\leq s) h(P_{Y|X\leq s}) + \Pr(X&gt; s) h(P_{Y|X&gt; s})\right].
+\end{align}\]</div>
+<p>You may use <code class="docutils literal notranslate"><span class="pre">dist</span></code> and <code class="docutils literal notranslate"><span class="pre">entropy</span></code> defined previously.</p>
+<div class="cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">info_gain</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">split_pt</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Returns the information Gain of Y for the split X &lt;= split_pt.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    X: 1D array the values of a feature for different instances</span>
+<span class="sd">    Y: 1D array of the corresponding target values</span>
+<span class="sd">    split_pt: the value of the split point</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">S</span> <span class="o">=</span> <span class="n">X</span> <span class="o">&lt;=</span> <span class="n">split_pt</span>
+    <span class="n">q</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+    <span class="c1"># YOUR CODE HERE</span>
+    <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
+    
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Information gain: </span><span class="si">{</span><span class="n">info_gain</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">)</span><span class="si">:</span><span class="s2">.4g</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># tests</span>
+<span class="n">rank_by_entropy</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;feature&#39;</span><span class="p">:</span>
+    <span class="n">feature</span><span class="p">,</span>
+    <span class="o">**</span><span class="p">(</span><span class="k">lambda</span> <span class="n">s</span><span class="p">,</span> <span class="n">g</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;split point&#39;</span><span class="p">:</span> <span class="n">s</span><span class="p">,</span>
+        <span class="s1">&#39;gain&#39;</span><span class="p">:</span> <span class="n">g</span>
+    <span class="p">})(</span><span class="o">*</span><span class="n">find_best_split_pt</span><span class="p">(</span><span class="n">iris_df</span><span class="p">[</span><span class="n">feature</span><span class="p">],</span> <span class="n">iris_df</span><span class="o">.</span><span class="n">target</span><span class="p">,</span> <span class="n">info_gain</span><span class="p">))</span>
+<span class="p">}</span> <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">iris</span><span class="o">.</span><span class="n">feature_names</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;gain&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">rank_by_entropy</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Exercise</strong> Complete the following function to calculate the <em>information gain ratio</em> for a binary split <span class="math notranslate nohighlight">\(X\leq s\)</span> and target <span class="math notranslate nohighlight">\(Y\)</span>:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-278bc4c8-ad68-4672-b3fa-a6f17c8cc2d9">
+<span class="eqno">(3.5)<a class="headerlink" href="#equation-278bc4c8-ad68-4672-b3fa-a6f17c8cc2d9" title="Permalink to this equation">¶</a></span>\[\begin{align}
+\operatorname{GainRatio}_{X\leq s}(Y) &amp;:= \frac{\operatorname{Gain}_{X\leq s}(Y)}{\operatorname{SplitInfo}(X\leq s)} \qquad\text{where}\\
+\operatorname{SplitInfo}(X\leq s) &amp;:= h(\Pr(X\leq s),\Pr(X&gt; s)).
+\end{align}\]</div>
+<p>You may use <code class="docutils literal notranslate"><span class="pre">entropy</span></code> and <code class="docutils literal notranslate"><span class="pre">info_gain</span></code> defined previously.</p>
+<div class="cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">info_gain_ratio</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">split_pt</span><span class="p">):</span>
+    <span class="n">S</span> <span class="o">=</span> <span class="n">X</span> <span class="o">&lt;=</span> <span class="n">split_pt</span>
+    <span class="n">q</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+    <span class="c1"># YOUR CODE HERE</span>
+    <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># tests</span>
+<span class="n">rank_by_info_gain_ratio</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;feature&#39;</span><span class="p">:</span>
+    <span class="n">feature</span><span class="p">,</span>
+    <span class="o">**</span><span class="p">(</span><span class="k">lambda</span> <span class="n">s</span><span class="p">,</span> <span class="n">g</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;split point&#39;</span><span class="p">:</span> <span class="n">s</span><span class="p">,</span>
+        <span class="s1">&#39;gain&#39;</span><span class="p">:</span> <span class="n">g</span>
+    <span class="p">})(</span><span class="o">*</span><span class="n">find_best_split_pt</span><span class="p">(</span><span class="n">iris_df</span><span class="p">[</span><span class="n">feature</span><span class="p">],</span> <span class="n">iris_df</span><span class="o">.</span><span class="n">target</span><span class="p">,</span> <span class="n">info_gain_ratio</span><span class="p">))</span>
+<span class="p">}</span> <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">iris</span><span class="o">.</span><span class="n">feature_names</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;gain&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">rank_by_info_gain_ratio</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Exercise</strong> Does the information gain ratio give a different ranking of the features? Why?</p>
+<p>Information gain ratio gives the same ranking as information gain in this case. This is because the split is restricted to be binary and so the normalization by split information has less effect on the ranking.</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "ccha23/cs5483",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Tutorial3"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="Man%20vs%20Machine.html" title="previous page"><span class="section-number">2. </span>Man vs Machine</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Chung Chan<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

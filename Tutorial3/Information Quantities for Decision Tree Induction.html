@@ -1,0 +1,608 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>1. Information Quantities for Decision Tree Induction &#8212; CS5483</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
+    <script kind="utterances">
+
+    var commentsRunWhenDOMLoaded = cb => {
+    if (document.readyState != 'loading') {
+        cb()
+    } else if (document.addEventListener) {
+        document.addEventListener('DOMContentLoaded', cb)
+    } else {
+        document.attachEvent('onreadystatechange', function() {
+        if (document.readyState == 'complete') cb()
+        })
+    }
+}
+
+var addUtterances = () => {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src = "https://utteranc.es/client.js";
+    script.async = "async";
+
+    script.setAttribute("repo", "ccha23/cs5483");
+    script.setAttribute("issue-term", "pathname");
+    script.setAttribute("theme", "github-light");
+    script.setAttribute("label", "💬 comment");
+    script.setAttribute("crossorigin", "anonymous");
+
+    sections = document.querySelectorAll("div.section");
+    if (sections !== null) {
+        section = sections[sections.length-1];
+        section.appendChild(script);
+    }
+}
+commentsRunWhenDOMLoaded(addUtterances);
+</script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="2. Man vs Machine" href="Man%20vs%20Machine.html" />
+    <link rel="prev" title="3. Evaluation with scikit-learn" href="../Tutorial2/Evaluation%20with%20scikit-learn.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/logo.svg" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">CS5483</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../README.html">
+   Data Warehousing and Data Mining
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Tutorial 1
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Tutorial1/Setup.html">
+   1. Setup
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Tutorial1/Data%20Files.html">
+   2. Data Files
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Tutorial 2
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Tutorial2/Estimation%20from%20Samples.html">
+   1. Estimation from Samples
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Tutorial2/Evaluation%20using%20Weka.html">
+   2. Evaluation using Weka
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Tutorial2/Evaluation%20with%20scikit-learn.html">
+   3. Evaluation with scikit-learn
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Tutorial 3
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   1. Information Quantities for Decision Tree Induction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Man%20vs%20Machine.html">
+   2. Man vs Machine
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Decision%20Tree%20Induction%20with%20scikit-learn.html">
+   3. Decision Tree Induction with scikit-learn
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/Tutorial3/Information Quantities for Decision Tree Induction.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        
+        <a class="jupyterhub-button" href="https://ltjh.cs.cityu.edu.hk/hub/user-redirect/git-pull?repo=https://github.com/ccha23/cs5483&urlpath=tree/cs5483/Tutorial3/Information Quantities for Decision Tree Induction.ipynb&branch=main"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch JupyterHub" data-toggle="tooltip"
+                data-placement="left"><img class="jupyterhub-button-logo"
+                    src="../_static/images/logo_jupyterhub.svg"
+                    alt="Interact on JupyterHub">JupyterHub</button></a>
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/ccha23/cs5483/blob/main/Tutorial3/Information Quantities for Decision Tree Induction.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#information-measures">
+   1.1. Information Measures
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#entropy">
+   1.2. Entropy
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#information-gain">
+   1.3. Information Gain
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#information-gain-ratio">
+   1.4. Information Gain Ratio
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="information-quantities-for-decision-tree-induction">
+<h1><span class="section-number">1. </span>Information Quantities for Decision Tree Induction<a class="headerlink" href="#information-quantities-for-decision-tree-induction" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">reset</span> -f
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">dit</span>
+<span class="kn">from</span> <span class="nn">dit.shannon</span> <span class="kn">import</span> <span class="n">entropy</span><span class="p">,</span> <span class="n">conditional_entropy</span><span class="p">,</span> <span class="n">mutual_information</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Math</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In this notebook, we will use the <a class="reference external" href="https://dit.readthedocs.io/en/latest/"><code class="docutils literal notranslate"><span class="pre">dit</span></code> package</a> to compute some basic information quantities used in the decision tree algorithms. A summary of Shannon’s information measures and their relationships are given first.</p>
+<div class="section" id="information-measures">
+<h2><span class="section-number">1.1. </span>Information Measures<a class="headerlink" href="#information-measures" title="Permalink to this headline">¶</a></h2>
+<p>The followings are the mathemtical definitions of <em>entropy</em> and <em>mutual information</em>:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-8719a10f-9ec2-4635-b7de-73d153e34cb7">
+<span class="eqno">(1.1)<a class="headerlink" href="#equation-8719a10f-9ec2-4635-b7de-73d153e34cb7" title="Permalink to this equation">¶</a></span>\[\begin{align}
+H(Y) &amp;= E\left[\log \tfrac1{P_{Y}(Y)}\right] &amp;&amp; \text{entropy of $Y$}\\
+H(Y|X) &amp;= E\left[\log \tfrac1{P_{Y|X}(Y|X)}\right] &amp;&amp; \text{conditional entropy of $Y$ given $X$}\\
+I(X;Y) &amp;= E\left[\log \tfrac{P_{Y|X}(Y|X)}{P_Y(Y)}\right] &amp;&amp; \text{mutual information of $X$ and $Y$}\\
+\end{align}\]</div>
+<p>These information quantities can be related using a <em>Venn Diagram</em>:</p>
+<p><a title="KonradVoelkel, Public domain, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Entropy-mutual-information-relative-entropy-relation-diagram.svg"><img width="512" alt="Entropy-mutual-information-relative-entropy-relation-diagram" src="https://upload.wikimedia.org/wikipedia/commons/d/d4/Entropy-mutual-information-relative-entropy-relation-diagram.svg"></a></p>
+<div class="amsmath math notranslate nohighlight" id="equation-92794453-8d62-4ee6-8af4-12365d954516">
+<span class="eqno">(1.2)<a class="headerlink" href="#equation-92794453-8d62-4ee6-8af4-12365d954516" title="Permalink to this equation">¶</a></span>\[\begin{align}
+H(X,Y)&amp;=H(X)+H(Y|X) &amp;&amp; \text{chain rule of entropy}\\
+&amp;=H(Y)+H(X|Y)\\
+I(X;Y)&amp;=H(Y)-H(Y|X) &amp;&amp; \text{mutual information in terms of entropies}\\
+&amp;=H(X)+H(Y)-H(X,Y)\\
+&amp;=H(X)-H(X|Y)
+\end{align}\]</div>
+</div>
+<div class="section" id="entropy">
+<h2><span class="section-number">1.2. </span>Entropy<a class="headerlink" href="#entropy" title="Permalink to this headline">¶</a></h2>
+<p>Consider the following distribution:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-43cd8c69-dba7-4453-9c8d-074c5b4f3ab0">
+<span class="eqno">(1.3)<a class="headerlink" href="#equation-43cd8c69-dba7-4453-9c8d-074c5b4f3ab0" title="Permalink to this equation">¶</a></span>\[\begin{align}
+p_k=\begin{cases}
+\frac12 &amp; k=0\\
+\frac14 &amp; k=1,2\\
+0 &amp; \text{otherwise.}
+\end{cases}
+\end{align}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">dit</span><span class="o">.</span><span class="n">Distribution</span><span class="p">([</span><span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">outcomes</span><span class="p">,</span><span class="n">p</span><span class="o">.</span><span class="n">pmf</span><span class="p">,</span><span class="n">use_line_collection</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$p_k$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Math</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;h(p_1,p_2,\dots)=</span><span class="si">{</span><span class="n">entropy</span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="information-gain">
+<h2><span class="section-number">1.3. </span>Information Gain<a class="headerlink" href="#information-gain" title="Permalink to this headline">¶</a></h2>
+<p>Consider the dataset <span class="math notranslate nohighlight">\(D\)</span>:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:center head"><p>X1</p></th>
+<th class="text-align:center head"><p>X2</p></th>
+<th class="text-align:center head"><p>X3</p></th>
+<th class="text-align:center head"><p>X4</p></th>
+<th class="text-align:center head"><p>Y</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:center"><p>0</p></td>
+<td class="text-align:center"><p>0</p></td>
+<td class="text-align:center"><p>0</p></td>
+<td class="text-align:center"><p>00</p></td>
+<td class="text-align:center"><p>0</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>0</p></td>
+<td class="text-align:center"><p>0</p></td>
+<td class="text-align:center"><p>0</p></td>
+<td class="text-align:center"><p>00</p></td>
+<td class="text-align:center"><p>0</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>0</p></td>
+<td class="text-align:center"><p>0</p></td>
+<td class="text-align:center"><p>1</p></td>
+<td class="text-align:center"><p>01</p></td>
+<td class="text-align:center"><p>1</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>1</p></td>
+<td class="text-align:center"><p>0</p></td>
+<td class="text-align:center"><p>1</p></td>
+<td class="text-align:center"><p>11</p></td>
+<td class="text-align:center"><p>1</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>0</p></td>
+<td class="text-align:center"><p>1</p></td>
+<td class="text-align:center"><p>0</p></td>
+<td class="text-align:center"><p>00</p></td>
+<td class="text-align:center"><p>2</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>1</p></td>
+<td class="text-align:center"><p>1</p></td>
+<td class="text-align:center"><p>0</p></td>
+<td class="text-align:center"><p>10</p></td>
+<td class="text-align:center"><p>2</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>1</p></td>
+<td class="text-align:center"><p>1</p></td>
+<td class="text-align:center"><p>1</p></td>
+<td class="text-align:center"><p>11</p></td>
+<td class="text-align:center"><p>3</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>1</p></td>
+<td class="text-align:center"><p>1</p></td>
+<td class="text-align:center"><p>1</p></td>
+<td class="text-align:center"><p>11</p></td>
+<td class="text-align:center"><p>3</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>How to determine which attribute is more informative?</strong></p>
+<p>First, create a uniform distribution over the instances in <span class="math notranslate nohighlight">\(D\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="n">dit</span><span class="o">.</span><span class="n">uniform</span><span class="p">([(</span><span class="s1">&#39;0&#39;</span><span class="p">,</span><span class="s1">&#39;0&#39;</span><span class="p">,</span><span class="s1">&#39;0&#39;</span><span class="p">,</span><span class="s1">&#39;00&#39;</span><span class="p">,</span><span class="s1">&#39;0&#39;</span><span class="p">),</span>
+                 <span class="p">(</span><span class="s1">&#39;0&#39;</span><span class="p">,</span><span class="s1">&#39;0&#39;</span><span class="p">,</span><span class="s1">&#39;0&#39;</span><span class="p">,</span><span class="s1">&#39;00&#39;</span><span class="p">,</span><span class="s1">&#39;0&#39;</span><span class="p">),</span>
+                 <span class="p">(</span><span class="s1">&#39;0&#39;</span><span class="p">,</span><span class="s1">&#39;0&#39;</span><span class="p">,</span><span class="s1">&#39;1&#39;</span><span class="p">,</span><span class="s1">&#39;01&#39;</span><span class="p">,</span><span class="s1">&#39;1&#39;</span><span class="p">),</span>
+                 <span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">,</span><span class="s1">&#39;0&#39;</span><span class="p">,</span><span class="s1">&#39;1&#39;</span><span class="p">,</span><span class="s1">&#39;11&#39;</span><span class="p">,</span><span class="s1">&#39;1&#39;</span><span class="p">),</span>
+                 <span class="p">(</span><span class="s1">&#39;0&#39;</span><span class="p">,</span><span class="s1">&#39;1&#39;</span><span class="p">,</span><span class="s1">&#39;0&#39;</span><span class="p">,</span><span class="s1">&#39;00&#39;</span><span class="p">,</span><span class="s1">&#39;2&#39;</span><span class="p">),</span>
+                 <span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">,</span><span class="s1">&#39;1&#39;</span><span class="p">,</span><span class="s1">&#39;0&#39;</span><span class="p">,</span><span class="s1">&#39;10&#39;</span><span class="p">,</span><span class="s1">&#39;2&#39;</span><span class="p">),</span>
+                 <span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">,</span><span class="s1">&#39;1&#39;</span><span class="p">,</span><span class="s1">&#39;1&#39;</span><span class="p">,</span><span class="s1">&#39;11&#39;</span><span class="p">,</span><span class="s1">&#39;3&#39;</span><span class="p">),</span>
+                 <span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">,</span><span class="s1">&#39;1&#39;</span><span class="p">,</span><span class="s1">&#39;1&#39;</span><span class="p">,</span><span class="s1">&#39;11&#39;</span><span class="p">,</span><span class="s1">&#39;3&#39;</span><span class="p">)])</span>
+<span class="n">d</span><span class="o">.</span><span class="n">set_rv_names</span><span class="p">((</span><span class="s1">&#39;X1&#39;</span><span class="p">,</span><span class="s1">&#39;X2&#39;</span><span class="p">,</span><span class="s1">&#39;X3&#39;</span><span class="p">,</span><span class="s1">&#39;X4&#39;</span><span class="p">,</span><span class="s1">&#39;Y&#39;</span><span class="p">))</span>
+<span class="n">d</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can then calculate <span class="math notranslate nohighlight">\(\text{Info}(D)\)</span> and <span class="math notranslate nohighlight">\(\text{Info}_{X_i}(D)\)</span> for <span class="math notranslate nohighlight">\(i=\{1,2,3,4\}\)</span> as the entropy <span class="math notranslate nohighlight">\(H(Y)\)</span> and conditional entropies <span class="math notranslate nohighlight">\(H(Y|X_i)\)</span>’s respectively.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">InfoD</span> <span class="o">=</span> <span class="n">entropy</span><span class="p">(</span><span class="n">d</span><span class="p">,[</span><span class="s1">&#39;Y&#39;</span><span class="p">])</span>
+<span class="n">InfoX1D</span> <span class="o">=</span> <span class="n">conditional_entropy</span><span class="p">(</span><span class="n">d</span><span class="p">,[</span><span class="s1">&#39;Y&#39;</span><span class="p">],[</span><span class="s1">&#39;X1&#39;</span><span class="p">])</span>
+<span class="n">InfoX2D</span> <span class="o">=</span> <span class="n">conditional_entropy</span><span class="p">(</span><span class="n">d</span><span class="p">,[</span><span class="s1">&#39;Y&#39;</span><span class="p">],[</span><span class="s1">&#39;X2&#39;</span><span class="p">])</span>
+<span class="n">InfoX3D</span> <span class="o">=</span> <span class="n">conditional_entropy</span><span class="p">(</span><span class="n">d</span><span class="p">,[</span><span class="s1">&#39;Y&#39;</span><span class="p">],[</span><span class="s1">&#39;X3&#39;</span><span class="p">])</span>
+<span class="n">InfoX4D</span> <span class="o">=</span> <span class="n">conditional_entropy</span><span class="p">(</span><span class="n">d</span><span class="p">,[</span><span class="s1">&#39;Y&#39;</span><span class="p">],[</span><span class="s1">&#39;X4&#39;</span><span class="p">])</span>
+
+<span class="n">Math</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">\begin{{aligned}}</span>
+<span class="s1">\text{{Info}}(D)&amp;=</span><span class="si">{}</span><span class="s1">\\</span>
+<span class="s1">\text{{Info}}_{{X_1}}(D)&amp;=</span><span class="si">{:.3g}</span><span class="s1">\\</span>
+<span class="s1">\text{{Info}}_{{X_2}}(D)&amp;=</span><span class="si">{:.3g}</span><span class="s1">\\</span>
+<span class="s1">\text{{Info}}_{{X_3}}(D)&amp;=</span><span class="si">{:.3g}</span><span class="s1">\\</span>
+<span class="s1">\text{{Info}}_{{X_4}}(D)&amp;=</span><span class="si">{:.3g}</span><span class="s1">\\</span>
+<span class="s1">\end{{aligned}}</span>
+<span class="s1">&#39;&#39;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">InfoD</span><span class="p">,</span><span class="n">InfoX1D</span><span class="p">,</span><span class="n">InfoX2D</span><span class="p">,</span><span class="n">InfoX3D</span><span class="p">,</span><span class="n">InfoX4D</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The information gain <span class="math notranslate nohighlight">\(\text{Gain}_{X_i}(D)\)</span> can be calculated as the mutual information <span class="math notranslate nohighlight">\(I(X_i;Y):=H(Y)-H(Y|X_i)\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">GainX1D</span> <span class="o">=</span> <span class="n">mutual_information</span><span class="p">(</span><span class="n">d</span><span class="p">,[</span><span class="s1">&#39;X1&#39;</span><span class="p">],[</span><span class="s1">&#39;Y&#39;</span><span class="p">])</span>
+<span class="n">GainX2D</span> <span class="o">=</span> <span class="n">mutual_information</span><span class="p">(</span><span class="n">d</span><span class="p">,[</span><span class="s1">&#39;X2&#39;</span><span class="p">],[</span><span class="s1">&#39;Y&#39;</span><span class="p">])</span>
+<span class="n">GainX3D</span> <span class="o">=</span> <span class="n">mutual_information</span><span class="p">(</span><span class="n">d</span><span class="p">,[</span><span class="s1">&#39;X3&#39;</span><span class="p">],[</span><span class="s1">&#39;Y&#39;</span><span class="p">])</span>
+<span class="n">GainX4D</span> <span class="o">=</span> <span class="n">mutual_information</span><span class="p">(</span><span class="n">d</span><span class="p">,[</span><span class="s1">&#39;X4&#39;</span><span class="p">],[</span><span class="s1">&#39;Y&#39;</span><span class="p">])</span>
+
+<span class="n">Math</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">\begin{{aligned}}</span>
+<span class="s1">\text{{Gain}}_{{X_1}}(D)&amp;=</span><span class="si">{:.3g}</span><span class="s1">\\</span>
+<span class="s1">\text{{Gain}}_{{X_2}}(D)&amp;=</span><span class="si">{:.3g}</span><span class="s1">\\</span>
+<span class="s1">\text{{Gain}}_{{X_3}}(D)&amp;=</span><span class="si">{:.3g}</span><span class="s1">\\</span>
+<span class="s1">\text{{Gain}}_{{X_4}}(D)&amp;=</span><span class="si">{:.3g}</span><span class="s1">\\</span>
+<span class="s1">\end{{aligned}}</span>
+<span class="s1">&#39;&#39;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">GainX1D</span><span class="p">,</span><span class="n">GainX2D</span><span class="p">,</span><span class="n">GainX3D</span><span class="p">,</span><span class="n">GainX4D</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Exercise</strong> Which attribute gives the highest information gain? Should we choose it as the splitting attribute?</p>
+<p>YOUR ANSWER HERE</p>
+</div>
+<div class="section" id="information-gain-ratio">
+<h2><span class="section-number">1.4. </span>Information Gain Ratio<a class="headerlink" href="#information-gain-ratio" title="Permalink to this headline">¶</a></h2>
+<p>To normalize information gain properly, we first calculate <span class="math notranslate nohighlight">\(\text{SplitInfo}_{X_i}(D)\)</span> as <span class="math notranslate nohighlight">\(H(X_i)\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">SplitInfoX1D</span> <span class="o">=</span> <span class="n">entropy</span><span class="p">(</span><span class="n">d</span><span class="p">,[</span><span class="s1">&#39;X1&#39;</span><span class="p">])</span>
+<span class="n">SplitInfoX2D</span> <span class="o">=</span> <span class="n">entropy</span><span class="p">(</span><span class="n">d</span><span class="p">,[</span><span class="s1">&#39;X2&#39;</span><span class="p">])</span>
+<span class="n">SplitInfoX3D</span> <span class="o">=</span> <span class="n">entropy</span><span class="p">(</span><span class="n">d</span><span class="p">,[</span><span class="s1">&#39;X3&#39;</span><span class="p">])</span>
+<span class="n">SplitInfoX4D</span> <span class="o">=</span> <span class="n">entropy</span><span class="p">(</span><span class="n">d</span><span class="p">,[</span><span class="s1">&#39;X4&#39;</span><span class="p">])</span>
+
+<span class="n">Math</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">\begin{{aligned}}</span>
+<span class="s1">\text{{SplitInfo}}_{{X_1}}(D)&amp;=</span><span class="si">{:.3g}</span><span class="s1">\\</span>
+<span class="s1">\text{{SplitInfo}}_{{X_2}}(D)&amp;=</span><span class="si">{:.3g}</span><span class="s1">\\</span>
+<span class="s1">\text{{SplitInfo}}_{{X_3}}(D)&amp;=</span><span class="si">{:.3g}</span><span class="s1">\\</span>
+<span class="s1">\text{{SplitInfo}}_{{X_4}}(D)&amp;=</span><span class="si">{:.3g}</span><span class="s1">\\</span>
+<span class="s1">\end{{aligned}}</span>
+<span class="s1">&#39;&#39;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">SplitInfoX1D</span><span class="p">,</span><span class="n">SplitInfoX2D</span><span class="p">,</span><span class="n">SplitInfoX3D</span><span class="p">,</span><span class="n">SplitInfoX4D</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally, to calculate the information gain ratios:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Math</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">\begin{{aligned}}</span>
+<span class="s1">\frac{{\text{{Gain}}_{{X_1}}(D)}}{{\text{{SplitInfo}}_{{X_1}}(D)}}&amp;=</span><span class="si">{:.3g}</span><span class="s1">\\</span>
+<span class="s1">\frac{{\text{{Gain}}_{{X_2}}(D)}}{{\text{{SplitInfo}}_{{X_2}}(D)}}&amp;=</span><span class="si">{:.3g}</span><span class="s1">\\</span>
+<span class="s1">\frac{{\text{{Gain}}_{{X_3}}(D)}}{{\text{{SplitInfo}}_{{X_3}}(D)}}&amp;=</span><span class="si">{:.3g}</span><span class="s1">\\</span>
+<span class="s1">\frac{{\text{{Gain}}_{{X_4}}(D)}}{{\text{{SplitInfo}}_{{X_4}}(D)}}&amp;=</span><span class="si">{:.3g}</span><span class="s1">\\</span>
+<span class="s1">\end{{aligned}}</span>
+<span class="s1">&#39;&#39;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">GainX1D</span><span class="o">/</span><span class="n">SplitInfoX1D</span><span class="p">,</span><span class="n">GainX2D</span><span class="o">/</span><span class="n">SplitInfoX2D</span><span class="p">,</span><span class="n">GainX3D</span><span class="o">/</span><span class="n">SplitInfoX3D</span><span class="p">,</span><span class="n">GainX4D</span><span class="o">/</span><span class="n">SplitInfoX4D</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Exercise</strong> Is <span class="math notranslate nohighlight">\(X_4\)</span> a good splitting attribute? Why?</p>
+<p>YOUR ANSWER HERE</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "ccha23/cs5483",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Tutorial3"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="../Tutorial2/Evaluation%20with%20scikit-learn.html" title="previous page"><span class="section-number">3. </span>Evaluation with scikit-learn</a>
+    <a class='right-next' id="next-link" href="Man%20vs%20Machine.html" title="next page"><span class="section-number">2. </span>Man vs Machine</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Chung Chan<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>
