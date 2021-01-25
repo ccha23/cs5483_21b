@@ -452,8 +452,8 @@ to operate on the dataset.</p>
 <div class="section" id="compute-impurity">
 <h3><span class="section-number">3.2.2. </span>Compute impurity<a class="headerlink" href="#compute-impurity" title="Permalink to this headline">¶</a></h3>
 <p>Given a distribution <span class="math notranslate nohighlight">\(\boldsymbol{p}=(p_1,p_2,\dots)\)</span> where <span class="math notranslate nohighlight">\(p_k\in [0,1]\)</span> and <span class="math notranslate nohighlight">\(\sum_k p_k =1\)</span>, the Gini impurity index is defined as:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c10f4572-1cf0-4f3f-94b8-68107868e5cc">
-<span class="eqno">(3.1)<a class="headerlink" href="#equation-c10f4572-1cf0-4f3f-94b8-68107868e5cc" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-e1ea5d3d-8824-4ccc-aa54-3f724a7ff4f7">
+<span class="eqno">(3.1)<a class="headerlink" href="#equation-e1ea5d3d-8824-4ccc-aa54-3f724a7ff4f7" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \operatorname{Gini}(\boldsymbol{p}) = \operatorname{Gini}(p_1,p_2,\dots) &amp;:= \sum_k p_k(1-p_k)\\
 &amp;= 1- \sum_k p_k^2.
 \end{align}\]</div>
@@ -485,8 +485,8 @@ to operate on the dataset.</p>
 </div>
 </div>
 <p><strong>Exercise</strong> Complete the following function to compute the entropy of a distribution:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4d905259-bb7d-49dd-adfc-0f2a11d656a9">
-<span class="eqno">(3.2)<a class="headerlink" href="#equation-4d905259-bb7d-49dd-adfc-0f2a11d656a9" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-eef21410-af57-4d0b-b39c-b53e901f0d96">
+<span class="eqno">(3.2)<a class="headerlink" href="#equation-eef21410-af57-4d0b-b39c-b53e901f0d96" title="Permalink to this equation">¶</a></span>\[\begin{align}
 h(\boldsymbol{p}) = h(p_1,p_2,\dots) &amp;= \sum_k - p_k \log_2 p_k\\
 &amp;= \sum_{k:p_k&gt;0} - p_k \log_2 p_k.
 \end{align}\]</div>
@@ -522,8 +522,8 @@ h(\boldsymbol{p}) = h(p_1,p_2,\dots) &amp;= \sum_k - p_k \log_2 p_k\\
 <div class="section" id="compute-drop-in-impurity-and-best-split">
 <h3><span class="section-number">3.2.3. </span>Compute drop in impurity and best split<a class="headerlink" href="#compute-drop-in-impurity-and-best-split" title="Permalink to this headline">¶</a></h3>
 <p>Now, to compute the drop in impurity for given splitting criterion:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b45ac22b-c8ae-4f3d-a253-822ad2549034">
-<span class="eqno">(3.3)<a class="headerlink" href="#equation-b45ac22b-c8ae-4f3d-a253-822ad2549034" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-03f22f35-e320-4e70-90e4-0f6f8400e771">
+<span class="eqno">(3.3)<a class="headerlink" href="#equation-03f22f35-e320-4e70-90e4-0f6f8400e771" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \Delta \operatorname{Gini}_{X\leq s}(Y) = \operatorname{Gini}(P_Y) - \left[\Pr\{X\leq s\} \operatorname{Gini}(P_{Y|X\leq s}) + \Pr\{X&gt; s\}\operatorname{Gini}(P_{Y|X&gt; s})\right]
 \end{align}\]</div>
 <div class="cell docutils container">
@@ -597,8 +597,8 @@ h(\boldsymbol{p}) = h(p_1,p_2,\dots) &amp;= \sum_k - p_k \log_2 p_k\\
 </div>
 </div>
 <p><strong>Exercise</strong> Complete the following function to calculate the <em>information gain</em> for a binary split <span class="math notranslate nohighlight">\(X\leq s\)</span> and target <span class="math notranslate nohighlight">\(Y\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b06a3fe7-322c-4840-9159-d95508a6a0a7">
-<span class="eqno">(3.4)<a class="headerlink" href="#equation-b06a3fe7-322c-4840-9159-d95508a6a0a7" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-7bbe9b1e-e731-4320-b17e-8096ca6b0c50">
+<span class="eqno">(3.4)<a class="headerlink" href="#equation-7bbe9b1e-e731-4320-b17e-8096ca6b0c50" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \operatorname{Gain}_{X\leq s}(Y) := h(P_Y) - \left[\Pr(X\leq s) h(P_{Y|X\leq s}) + \Pr(X&gt; s) h(P_{Y|X&gt; s})\right].
 \end{align}\]</div>
 <p>You may use <code class="docutils literal notranslate"><span class="pre">dist</span></code> and <code class="docutils literal notranslate"><span class="pre">entropy</span></code> defined previously.</p>
@@ -640,8 +640,8 @@ h(\boldsymbol{p}) = h(p_1,p_2,\dots) &amp;= \sum_k - p_k \log_2 p_k\\
 </div>
 </div>
 <p><strong>Exercise</strong> Complete the following function to calculate the <em>information gain ratio</em> for a binary split <span class="math notranslate nohighlight">\(X\leq s\)</span> and target <span class="math notranslate nohighlight">\(Y\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-278bc4c8-ad68-4672-b3fa-a6f17c8cc2d9">
-<span class="eqno">(3.5)<a class="headerlink" href="#equation-278bc4c8-ad68-4672-b3fa-a6f17c8cc2d9" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-648c121c-7c51-4e3d-bee8-c952be590b57">
+<span class="eqno">(3.5)<a class="headerlink" href="#equation-648c121c-7c51-4e3d-bee8-c952be590b57" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \operatorname{GainRatio}_{X\leq s}(Y) &amp;:= \frac{\operatorname{Gain}_{X\leq s}(Y)}{\operatorname{SplitInfo}(X\leq s)} \qquad\text{where}\\
 \operatorname{SplitInfo}(X\leq s) &amp;:= h(\Pr(X\leq s),\Pr(X&gt; s)).
 \end{align}\]</div>
