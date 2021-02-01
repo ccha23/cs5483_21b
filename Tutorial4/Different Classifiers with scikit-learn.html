@@ -451,13 +451,13 @@ commentsRunWhenDOMLoaded(addUtterances);
 <div class="section" id="min-max-normalization">
 <h3><span class="section-number">2.1.1. </span>Min-max Normalization<a class="headerlink" href="#min-max-normalization" title="Permalink to this headline">¶</a></h3>
 <p>We can normalize a numeric feature to the unit interval as follows:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-78a5114b-2933-43d8-b604-ad69333fd494">
-<span class="eqno">(2.1)<a class="headerlink" href="#equation-78a5114b-2933-43d8-b604-ad69333fd494" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-237babf7-d120-4fc6-b401-fa2d8f499c95">
+<span class="eqno">(2.1)<a class="headerlink" href="#equation-237babf7-d120-4fc6-b401-fa2d8f499c95" title="Permalink to this equation">¶</a></span>\[\begin{align}
 X_i\in [X_i^{\min}, X_i^{\max}] \mapsto \frac{X_i - X_i^{\min}}{X_i^{\max} - X_i^{\min}} \in [0,1].
 \end{align}\]</div>
 <p>To perform the normalization on i.i.d. samples <span class="math notranslate nohighlight">\(x_{ij}\)</span> indexed by <span class="math notranslate nohighlight">\(j\)</span>, we use the mapping</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b8feb444-a337-4481-872d-bc85fac7a18d">
-<span class="eqno">(2.2)<a class="headerlink" href="#equation-b8feb444-a337-4481-872d-bc85fac7a18d" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-569368fb-4879-4ac0-81ec-cf08e7fff5f5">
+<span class="eqno">(2.2)<a class="headerlink" href="#equation-569368fb-4879-4ac0-81ec-cf08e7fff5f5" title="Permalink to this equation">¶</a></span>\[\begin{align}
 x_{ij} \mapsto \frac{x_{ij} - \min_j x_j}{\max_j x_j - \min_j x_j}.
 \end{align}\]</div>
 <p>An implementation is as follows:</p>
@@ -513,8 +513,8 @@ x_{ij} \mapsto \frac{x_{ij} - \min_j x_j}{\max_j x_j - \min_j x_j}.
 <div class="section" id="standard-normalization">
 <h3><span class="section-number">2.1.2. </span>Standard Normalization<a class="headerlink" href="#standard-normalization" title="Permalink to this headline">¶</a></h3>
 <p>For features with unbounded support and a distribution close to the normal distribution, one may use the <span class="math notranslate nohighlight">\(z\)</span>-score/standard normalization instead of min-max normalization:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-37e2b62f-6882-4ff7-927b-8d0073dd5054">
-<span class="eqno">(2.3)<a class="headerlink" href="#equation-37e2b62f-6882-4ff7-927b-8d0073dd5054" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-2c8db85c-8127-4a78-ac02-c6f66b59ad14">
+<span class="eqno">(2.3)<a class="headerlink" href="#equation-2c8db85c-8127-4a78-ac02-c6f66b59ad14" title="Permalink to this equation">¶</a></span>\[\begin{align}
 X_i \mapsto \frac{X_i - \mu_{X_i}}{\sigma_{X_i}},
 \end{align}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mu_{X_i}\)</span> and <span class="math notranslate nohighlight">\(\sigma_{X_i}\)</span> are the expectation and standard deviation of the feature <span class="math notranslate nohighlight">\(X_i\)</span> respectively. The i.i.d.\ samples can be transformed using sample mean and standard deviation instead. It is okay to use a biased estimate for standard deviation and variance.</p>
@@ -813,6 +813,8 @@ X_i \mapsto \frac{X_i - \mu_{X_i}}{\sigma_{X_i}},
     <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Decision region for RIPPER&#39;</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">feature1</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">feature2</span><span class="p">)</span> 
+    
+<span class="n">plot_decision_regions</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
