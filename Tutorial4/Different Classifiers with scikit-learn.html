@@ -1,0 +1,877 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2. Different Classifiers with scikit-learn &#8212; CS5483</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
+    <script kind="utterances">
+
+    var commentsRunWhenDOMLoaded = cb => {
+    if (document.readyState != 'loading') {
+        cb()
+    } else if (document.addEventListener) {
+        document.addEventListener('DOMContentLoaded', cb)
+    } else {
+        document.attachEvent('onreadystatechange', function() {
+        if (document.readyState == 'complete') cb()
+        })
+    }
+}
+
+var addUtterances = () => {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src = "https://utteranc.es/client.js";
+    script.async = "async";
+
+    script.setAttribute("repo", "ccha23/cs5483");
+    script.setAttribute("issue-term", "pathname");
+    script.setAttribute("theme", "github-light");
+    script.setAttribute("label", "💬 comment");
+    script.setAttribute("crossorigin", "anonymous");
+
+    sections = document.querySelectorAll("div.section");
+    if (sections !== null) {
+        section = sections[sections.length-1];
+        section.appendChild(script);
+    }
+}
+commentsRunWhenDOMLoaded(addUtterances);
+</script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="1. Project 1" href="../Project1/Project1.html" />
+    <link rel="prev" title="1. Different Classifiers with Weka" href="Different%20Classifiers%20with%20Weka.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  <img src="../_static/logo.svg" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">CS5483</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../README.html">
+   Data Warehousing and Data Mining
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Tutorial 1
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Tutorial1/Setup.html">
+   1. Setup
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Tutorial1/Data%20Files.html">
+   2. Data Files
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Tutorial 2
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Tutorial2/Estimation%20from%20Samples.html">
+   1. Estimation from Samples
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Tutorial2/Evaluation%20using%20Weka.html">
+   2. Evaluation using Weka
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Tutorial2/Evaluation%20with%20scikit-learn.html">
+   3. Evaluation with scikit-learn
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Tutorial 3
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Tutorial3/Information%20Quantities%20for%20Decision%20Tree%20Induction.html">
+   1. Information Quantities for Decision Tree Induction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Tutorial3/Man%20vs%20Machine.html">
+   2. Man vs Machine
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Tutorial3/Decision%20Tree%20Induction%20with%20scikit-learn.html">
+   3. Decision Tree Induction with scikit-learn
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Tutorial 4
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Different%20Classifiers%20with%20Weka.html">
+   1. Different Classifiers with Weka
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   2. Different Classifiers with scikit-learn
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Project 1
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Project1/Project1.html">
+   1. Project 1
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/Tutorial4/Different Classifiers with scikit-learn.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        
+        <a class="jupyterhub-button" href="https://ltjh.cs.cityu.edu.hk/hub/user-redirect/git-pull?repo=https://github.com/ccha23/cs5483&urlpath=tree/cs5483/Tutorial4/Different Classifiers with scikit-learn.ipynb&branch=main"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch JupyterHub" data-toggle="tooltip"
+                data-placement="left"><img class="jupyterhub-button-logo"
+                    src="../_static/images/logo_jupyterhub.svg"
+                    alt="Interact on JupyterHub">JupyterHub</button></a>
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/ccha23/cs5483/blob/main/Tutorial4/Different Classifiers with scikit-learn.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#normalization-of-attributes">
+   2.1. Normalization of Attributes
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#min-max-normalization">
+     2.1.1. Min-max Normalization
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#standard-normalization">
+     2.1.2. Standard Normalization
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#nearest-neighbor-classification">
+   2.2. Nearest Neighbor Classification
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#data-leak">
+     2.2.1. Data Leak
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#decision-regions">
+     2.2.2. Decision Regions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#rule-based-classification">
+   2.3. Rule-based Classification
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="different-classifiers-with-scikit-learn">
+<h1><span class="section-number">2. </span>Different Classifiers with scikit-learn<a class="headerlink" href="#different-classifiers-with-scikit-learn" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">reset</span> -f
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">datasets</span><span class="p">,</span> <span class="n">tree</span><span class="p">,</span> <span class="n">preprocessing</span><span class="p">,</span> <span class="n">neighbors</span>
+<span class="c1"># produce vector inline graphics</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">set_matplotlib_formats</span><span class="p">,</span> <span class="n">display</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span><span class="p">,</span> <span class="n">cross_val_predict</span><span class="p">,</span> <span class="n">cross_val_score</span><span class="p">,</span> <span class="n">StratifiedKFold</span>
+<span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">make_pipeline</span>
+<span class="n">set_matplotlib_formats</span><span class="p">(</span><span class="s1">&#39;svg&#39;</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">wittgenstein</span> <span class="kn">import</span> <span class="n">RIPPER</span>
+<span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">interact</span>
+<span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="normalization-of-attributes">
+<h2><span class="section-number">2.1. </span>Normalization of Attributes<a class="headerlink" href="#normalization-of-attributes" title="Permalink to this headline">¶</a></h2>
+<p>For this notebook, we consider the binary classification problem on the <a class="reference external" href="https://archive.ics.uci.edu/ml/datasets/Breast+Cancer+Wisconsin+(Diagnostic)">breast cancer dataset</a>:</p>
+<div class="cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># load the dataset from sklearn</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_breast_cancer</span><span class="p">()</span>
+
+<span class="c1"># create a DataFrame to help further analysis</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">dataset</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">dataset</span><span class="o">.</span><span class="n">feature_names</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">target</span>
+<span class="n">df</span><span class="o">.</span><span class="n">target</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;category&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">cat</span><span class="o">.</span><span class="n">categories</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">target_names</span>
+<span class="n">df</span>  <span class="c1"># display an overview of the data</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The goal is to train a classifier to diagnose whether a breast mass is malignant or benign. The target class distribution is shown as follows:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())</span>
+<span class="n">df</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;counts of different classes&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The input features are characteristics of cell images obtained by <a class="reference external" href="https://en.wikipedia.org/wiki/Fine-needle_aspiration">fine needle analysis (FNA)</a>:</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
+<span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://www.researchgate.net/figure/FNA-biopsy-samples-of-benign-left-and-malignant-center-and-right-breast-tumor-cells_fig1_261959799&quot;</span><span class="p">&gt;&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://www.researchgate.net/profile/Carsten_Eickhoff/publication/261959799/figure/fig1/AS:296624837414914@1447732280878/FNA-biopsy-samples-of-benign-left-and-malignant-center-and-right-breast-tumor-cells.png&quot;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&quot;FNA biopsy samples of benign (left) and malignant (center and right) breast tumor cells.&quot;</span><span class="p">/&gt;&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>FNA biopsy samples of benign (left) and malignant (center and right) breast tumor cells.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Eickhoff, Carsten. (2014). Crowd-powered experts: helping surgeons interpret breast cancer images. ACM International Conference Proceeding Series. 53-56. 10.1145/2594776.2594788.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><a href="https://www.researchgate.net/figure/FNA-biopsy-samples-of-benign-left-and-malignant-center-and-right-breast-tumor-cells_fig1_261959799"><img src="https://www.researchgate.net/profile/Carsten_Eickhoff/publication/261959799/figure/fig1/AS:296624837414914@1447732280878/FNA-biopsy-samples-of-benign-left-and-malignant-center-and-right-breast-tumor-cells.png" alt="FNA biopsy samples of benign (left) and malignant (center and right) breast tumor cells."/></a>
+<p>FNA biopsy samples of benign (left) and malignant (center and right) breast tumor cells.</p>
+<p>Eickhoff, Carsten. (2014). Crowd-powered experts: helping surgeons interpret breast cancer images. ACM International Conference Proceeding Series. 53-56. 10.1145/2594776.2594788.</p>
+</div></div>
+</div>
+<p>The following function displays the statistics of the features grouped by the class values:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">show_feature_statistics</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;target&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">rot</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span>
+                                 <span class="n">layout</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
+                                 <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
+                                 <span class="n">fontsize</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+
+
+<span class="n">show_feature_statistics</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>From the above plots, it can be observed that the attributes <code class="docutils literal notranslate"><span class="pre">mean</span> <span class="pre">area</span></code> and <code class="docutils literal notranslate"><span class="pre">worst</span> <span class="pre">area</span></code> have much larger ranges than other features have.</p>
+<p><strong>Exercise</strong> Is it true that a feature with the larger range is a better feature? Why?</p>
+<p>YOUR ANSWER HERE</p>
+<div class="section" id="min-max-normalization">
+<h3><span class="section-number">2.1.1. </span>Min-max Normalization<a class="headerlink" href="#min-max-normalization" title="Permalink to this headline">¶</a></h3>
+<p>We can normalize a numeric feature to the unit interval as follows:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-4015a284-bb3d-44d2-adfd-dd91f6da1400">
+<span class="eqno">(2.1)<a class="headerlink" href="#equation-4015a284-bb3d-44d2-adfd-dd91f6da1400" title="Permalink to this equation">¶</a></span>\[\begin{align}
+X_i\in [X_i^{\min}, X_i^{\max}] \mapsto \frac{X_i - X_i^{\min}}{X_i^{\max} - X_i^{\min}} \in [0,1].
+\end{align}\]</div>
+<p>To perform the normalization on i.i.d. samples <span class="math notranslate nohighlight">\(x_{ij}\)</span> indexed by <span class="math notranslate nohighlight">\(j\)</span>, we use the mapping</p>
+<div class="amsmath math notranslate nohighlight" id="equation-56d19e84-9481-4677-9fdd-042b37174e1e">
+<span class="eqno">(2.2)<a class="headerlink" href="#equation-56d19e84-9481-4677-9fdd-042b37174e1e" title="Permalink to this equation">¶</a></span>\[\begin{align}
+x_{ij} \mapsto \frac{x_{ij} - \min_j x_j}{\max_j x_j - \min_j x_j}.
+\end{align}\]</div>
+<p>An implementation is as follows:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">minmax_normalize</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">suffix</span><span class="o">=</span><span class="s1">&#39; (min-max normalized)&#39;</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; Returns a DataFrame with numerical attributes of the input DataFrame </span>
+<span class="sd">    min-max normalized.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    df (DataFrame): Input to be min-max normalized. May contain both numeric </span>
+<span class="sd">        and categorical attributes. </span>
+<span class="sd">    suffix (string): Suffix to append to the names of normalized attributes.</span>
+<span class="sd">    </span>
+<span class="sd">    Returns </span>
+<span class="sd">    -------</span>
+<span class="sd">    A new DataFrame which retains the categorical attributes but with the </span>
+<span class="sd">    numeric attributes replaced by their min-max normalization. </span>
+<span class="sd">    The normalized features are renamed with the suffix appended to the end of </span>
+<span class="sd">    their original names.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">df_minmax_normalized</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">min_values</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>  <span class="c1"># Categorical feature target skipped automatically</span>
+
+    <span class="c1"># min-max normalize</span>
+    <span class="n">df_minmax_normalized</span><span class="p">[</span><span class="n">min_values</span><span class="o">.</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="n">df</span><span class="p">[</span><span class="n">min_values</span><span class="o">.</span><span class="n">index</span><span class="p">]</span> <span class="o">-</span> <span class="n">min_values</span><span class="p">)</span> <span class="o">/</span>
+                            <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">-</span> <span class="n">min_values</span><span class="p">))</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    
+    <span class="c1"># rename normalized features</span>
+    <span class="n">df_minmax_normalized</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span>
+        <span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="n">c</span><span class="p">:</span> <span class="n">c</span> <span class="o">+</span> <span class="n">suffix</span>
+                 <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">min_values</span><span class="o">.</span><span class="n">index</span><span class="p">},</span>
+        <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">df_minmax_normalized</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>It is a good idea to rename the normalized features to differentiate them from the original features. The following plots the statistics of the normalized features.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_minmax_normalized</span> <span class="o">=</span> <span class="n">minmax_normalize</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">df_minmax_normalized</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span><span class="o">.</span><span class="n">base</span> <span class="ow">is</span> <span class="n">df</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span><span class="o">.</span><span class="n">base</span>
+<span class="n">show_feature_statistics</span><span class="p">(</span><span class="n">df_minmax_normalized</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>After normalization, we can see how instances of different classes differ in different input features other than <code class="docutils literal notranslate"><span class="pre">mean</span> <span class="pre">area</span></code> and <code class="docutils literal notranslate"><span class="pre">worst</span> <span class="pre">area</span></code>. In particular, both <code class="docutils literal notranslate"><span class="pre">mean-concavity</span></code> and <code class="docutils literal notranslate"><span class="pre">worst-concavity</span></code> are substantially higher for malignant examples than for benign examples. Such details are hard to see in the plots before normalization.</p>
+</div>
+<div class="section" id="standard-normalization">
+<h3><span class="section-number">2.1.2. </span>Standard Normalization<a class="headerlink" href="#standard-normalization" title="Permalink to this headline">¶</a></h3>
+<p>For features with unbounded support and a distribution close to the normal distribution, one may use the <span class="math notranslate nohighlight">\(z\)</span>-score/standard normalization instead of min-max normalization:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-65c79ccf-fabc-4ed9-b5a6-56b569b9b63d">
+<span class="eqno">(2.3)<a class="headerlink" href="#equation-65c79ccf-fabc-4ed9-b5a6-56b569b9b63d" title="Permalink to this equation">¶</a></span>\[\begin{align}
+X_i \mapsto \frac{X_i - \mu_{X_i}}{\sigma_{X_i}},
+\end{align}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mu_{X_i}\)</span> and <span class="math notranslate nohighlight">\(\sigma_{X_i}\)</span> are the expectation and standard deviation of the feature <span class="math notranslate nohighlight">\(X_i\)</span> respectively. The i.i.d.\ samples can be transformed using sample mean and standard deviation instead. It is okay to use a biased estimate for standard deviation and variance.</p>
+<p>To inspect the distribution of each feature, we can use the function <a class="reference external" href="https://seaborn.pydata.org/generated/seaborn.displot.html"><code class="docutils literal notranslate"><span class="pre">displot</span></code></a> provided by the package <a class="reference external" href="https://seaborn.pydata.org"><code class="docutils literal notranslate"><span class="pre">seaborn</span></code></a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+
+<span class="nd">@interact</span><span class="p">(</span><span class="n">feature</span><span class="o">=</span><span class="n">dataset</span><span class="o">.</span><span class="n">feature_names</span><span class="p">,</span> <span class="n">kernel_density_estimation</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">group_by_class</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">plot_distribution</span><span class="p">(</span><span class="n">feature</span><span class="p">,</span> <span class="n">kernel_density_estimation</span><span class="p">,</span> <span class="n">group_by_class</span><span class="p">):</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">displot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">feature</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s1">&#39;target&#39;</span> <span class="k">if</span> <span class="n">group_by_class</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span> <span class="n">kde</span><span class="o">=</span><span class="n">kernel_density_estimation</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mf">3.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Play with the above widgets to check if the distributions of a feature look like the bell-shaped normal distribution.</p>
+<p><strong>Exercise</strong> Complete the function <code class="docutils literal notranslate"><span class="pre">standard_normalize</span></code> as follows:</p>
+<ul class="simple">
+<li><p>Assign to <code class="docutils literal notranslate"><span class="pre">df_standard_normalized</span></code> a new data <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> same as <code class="docutils literal notranslate"><span class="pre">df</span></code> but with all its numeric attributes standard normalized.</p></li>
+<li><p>You may use the methods <code class="docutils literal notranslate"><span class="pre">mean</span></code> and <code class="docutils literal notranslate"><span class="pre">std</span></code>.</p></li>
+<li><p>Rename the normalized features by appending <code class="docutils literal notranslate"><span class="pre">suffix</span></code> to their names.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">standard_normalize</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">suffix</span><span class="o">=</span><span class="s1">&#39; (standard normalized)&#39;</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; Returns a DataFrame with numerical attributes of the input DataFrame </span>
+<span class="sd">    standard normalized.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    df (DataFrame): Input to be standard normalized. May contain both numeric </span>
+<span class="sd">        and categorical attributes. </span>
+<span class="sd">    suffix (string): Suffix to append to the names of normalized attributes.</span>
+<span class="sd">    </span>
+<span class="sd">    Returns </span>
+<span class="sd">    -------</span>
+<span class="sd">    A new DataFrame which retains the categorical attributes but with the </span>
+<span class="sd">    numeric attributes replaced by their standard normalization. </span>
+<span class="sd">    The normalized features are renamed with the suffix appended to the end of </span>
+<span class="sd">    their original names.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="c1"># YOUR CODE HERE</span>
+    <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">df_standard_normalized</span>
+
+<span class="n">df_standard_normalized</span> <span class="o">=</span> <span class="n">standard_normalize</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="n">show_feature_statistics</span><span class="p">(</span><span class="n">df_standard_normalized</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># tests</span>
+<span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">df_standard_normalized</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="nearest-neighbor-classification">
+<h2><span class="section-number">2.2. </span>Nearest Neighbor Classification<a class="headerlink" href="#nearest-neighbor-classification" title="Permalink to this headline">¶</a></h2>
+<p>To create a <span class="math notranslate nohighlight">\(k\)</span>-nearest-neighbor (<span class="math notranslate nohighlight">\(k\)</span>-NN) classifier, we can use <code class="docutils literal notranslate"><span class="pre">sklearn.neighbors.KNeighborsClassifier</span></code>. The following fits a <span class="math notranslate nohighlight">\(1\)</span>-NN classifier to the entire dataset and returns its training accuracy.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">neighbors</span>
+
+<span class="n">X</span><span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">dataset</span><span class="o">.</span><span class="n">feature_names</span><span class="p">],</span> <span class="n">df</span><span class="o">.</span><span class="n">target</span>
+<span class="n">kNN1</span> <span class="o">=</span> <span class="n">neighbors</span><span class="o">.</span><span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">kNN1</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Training accuracy: </span><span class="si">{:0.3g}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">kNN1</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Exercise</strong> Why is the training accuracy for <span class="math notranslate nohighlight">\(1\)</span>-NN <span class="math notranslate nohighlight">\(100\%\)</span>? Explain according to how 1-NN works.</p>
+<p>YOUR ANSWER HERE</p>
+<p>To avoid overly-optimistic performance estimates, the following uses 10-fold cross validations to compute the accuracies of 1-NN trained on datasets with and without normalization.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cv</span> <span class="o">=</span> <span class="n">StratifiedKFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">dfs</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;None&#39;</span><span class="p">:</span> <span class="n">df</span><span class="p">,</span>
+    <span class="s1">&#39;Min-max&#39;</span><span class="p">:</span> <span class="n">df_minmax_normalized</span><span class="p">,</span>
+    <span class="s1">&#39;Standard&#39;</span><span class="p">:</span> <span class="n">df_standard_normalized</span>
+<span class="p">}</span>
+
+<span class="n">acc</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">dfs</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+<span class="k">for</span> <span class="n">norm</span> <span class="ow">in</span> <span class="n">dfs</span><span class="p">:</span>
+    <span class="n">acc</span><span class="p">[</span><span class="n">norm</span><span class="p">]</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span>
+        <span class="n">kNN1</span><span class="p">,</span>
+        <span class="n">dfs</span><span class="p">[</span><span class="n">norm</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="k">lambda</span> <span class="n">df</span><span class="p">:</span> <span class="o">~</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">&#39;target&#39;</span><span class="p">])],</span>
+        <span class="c1"># not [dataset.feature_names] since normalized features are renamed</span>
+        <span class="n">dfs</span><span class="p">[</span><span class="n">norm</span><span class="p">][</span><span class="s1">&#39;target&#39;</span><span class="p">],</span>
+        <span class="n">cv</span><span class="o">=</span><span class="n">cv</span><span class="p">)</span>
+
+<span class="n">acc</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="s1">&#39;std&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="data-leak">
+<h3><span class="section-number">2.2.1. </span>Data Leak<a class="headerlink" href="#data-leak" title="Permalink to this headline">¶</a></h3>
+<p>The accuracies computed previously appear to show that normalization improves the performance of 1-NN. However, there are two subtle issues:</p>
+<ol class="simple">
+<li><p>The standard deviations are quite large compared to the difference in performance. The difference in accuracies may be due to the random sampling in obtaining the data and splitting the data.</p></li>
+<li><p>The normalization factors are calculated from the entire datasets. Hence, in cross-validation, the normalized data for training a classifier indeed depends on the data for testing the classifier. This can lead to an overly-optimistic estimate.</p></li>
+</ol>
+<p>There is not much we can do to resolve the first issue, other than collecting more data. Repeating the cross-validation with different random seeds do not help as that only smooth out the randomness in splitting, not sampling.</p>
+<p>For the second issue can be easily resolved, however, by computing the normalization factors from training set instead of the entire dataset:</p>
+<ul class="simple">
+<li><p>Like the filtered classifier in Weka, <code class="docutils literal notranslate"><span class="pre">sklearn.pipeline</span></code> provides the function <code class="docutils literal notranslate"><span class="pre">make_pipeline</span></code> to combine a filter with a classifier.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sklearn.preprocessing</span></code> provides different filters for normalizing features.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">make_pipeline</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">preprocessing</span>
+
+<span class="n">kNN1_standard_normalized</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">preprocessing</span><span class="o">.</span><span class="n">StandardScaler</span><span class="p">(),</span> <span class="n">kNN1</span><span class="p">)</span>
+<span class="n">acc</span><span class="p">[</span><span class="s1">&#39;Standard&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">kNN1_standard_normalized</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="n">cv</span><span class="p">)</span>
+<span class="n">acc</span><span class="p">[</span><span class="s1">&#39;Standard&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="s1">&#39;std&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The variance still appears to too large to conclude the improve in performance. Indeed, the accuracy for the pipelined classifier gets even larger than the earlier overly-optimistic accuracy. Like the experimenter interface in Weka, a proper way to compare the performance of different classifiers is to use the <a class="reference external" href="https://towardsdatascience.com/inferential-statistics-series-t-test-using-numpy-2718f8f9bf2f">paired t-test</a>.</p>
+<p><strong>Exercise</strong> Similar to the above cell, correct the accuracies in <code class="docutils literal notranslate"><span class="pre">acc['Min-max']</span></code> to use <code class="docutils literal notranslate"><span class="pre">preprocessing.MinMaxScaler</span></code> as part of a pipeline for the 1-NN classifier.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># YOUR CODE HERE</span>
+<span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
+<span class="n">acc</span><span class="p">[</span><span class="s1">&#39;Min-max&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="s1">&#39;std&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># tests</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="decision-regions">
+<h3><span class="section-number">2.2.2. </span>Decision Regions<a class="headerlink" href="#decision-regions" title="Permalink to this headline">¶</a></h3>
+<p>Since <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> does not provide any function to plot the decision regions of a classifier, we provide the function <code class="docutils literal notranslate"><span class="pre">plot_decision_regions</span></code> in a new module <code class="docutils literal notranslate"><span class="pre">util</span></code> defined in <code class="docutils literal notranslate"><span class="pre">util.py</span></code> of the current directory.</p>
+<div class="cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">util</span> <span class="kn">import</span> <span class="n">plot_decision_regions</span>
+<span class="o">?</span>plot_decision_regions
+</pre></div>
+</div>
+</div>
+</div>
+<p>The following plots the decision region for a selected pair of input features.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@interact</span><span class="p">(</span><span class="n">normalization</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;None&#39;</span><span class="p">,</span> <span class="s1">&#39;Min-max&#39;</span><span class="p">,</span> <span class="s1">&#39;Standard&#39;</span><span class="p">],</span>
+          <span class="n">feature1</span><span class="o">=</span><span class="n">dataset</span><span class="o">.</span><span class="n">feature_names</span><span class="p">,</span>
+          <span class="n">feature2</span><span class="o">=</span><span class="n">dataset</span><span class="o">.</span><span class="n">feature_names</span><span class="p">,</span>
+          <span class="n">k</span><span class="o">=</span><span class="n">widgets</span><span class="o">.</span><span class="n">IntSlider</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">continuous_update</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+          <span class="n">resolution</span><span class="o">=</span><span class="n">widgets</span><span class="o">.</span><span class="n">IntSlider</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">continuous_update</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">decision_regions_kNN</span><span class="p">(</span><span class="n">normalization</span><span class="p">,</span>
+                         <span class="n">feature1</span><span class="o">=</span><span class="n">dataset</span><span class="o">.</span><span class="n">feature_names</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                         <span class="n">feature2</span><span class="o">=</span><span class="n">dataset</span><span class="o">.</span><span class="n">feature_names</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                         <span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                         <span class="n">resolution</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">scaler</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;Min-max&#39;</span><span class="p">:</span> <span class="n">preprocessing</span><span class="o">.</span><span class="n">MinMaxScaler</span><span class="p">,</span>
+        <span class="s1">&#39;Standard&#39;</span><span class="p">:</span> <span class="n">preprocessing</span><span class="o">.</span><span class="n">StandardScaler</span>
+    <span class="p">}</span>
+    <span class="n">kNN</span> <span class="o">=</span> <span class="n">neighbors</span><span class="o">.</span><span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="n">k</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">normalization</span> <span class="o">!=</span> <span class="s1">&#39;None&#39;</span><span class="p">:</span>
+        <span class="n">kNN</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">scaler</span><span class="p">[</span><span class="n">normalization</span><span class="p">](),</span> <span class="n">kNN</span><span class="p">)</span>
+    <span class="n">kNN</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="n">feature1</span><span class="p">,</span> <span class="n">feature2</span><span class="p">]],</span> <span class="n">df</span><span class="o">.</span><span class="n">target</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">plot_decision_regions</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="n">feature1</span><span class="p">,</span> <span class="n">feature2</span><span class="p">]],</span>
+                               <span class="n">df</span><span class="o">.</span><span class="n">target</span><span class="p">,</span>
+                               <span class="n">kNN</span><span class="p">,</span>
+                               <span class="n">N</span><span class="o">=</span><span class="n">resolution</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Decision region for </span><span class="si">{}</span><span class="s1">-NN&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">feature1</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">feature2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Interact with the widgets to:</p>
+<ul class="simple">
+<li><p>Learn the effect on the decision regions/boundaries with different normalizations and choices of <span class="math notranslate nohighlight">\(k\)</span>.</p></li>
+<li><p>Learn to draw the decision boundaries for <span class="math notranslate nohighlight">\(1\)</span>-NN with min-max normalization.</p></li>
+</ul>
+<p>To avoid repeated computations, <code class="docutils literal notranslate"><span class="pre">plot_decision_regions</span></code> is <a class="reference external" href="https://realpython.com/primer-on-python-decorators/">a decorated function</a> with its return values memorized/cached. To clear the cached plots, run:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_decision_regions</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Exercise</strong> Complete the following code to plot the decision regions for decision trees. Afterwards, explain whether the decision regions change for different normalizations.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@interact</span><span class="p">(</span><span class="n">normalization</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;None&#39;</span><span class="p">,</span> <span class="s1">&#39;Min-max&#39;</span><span class="p">,</span> <span class="s1">&#39;Standard&#39;</span><span class="p">],</span>
+          <span class="n">feature1</span><span class="o">=</span><span class="n">dataset</span><span class="o">.</span><span class="n">feature_names</span><span class="p">,</span>
+          <span class="n">feature2</span><span class="o">=</span><span class="n">dataset</span><span class="o">.</span><span class="n">feature_names</span><span class="p">,</span>
+          <span class="n">resolution</span><span class="o">=</span><span class="n">widgets</span><span class="o">.</span><span class="n">IntSlider</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">continuous_update</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">decision_regions_kNN</span><span class="p">(</span><span class="n">normalization</span><span class="p">,</span>
+                         <span class="n">feature1</span><span class="o">=</span><span class="n">dataset</span><span class="o">.</span><span class="n">feature_names</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                         <span class="n">feature2</span><span class="o">=</span><span class="n">dataset</span><span class="o">.</span><span class="n">feature_names</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                         <span class="n">resolution</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">scaler</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;Min-max&#39;</span><span class="p">:</span> <span class="n">preprocessing</span><span class="o">.</span><span class="n">MinMaxScaler</span><span class="p">,</span>
+        <span class="s1">&#39;Standard&#39;</span><span class="p">:</span> <span class="n">preprocessing</span><span class="o">.</span><span class="n">StandardScaler</span>
+    <span class="p">}</span>
+    <span class="c1"># YOUR CODE HERE</span>
+    <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">plot_decision_regions</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="n">feature1</span><span class="p">,</span> <span class="n">feature2</span><span class="p">]],</span>
+                               <span class="n">df</span><span class="o">.</span><span class="n">target</span><span class="p">,</span>
+                               <span class="n">DT</span><span class="p">,</span>
+                               <span class="n">N</span><span class="o">=</span><span class="n">resolution</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Decision region for Decision Tree&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">feature1</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">feature2</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<p>YOUR ANSWER HERE</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_decision_regions</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="rule-based-classification">
+<h2><span class="section-number">2.3. </span>Rule-based Classification<a class="headerlink" href="#rule-based-classification" title="Permalink to this headline">¶</a></h2>
+<p>Although RIPPER is not available in <code class="docutils literal notranslate"><span class="pre">sklearn</span></code>, there is an implementation in <a class="reference external" href="https://pypi.org/project/wittgenstein/"><code class="docutils literal notranslate"><span class="pre">wittgenstein</span></code></a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">wittgenstein</span> <span class="kn">import</span> <span class="n">RIPPER</span>
+
+<span class="n">ripper</span> <span class="o">=</span> <span class="n">RIPPER</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">pos_class</span><span class="o">=</span><span class="n">dataset</span><span class="o">.</span><span class="n">target_names</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">ripper</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">class_feat</span> <span class="o">=</span> <span class="s1">&#39;target&#39;</span><span class="p">,</span> <span class="n">pos_class</span><span class="o">=</span><span class="n">pos_class</span><span class="p">)</span>
+<span class="n">ripper</span><span class="o">.</span><span class="n">out_model</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The above is the rule for detecting the positive class. To evaluate the performance:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scores</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">ripper</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="n">dataset</span><span class="o">.</span><span class="n">feature_names</span><span class="p">],</span> <span class="n">df</span><span class="o">.</span><span class="n">target</span> <span class="o">==</span> <span class="n">pos_class</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Accuracy: </span><span class="si">{</span><span class="n">scores</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s1">.3g</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Challenge</strong> The <code class="docutils literal notranslate"><span class="pre">predict</span></code> method of <code class="docutils literal notranslate"><span class="pre">ripper</span></code> seems to fail, as the following code does not show a correct decision region. As a challenge, try to identify the issue from the <a class="reference external" href="https://github.com/imoscovitz/wittgenstein">github repository</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@interact</span><span class="p">(</span><span class="n">normalization</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;None&#39;</span><span class="p">,</span> <span class="s1">&#39;Min-max&#39;</span><span class="p">,</span> <span class="s1">&#39;Standard&#39;</span><span class="p">],</span>
+          <span class="n">feature1</span><span class="o">=</span><span class="n">dataset</span><span class="o">.</span><span class="n">feature_names</span><span class="p">,</span>
+          <span class="n">feature2</span><span class="o">=</span><span class="n">dataset</span><span class="o">.</span><span class="n">feature_names</span><span class="p">,</span>
+          <span class="n">resolution</span><span class="o">=</span><span class="n">widgets</span><span class="o">.</span><span class="n">IntSlider</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">continuous_update</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">decision_regions_kNN</span><span class="p">(</span><span class="n">normalization</span><span class="p">,</span>
+                         <span class="n">feature1</span><span class="o">=</span><span class="n">dataset</span><span class="o">.</span><span class="n">feature_names</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                         <span class="n">feature2</span><span class="o">=</span><span class="n">dataset</span><span class="o">.</span><span class="n">feature_names</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                         <span class="n">resolution</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">scaler</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;Min-max&#39;</span><span class="p">:</span> <span class="n">preprocessing</span><span class="o">.</span><span class="n">MinMaxScaler</span><span class="p">,</span>
+        <span class="s1">&#39;Standard&#39;</span><span class="p">:</span> <span class="n">preprocessing</span><span class="o">.</span><span class="n">StandardScaler</span>
+    <span class="p">}</span>
+    <span class="n">ripper</span> <span class="o">=</span> <span class="n">RIPPER</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">normalization</span> <span class="o">!=</span> <span class="s1">&#39;None&#39;</span><span class="p">:</span>
+        <span class="n">ripper</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">scaler</span><span class="p">[</span><span class="n">normalization</span><span class="p">](),</span> <span class="n">ripper</span><span class="p">)</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="n">feature1</span><span class="p">,</span> <span class="n">feature2</span><span class="p">]]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+    <span class="n">Y</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">target</span> <span class="o">==</span> <span class="n">pos_class</span>
+    <span class="n">ripper</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
+    <span class="n">ripper</span><span class="o">.</span><span class="n">out_model</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">plot_decision_regions</span><span class="p">(</span><span class="n">X</span><span class="p">,</span>
+                               <span class="n">Y</span><span class="p">,</span>
+                               <span class="n">ripper</span><span class="p">,</span>
+                               <span class="n">N</span><span class="o">=</span><span class="n">resolution</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Decision region for RIPPER&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">feature1</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">feature2</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "ccha23/cs5483",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Tutorial4"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="Different%20Classifiers%20with%20Weka.html" title="previous page"><span class="section-number">1. </span>Different Classifiers with Weka</a>
+    <a class='right-next' id="next-link" href="../Project1/Project1.html" title="next page"><span class="section-number">1. </span>Project 1</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Chung Chan<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

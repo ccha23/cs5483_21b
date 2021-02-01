@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>2. Data Files &#8212; CS5483</title>
+    <title>1. Project 1 &#8212; CS5483</title>
     
   <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
 
@@ -92,8 +92,7 @@ commentsRunWhenDOMLoaded(addUtterances);
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="1. Estimation from Samples" href="../Tutorial2/Estimation%20from%20Samples.html" />
-    <link rel="prev" title="1. Setup" href="Setup.html" />
+    <link rel="prev" title="2. Different Classifiers with scikit-learn" href="../Tutorial4/Different%20Classifiers%20with%20scikit-learn.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -135,14 +134,14 @@ commentsRunWhenDOMLoaded(addUtterances);
   Tutorial 1
  </span>
 </p>
-<ul class="current nav sidenav_l1">
+<ul class="nav sidenav_l1">
  <li class="toctree-l1">
-  <a class="reference internal" href="Setup.html">
+  <a class="reference internal" href="../Tutorial1/Setup.html">
    1. Setup
   </a>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Tutorial1/Data%20Files.html">
    2. Data Files
   </a>
  </li>
@@ -213,9 +212,9 @@ commentsRunWhenDOMLoaded(addUtterances);
   Project 1
  </span>
 </p>
-<ul class="nav sidenav_l1">
- <li class="toctree-l1">
-  <a class="reference internal" href="../Project1/Project1.html">
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    1. Project 1
   </a>
  </li>
@@ -259,7 +258,7 @@ commentsRunWhenDOMLoaded(addUtterances);
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/Tutorial1/Data Files.ipynb"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/Project1/Project1.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
@@ -285,14 +284,14 @@ commentsRunWhenDOMLoaded(addUtterances);
     <div class="dropdown-buttons">
         
         
-        <a class="jupyterhub-button" href="https://ltjh.cs.cityu.edu.hk/hub/user-redirect/git-pull?repo=https://github.com/ccha23/cs5483&urlpath=tree/cs5483/Tutorial1/Data Files.ipynb&branch=main"><button type="button"
+        <a class="jupyterhub-button" href="https://ltjh.cs.cityu.edu.hk/hub/user-redirect/git-pull?repo=https://github.com/ccha23/cs5483&urlpath=tree/cs5483/Project1/Project1.ipynb&branch=main"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch JupyterHub" data-toggle="tooltip"
                 data-placement="left"><img class="jupyterhub-button-logo"
                     src="../_static/images/logo_jupyterhub.svg"
                     alt="Interact on JupyterHub">JupyterHub</button></a>
         
         
-        <a class="colab-button" href="https://colab.research.google.com/github/ccha23/cs5483/blob/main/Tutorial1/Data Files.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+        <a class="colab-button" href="https://colab.research.google.com/github/ccha23/cs5483/blob/main/Project1/Project1.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
                 title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
                     src="../_static/images/logo_colab.png"
                     alt="Interact on Colab">Colab</button></a>
@@ -315,13 +314,18 @@ commentsRunWhenDOMLoaded(addUtterances);
         <nav id="bd-toc-nav">
             <ul class="nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#load-data-into-weka-explorer-interface">
-   2.1. Load data into Weka Explorer Interface
+  <a class="reference internal nav-link" href="#visualizing-decision-trees-and-rule-sets">
+   1.1. Visualizing Decision Trees and Rule Sets
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#create-an-arff-file">
-   2.2. Create an ARFF file
+  <a class="reference internal nav-link" href="#attribute-selection">
+   1.2. Attribute Selection
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#automatic-attribute-selection">
+   1.3. Automatic Attribute Selection
   </a>
  </li>
 </ul>
@@ -335,147 +339,67 @@ commentsRunWhenDOMLoaded(addUtterances);
         
               <div>
                 
-  <div class="section" id="data-files">
-<h1><span class="section-number">2. </span>Data Files<a class="headerlink" href="#data-files" title="Permalink to this headline">¶</a></h1>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">reset</span> -f
-<span class="kn">from</span> <span class="nn">IPython</span> <span class="kn">import</span> <span class="n">display</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="section" id="load-data-into-weka-explorer-interface">
-<h2><span class="section-number">2.1. </span>Load data into Weka Explorer Interface<a class="headerlink" href="#load-data-into-weka-explorer-interface" title="Permalink to this headline">¶</a></h2>
-<p>Use Weka to do <a class="reference external" href="https://ebookcentral.proquest.com/lib/cityuhk/reader.action?docID=634862&amp;ppg=595">[Witten11] Exercises 17.1.1 and 17.1.2.</a>.</p>
+  <div class="section" id="project-1">
+<h1><span class="section-number">1. </span>Project 1<a class="headerlink" href="#project-1" title="Permalink to this headline">¶</a></h1>
+<p><strong>Instructions:</strong></p>
 <ul class="simple">
-<li><p>For the computers in CSC teaching studios (e.g., LI 4412), you can start Weka as follows:</p>
-<ol class="simple">
-<li><p>Click the shortcut <code class="docutils literal notranslate"><span class="pre">Work</span> <span class="pre">Desk</span></code> from desktop.</p></li>
-<li><p>Click the link <code class="docutils literal notranslate"><span class="pre">Weka</span> <span class="pre">3.8.x</span></code> for CS Department.</p></li>
-<li><p>Load the dataset from<br />
-<code class="docutils literal notranslate"><span class="pre">C:\Program</span> <span class="pre">Files\Weka-3-8\data\</span></code>.</p></li>
-</ol>
-</li>
+<li><p>Access <a class="reference external" href="https://ebookcentral.proquest.com/lib/cityuhk/reader.action?docID=634862&amp;ppg=602">[Witten11]</a> for the hands-on exercises. You may use Weka or other tools such as the <code class="docutils literal notranslate"><span class="pre">python-weka-wrapper</span></code> to complete the exercises.</p></li>
+<li><p>You must provide your final answer in the designated solution cells. You may add additional cells to detail the steps.</p></li>
+<li><p>Same as tutorial exercises, you can submit multiple times via JupyterHub by the deadline. Technical difficulties are not valid justifications for any late submissions.</p></li>
+<li><p>It is your responsibility to take proper measures to avoid suspicion of plagiarism.</p></li>
 </ul>
-<div class="cell tag_hide-input docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># video</span>
-<span class="n">display</span><span class="o">.</span><span class="n">IFrame</span><span class="p">(</span><span class="n">src</span><span class="o">=</span><span class="s2">&quot;https://cityuhk-lms.ap.panopto.com/Panopto/Pages/Embed.aspx?id=72c2a358-a136-42dc-82ce-acae0038f93e&amp;autoplay=false&amp;offerviewer=true&amp;showtitle=true&amp;showbrand=false&amp;start=0&amp;interactivity=all&quot;</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">450</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">800</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html">
-<iframe
-    width="800"
-    height="450"
-    src="https://cityuhk-lms.ap.panopto.com/Panopto/Pages/Embed.aspx?id=72c2a358-a136-42dc-82ce-acae0038f93e&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&start=0&interactivity=all"
-    frameborder="0"
-    allowfullscreen
-></iframe>
-</div></div>
-</div>
+<hr class="docutils" />
+<p><strong>Rubric</strong></p>
 <ul class="simple">
-<li><p>For the computers in CS labs (e.g., MMW 2450), you can start Weka as follows:</p>
-<ol class="simple">
-<li><p>Execute <code class="docutils literal notranslate"><span class="pre">G:\weka\3.8\run.bat</span></code>,</p></li>
-<li><p>Click the <code class="docutils literal notranslate"><span class="pre">Explorer</span></code> button, and</p></li>
-<li><p>Load the dataset from<br />
-<code class="docutils literal notranslate"><span class="pre">C:\temp\Weka-3.8\data</span></code> or <code class="docutils literal notranslate"><span class="pre">G:\weka\3.8\files\data</span></code>.</p></li>
-</ol>
-</li>
-<li><p>If you are using your own computers:</p>
-<ol class="simple">
-<li><p>Download and install Weka from <a class="reference external" href="https://waikato.github.io/weka-wiki/downloading_weka/">here</a>, and</p></li>
-<li><p>obtain the data files from</p></li>
-<li><p>the subfolder <code class="docutils literal notranslate"><span class="pre">data</span></code> of your Weka installation path, or</p></li>
-<li><p>download from <a class="reference external" href="https://github.com/Waikato/weka-3.8/tree/master/wekadocs/data">here</a>.</p></li>
-</ol>
-</li>
+<li><p>This project worths 75 points, which constitute 15% of your course grade.</p></li>
+<li><p>There are 14 exercises, each of which worths 5 points:</p>
+<ul>
+<li><p>5 points for correct answer and excellent understanding.</p></li>
+<li><p>3 points for partially correct answer and some understanding.</p></li>
+<li><p>1 point for having reasonable attempts.</p></li>
 </ul>
-<p><strong>Ex 17.1.1</strong></p>
+</li>
+<li><p>The remaining 5 points are given for <em>clear presentation</em>.</p></li>
+</ul>
+<div class="section" id="visualizing-decision-trees-and-rule-sets">
+<h2><span class="section-number">1.1. </span>Visualizing Decision Trees and Rule Sets<a class="headerlink" href="#visualizing-decision-trees-and-rule-sets" title="Permalink to this headline">¶</a></h2>
+<p>Complete the following exercises in <strong>Section 17.3</strong>.</p>
+<p><strong>Ex 17.3.8</strong></p>
 <p>YOUR ANSWER HERE</p>
-<p><strong>Ex 17.1.2</strong></p>
+<p><strong>Ex 17.3.9</strong></p>
+<p>YOUR ANSWER HERE</p>
+<p><strong>Ex 17.3.10</strong></p>
+<p>YOUR ANSWER HERE</p>
+<p><strong>Ex 17.3.11</strong></p>
+<p>YOUR ANSWER HERE</p>
+<p><strong>Ex 17.3.12</strong></p>
 <p>YOUR ANSWER HERE</p>
 </div>
-<div class="section" id="create-an-arff-file">
-<h2><span class="section-number">2.2. </span>Create an ARFF file<a class="headerlink" href="#create-an-arff-file" title="Permalink to this headline">¶</a></h2>
-<p>Create an ARFF file named <code class="docutils literal notranslate"><span class="pre">AND.arff</span></code> in the current directory for the AND gate <span class="math notranslate nohighlight">\(Y=X_1\cdot X_2\)</span>. Use <code class="docutils literal notranslate"><span class="pre">0</span></code> and <code class="docutils literal notranslate"><span class="pre">1</span></code> to represent <code class="docutils literal notranslate"><span class="pre">False</span></code> and <code class="docutils literal notranslate"><span class="pre">True</span></code> respectively.</p>
-<p>[<em>See the <a class="reference external" href="https://waikato.github.io/weka-wiki/formats_and_processing/arff_stable/">documentation</a> for the ARFF file format, or take a look at some of the ARFF files in the WEKA data folder as examples.</em>]</p>
-<p><em>Hint:</em> To generate the file from this notebook directly:</p>
-<ol class="simple">
-<li><p>Copy the solution template below to the following solution cell.</p></li>
-<li><p>Replace each underscore <code class="docutils literal notranslate"><span class="pre">_</span></code> by an appropriate value.</p></li>
-<li><p>Execute the code cell.</p></li>
-</ol>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">content</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
-<span class="s1">@RELATION AND</span>
-<span class="s1">@ATTRIBUTE X1 {0, 1}</span>
-<span class="s1">@ATTRIBUTE X2 {_, _}</span>
-<span class="s1">@ATTRIBUTE Y {_, _}</span>
-<span class="s1">@DATA</span>
-<span class="s1">_, _, _</span>
-<span class="s1">_, _, _</span>
-<span class="s1">_, _, _</span>
-<span class="s1">_, _, _</span>
-<span class="s1">&#39;&#39;&#39;</span>
-</pre></div>
+<div class="section" id="attribute-selection">
+<h2><span class="section-number">1.2. </span>Attribute Selection<a class="headerlink" href="#attribute-selection" title="Permalink to this headline">¶</a></h2>
+<p>Complete the following exercises in <strong>Section 17.2</strong> and one additional exercise.</p>
+<p><strong>Ex 17.2.4</strong></p>
+<p>YOUR ANSWER HERE</p>
+<p><strong>Ex 17.2.5</strong></p>
+<p>YOUR ANSWER HERE</p>
+<p><strong>Additional exercise</strong> If your answer to Ex 17.2.5 is “no”, give a better performance estimate and the best subset of features for <em>deployment</em>. Explain how you obtain the estimate and subset, i.e., how you subdivide the dataset for training, validation and testing, and which accuracy values you use to select the features for deployment.</p>
+<p>YOUR ANSWER HERE</p>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># YOUR CODE HERE</span>
-<span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
-
-<span class="c1"># write the content of text to the file</span>
-<span class="k">try</span><span class="p">:</span> <span class="n">content</span>
-<span class="k">except</span> <span class="ne">NameError</span><span class="p">:</span> 
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;AND.arff not generated because `content` is undefined.&quot;</span><span class="p">)</span>
-<span class="k">else</span><span class="p">:</span>
-    <span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;AND.arff&#39;</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;AND.arff generated.&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Alternatively, you may use other JupyterHub interfaces to create and edit AND.arff in the this tutorial folder:</p>
-<div class="cell tag_hide-input docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display</span><span class="o">.</span><span class="n">IFrame</span><span class="p">(</span><span class="n">src</span><span class="o">=</span><span class="s2">&quot;https://cityuhk-lms.ap.panopto.com/Panopto/Pages/Embed.aspx?id=db141da7-baf6-47d2-9015-acae003ec8d7&amp;autoplay=false&amp;offerviewer=true&amp;showtitle=true&amp;showbrand=false&amp;start=0&amp;interactivity=all&quot;</span><span class="p">,</span><span class="n">height</span><span class="o">=</span><span class="mi">450</span><span class="p">,</span><span class="n">width</span><span class="o">=</span><span class="mi">800</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html">
-<iframe
-    width="800"
-    height="450"
-    src="https://cityuhk-lms.ap.panopto.com/Panopto/Pages/Embed.aspx?id=db141da7-baf6-47d2-9015-acae003ec8d7&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&start=0&interactivity=all"
-    frameborder="0"
-    allowfullscreen
-></iframe>
-</div></div>
-</div>
-<p>Run the following test cell to see if your file is a valid ARFF file. You may also download and load the ARFF file into WEKA to see if there is any syntax error.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># tests</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Content of AND.arff:&#39;</span><span class="p">)</span>
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
-
-<span class="kn">from</span> <span class="nn">scipy.io</span> <span class="kn">import</span> <span class="n">arff</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-
-<span class="n">d</span> <span class="o">=</span> <span class="n">arff</span><span class="o">.</span><span class="n">loadarff</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
-<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
+<div class="section" id="automatic-attribute-selection">
+<h2><span class="section-number">1.3. </span>Automatic Attribute Selection<a class="headerlink" href="#automatic-attribute-selection" title="Permalink to this headline">¶</a></h2>
+<p>Complete the following exercises in <strong>Section 17.4</strong>.</p>
+<p><strong>Ex 17.4.8</strong></p>
+<p>YOUR ANSWER HERE</p>
+<p><strong>Ex 17.4.9</strong></p>
+<p>YOUR ANSWER HERE</p>
+<p><strong>Ex 17.4.10</strong></p>
+<p>YOUR ANSWER HERE</p>
+<p><strong>Ex 17.4.11</strong></p>
+<p>YOUR ANSWER HERE</p>
+<p><strong>Ex 17.4.12</strong></p>
+<p>YOUR ANSWER HERE</p>
+<p><strong>Ex 17.4.13</strong></p>
+<p>YOUR ANSWER HERE</p>
 </div>
 </div>
 
@@ -492,7 +416,7 @@ commentsRunWhenDOMLoaded(addUtterances);
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./Tutorial1"
+            path: "./Project1"
         },
         predefinedOutput: true
     }
@@ -507,8 +431,7 @@ commentsRunWhenDOMLoaded(addUtterances);
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="Setup.html" title="previous page"><span class="section-number">1. </span>Setup</a>
-    <a class='right-next' id="next-link" href="../Tutorial2/Estimation%20from%20Samples.html" title="next page"><span class="section-number">1. </span>Estimation from Samples</a>
+    <a class='left-prev' id="prev-link" href="../Tutorial4/Different%20Classifiers%20with%20scikit-learn.html" title="previous page"><span class="section-number">2. </span>Different Classifiers with scikit-learn</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

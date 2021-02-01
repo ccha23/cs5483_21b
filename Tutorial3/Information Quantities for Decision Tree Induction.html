@@ -191,6 +191,35 @@ commentsRunWhenDOMLoaded(addUtterances);
   </a>
  </li>
 </ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Tutorial 4
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Tutorial4/Different%20Classifiers%20with%20Weka.html">
+   1. Different Classifiers with Weka
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Tutorial4/Different%20Classifiers%20with%20scikit-learn.html">
+   2. Different Classifiers with scikit-learn
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Project 1
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Project1/Project1.html">
+   1. Project 1
+  </a>
+ </li>
+</ul>
 
 </nav> <!-- To handle the deprecated key -->
 
@@ -334,16 +363,16 @@ commentsRunWhenDOMLoaded(addUtterances);
 <div class="section" id="information-measures">
 <h2><span class="section-number">1.1. </span>Information Measures<a class="headerlink" href="#information-measures" title="Permalink to this headline">¶</a></h2>
 <p>The followings are the mathemtical definitions of <em>entropy</em> and <em>mutual information</em>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-61bc1093-d9f0-49b8-82f7-1a0ce4aadb63">
-<span class="eqno">(1.1)<a class="headerlink" href="#equation-61bc1093-d9f0-49b8-82f7-1a0ce4aadb63" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-46ec284b-58fe-4465-acdc-87e449880e89">
+<span class="eqno">(1.1)<a class="headerlink" href="#equation-46ec284b-58fe-4465-acdc-87e449880e89" title="Permalink to this equation">¶</a></span>\[\begin{align}
 H(Y) &amp;= E\left[\log \tfrac1{P_{Y}(Y)}\right] &amp;&amp; \text{entropy of $Y$}\\
 H(Y|X) &amp;= E\left[\log \tfrac1{P_{Y|X}(Y|X)}\right] &amp;&amp; \text{conditional entropy of $Y$ given $X$}\\
 I(X;Y) &amp;= E\left[\log \tfrac{P_{Y|X}(Y|X)}{P_Y(Y)}\right] &amp;&amp; \text{mutual information of $X$ and $Y$}\\
 \end{align}\]</div>
 <p>These information quantities can be related using a <em>Venn Diagram</em>:</p>
 <p><a title="KonradVoelkel, Public domain, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Entropy-mutual-information-relative-entropy-relation-diagram.svg"><img width="512" alt="Entropy-mutual-information-relative-entropy-relation-diagram" src="https://upload.wikimedia.org/wikipedia/commons/d/d4/Entropy-mutual-information-relative-entropy-relation-diagram.svg"></a></p>
-<div class="amsmath math notranslate nohighlight" id="equation-bd8d1adb-1961-47b0-917b-738cbab23e7a">
-<span class="eqno">(1.2)<a class="headerlink" href="#equation-bd8d1adb-1961-47b0-917b-738cbab23e7a" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-128b3358-6ff9-4db0-814b-3ac5e38a06bc">
+<span class="eqno">(1.2)<a class="headerlink" href="#equation-128b3358-6ff9-4db0-814b-3ac5e38a06bc" title="Permalink to this equation">¶</a></span>\[\begin{align}
 H(X,Y)&amp;=H(X)+H(Y|X) &amp;&amp; \text{chain rule of entropy}\\
 &amp;=H(Y)+H(X|Y)\\
 I(X;Y)&amp;=H(Y)-H(Y|X) &amp;&amp; \text{mutual information in terms of entropies}\\
@@ -354,8 +383,8 @@ I(X;Y)&amp;=H(Y)-H(Y|X) &amp;&amp; \text{mutual information in terms of entropie
 <div class="section" id="entropy">
 <h2><span class="section-number">1.2. </span>Entropy<a class="headerlink" href="#entropy" title="Permalink to this headline">¶</a></h2>
 <p>Consider the following distribution:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a2c2ca3a-ea8f-45c4-94f9-d6a727aeed0c">
-<span class="eqno">(1.3)<a class="headerlink" href="#equation-a2c2ca3a-ea8f-45c4-94f9-d6a727aeed0c" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-7f9419ac-d614-4b1d-8342-bf61f79589f2">
+<span class="eqno">(1.3)<a class="headerlink" href="#equation-7f9419ac-d614-4b1d-8342-bf61f79589f2" title="Permalink to this equation">¶</a></span>\[\begin{align}
 p_k=\begin{cases}
 \frac12 &amp; k=0\\
 \frac14 &amp; k=1,2\\

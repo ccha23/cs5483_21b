@@ -92,6 +92,7 @@ commentsRunWhenDOMLoaded(addUtterances);
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="1. Different Classifiers with Weka" href="../Tutorial4/Different%20Classifiers%20with%20Weka.html" />
     <link rel="prev" title="2. Man vs Machine" href="Man%20vs%20Machine.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -187,6 +188,35 @@ commentsRunWhenDOMLoaded(addUtterances);
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    3. Decision Tree Induction with scikit-learn
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Tutorial 4
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Tutorial4/Different%20Classifiers%20with%20Weka.html">
+   1. Different Classifiers with Weka
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Tutorial4/Different%20Classifiers%20with%20scikit-learn.html">
+   2. Different Classifiers with scikit-learn
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Project 1
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Project1/Project1.html">
+   1. Project 1
   </a>
  </li>
 </ul>
@@ -452,8 +482,8 @@ to operate on the dataset.</p>
 <div class="section" id="compute-impurity">
 <h3><span class="section-number">3.2.2. </span>Compute impurity<a class="headerlink" href="#compute-impurity" title="Permalink to this headline">¶</a></h3>
 <p>Given a distribution <span class="math notranslate nohighlight">\(\boldsymbol{p}=(p_1,p_2,\dots)\)</span> where <span class="math notranslate nohighlight">\(p_k\in [0,1]\)</span> and <span class="math notranslate nohighlight">\(\sum_k p_k =1\)</span>, the Gini impurity index is defined as:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e1ea5d3d-8824-4ccc-aa54-3f724a7ff4f7">
-<span class="eqno">(3.1)<a class="headerlink" href="#equation-e1ea5d3d-8824-4ccc-aa54-3f724a7ff4f7" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-ba460a80-b286-4181-8769-1627b459c96b">
+<span class="eqno">(3.1)<a class="headerlink" href="#equation-ba460a80-b286-4181-8769-1627b459c96b" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \operatorname{Gini}(\boldsymbol{p}) = \operatorname{Gini}(p_1,p_2,\dots) &amp;:= \sum_k p_k(1-p_k)\\
 &amp;= 1- \sum_k p_k^2.
 \end{align}\]</div>
@@ -485,8 +515,8 @@ to operate on the dataset.</p>
 </div>
 </div>
 <p><strong>Exercise</strong> Complete the following function to compute the entropy of a distribution:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-eef21410-af57-4d0b-b39c-b53e901f0d96">
-<span class="eqno">(3.2)<a class="headerlink" href="#equation-eef21410-af57-4d0b-b39c-b53e901f0d96" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-1d44412d-6961-49e7-ad9f-728dab6513cb">
+<span class="eqno">(3.2)<a class="headerlink" href="#equation-1d44412d-6961-49e7-ad9f-728dab6513cb" title="Permalink to this equation">¶</a></span>\[\begin{align}
 h(\boldsymbol{p}) = h(p_1,p_2,\dots) &amp;= \sum_k - p_k \log_2 p_k\\
 &amp;= \sum_{k:p_k&gt;0} - p_k \log_2 p_k.
 \end{align}\]</div>
@@ -522,8 +552,8 @@ h(\boldsymbol{p}) = h(p_1,p_2,\dots) &amp;= \sum_k - p_k \log_2 p_k\\
 <div class="section" id="compute-drop-in-impurity-and-best-split">
 <h3><span class="section-number">3.2.3. </span>Compute drop in impurity and best split<a class="headerlink" href="#compute-drop-in-impurity-and-best-split" title="Permalink to this headline">¶</a></h3>
 <p>Now, to compute the drop in impurity for given splitting criterion:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-03f22f35-e320-4e70-90e4-0f6f8400e771">
-<span class="eqno">(3.3)<a class="headerlink" href="#equation-03f22f35-e320-4e70-90e4-0f6f8400e771" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-52893dd8-82a7-461a-b085-aab1a9fbc7c8">
+<span class="eqno">(3.3)<a class="headerlink" href="#equation-52893dd8-82a7-461a-b085-aab1a9fbc7c8" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \Delta \operatorname{Gini}_{X\leq s}(Y) = \operatorname{Gini}(P_Y) - \left[\Pr\{X\leq s\} \operatorname{Gini}(P_{Y|X\leq s}) + \Pr\{X&gt; s\}\operatorname{Gini}(P_{Y|X&gt; s})\right]
 \end{align}\]</div>
 <div class="cell docutils container">
@@ -597,8 +627,8 @@ h(\boldsymbol{p}) = h(p_1,p_2,\dots) &amp;= \sum_k - p_k \log_2 p_k\\
 </div>
 </div>
 <p><strong>Exercise</strong> Complete the following function to calculate the <em>information gain</em> for a binary split <span class="math notranslate nohighlight">\(X\leq s\)</span> and target <span class="math notranslate nohighlight">\(Y\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7bbe9b1e-e731-4320-b17e-8096ca6b0c50">
-<span class="eqno">(3.4)<a class="headerlink" href="#equation-7bbe9b1e-e731-4320-b17e-8096ca6b0c50" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-d86011d3-895e-4c65-98e0-71ea7815dd73">
+<span class="eqno">(3.4)<a class="headerlink" href="#equation-d86011d3-895e-4c65-98e0-71ea7815dd73" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \operatorname{Gain}_{X\leq s}(Y) := h(P_Y) - \left[\Pr(X\leq s) h(P_{Y|X\leq s}) + \Pr(X&gt; s) h(P_{Y|X&gt; s})\right].
 \end{align}\]</div>
 <p>You may use <code class="docutils literal notranslate"><span class="pre">dist</span></code> and <code class="docutils literal notranslate"><span class="pre">entropy</span></code> defined previously.</p>
@@ -640,8 +670,8 @@ h(\boldsymbol{p}) = h(p_1,p_2,\dots) &amp;= \sum_k - p_k \log_2 p_k\\
 </div>
 </div>
 <p><strong>Exercise</strong> Complete the following function to calculate the <em>information gain ratio</em> for a binary split <span class="math notranslate nohighlight">\(X\leq s\)</span> and target <span class="math notranslate nohighlight">\(Y\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-648c121c-7c51-4e3d-bee8-c952be590b57">
-<span class="eqno">(3.5)<a class="headerlink" href="#equation-648c121c-7c51-4e3d-bee8-c952be590b57" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-21bbc255-d201-4de3-b9ad-dcc2ce15d382">
+<span class="eqno">(3.5)<a class="headerlink" href="#equation-21bbc255-d201-4de3-b9ad-dcc2ce15d382" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \operatorname{GainRatio}_{X\leq s}(Y) &amp;:= \frac{\operatorname{Gain}_{X\leq s}(Y)}{\operatorname{SplitInfo}(X\leq s)} \qquad\text{where}\\
 \operatorname{SplitInfo}(X\leq s) &amp;:= h(\Pr(X\leq s),\Pr(X&gt; s)).
 \end{align}\]</div>
@@ -708,6 +738,7 @@ h(\boldsymbol{p}) = h(p_1,p_2,\dots) &amp;= \sum_k - p_k \log_2 p_k\\
     <div class='prev-next-bottom'>
         
     <a class='left-prev' id="prev-link" href="Man%20vs%20Machine.html" title="previous page"><span class="section-number">2. </span>Man vs Machine</a>
+    <a class='right-next' id="next-link" href="../Tutorial4/Different%20Classifiers%20with%20Weka.html" title="next page"><span class="section-number">1. </span>Different Classifiers with Weka</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
