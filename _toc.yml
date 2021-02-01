@@ -19,3 +19,14 @@
   - file: Tutorial3/Information Quantities for Decision Tree Induction
   - file: Tutorial3/Man vs Machine
   - file: Tutorial3/Decision Tree Induction with scikit-learn
+
+- part: Tutorial 4
+  numbered: true
+  chapters:
+  - file: Tutorial4/Different Classifiers with Weka
+  - file: Tutorial4/Different Classifiers with scikit-learn
+
+- part: Project 1
+  numbered: true
+  chapters:
+  - file: Project1/Project1
