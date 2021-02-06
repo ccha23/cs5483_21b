@@ -30,3 +30,9 @@
   numbered: true
   chapters:
   - file: Project1/Project1
+
+- part: Tutorial 5
+  numbered: true
+  chapters:
+  - file: Tutorial5/Evaluation for Skewed Dataset
+  - file: Tutorial5/Training with Skewed Dataset
