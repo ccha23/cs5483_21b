@@ -500,27 +500,22 @@ commentsRunWhenDOMLoaded(addUtterances);
 <div class="section" id="cost-sensitive-classifier">
 <h2><span class="section-number">2.3. </span>Cost-sensitive Classifier<a class="headerlink" href="#cost-sensitive-classifier" title="Permalink to this headline">¶</a></h2>
 <p>We can build a classifier to maximize certain cost. Weka provides a convenient interface for the <a class="reference external" href="https://wiki.pentaho.com/display/DATAMINING/Cost+Benefit+Analysis">cost/benefit analysis</a>:</p>
-<ol class="simple">
-<li><p>In the explorer interface, train J48 on the mammography dataset with 10-fold cross-validation.</p></li>
-<li><p>Right click on the result in the result list.</p></li>
-<li><p>Choose Cost/Benefit analysis and 1 as the positive class value.</p></li>
-<li><p>Specify the cost matrix:</p></li>
-</ol>
-<div class="amsmath math notranslate nohighlight" id="equation-8ecdb8da-ebfc-4dfa-8e6b-8d80df1167dc">
-<span class="eqno">(2.4)<a class="headerlink" href="#equation-8ecdb8da-ebfc-4dfa-8e6b-8d80df1167dc" title="Permalink to this equation">¶</a></span>\[\begin{align}
-\begin{bmatrix} \text{cost}_\text{TP} &amp; \text{cost}_\text{FN}\\ \text{cost}_\text{FP} &amp; \text{cost}_\text{TN}\end{bmatrix}.
-\end{align}\]</div>
-<ol class="simple">
-<li><p>Click <code class="docutils literal notranslate"><span class="pre">Minimize</span> <span class="pre">Cost/Benefit</span></code> to minimize the cost:</p></li>
-</ol>
-<div class="amsmath math notranslate nohighlight" id="equation-a1714d98-45fc-46b2-ac8c-b59901ac4398">
-<span class="eqno">(2.5)<a class="headerlink" href="#equation-a1714d98-45fc-46b2-ac8c-b59901ac4398" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<ol>
+<li> In the explorer interface, train J48 on the mammography dataset with 10-fold cross-validation.
+<li> Right click on the result in the result list.
+<li> Choose Cost/Benefit analysis and 1 as the positive class value.
+<li> Specify the cost matrix:  <br>
+\begin{align}
+\begin{bmatrix} \text{cost}_\text{TP} & \text{cost}_\text{FN}\\ \text{cost}_\text{FP} & \text{cost}_\text{TN}\end{bmatrix}.
+\end{align}
+<li> Click `Minimize Cost/Benefit` to minimize the cost:<br>
+\begin{align}
 \text{cost}_\text{TP} \text{TP}
 + \text{cost}_\text{FN} \text{FN}
 + \text{cost}_\text{FP} \text{FP} 
 + \text{cost}_\text{TN} \text{TN}.
-\end{align}\]</div>
-<p><strong>Exercise</strong> Assign to <code class="docutils literal notranslate"><span class="pre">cost_matrix</span></code> the cost matrix that achieves the maximum precision. You can define the cost matrix as follows:</p>
+\end{align}
+</ol><p><strong>Exercise</strong> Assign to <code class="docutils literal notranslate"><span class="pre">cost_matrix</span></code> the cost matrix that achieves the maximum precision. You can define the cost matrix as follows:</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">cost_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">__</span><span class="p">,</span> <span class="n">__</span><span class="p">],</span>
                         <span class="p">[</span><span class="n">__</span><span class="p">,</span> <span class="n">__</span><span class="p">]])</span>
 </pre></div>
