@@ -404,7 +404,7 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 </div>
-<p>You may install them using Weka package manager instead of downloading the zip files. To install them in <code class="docutils literal notranslate"><span class="pre">python-weka-wrapper</span></code>, run the following code:</p>
+<p>You may install the packages using Weka package manager instead of downloading the zip files. To install them in <code class="docutils literal notranslate"><span class="pre">python-weka-wrapper</span></code>, run the following code:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">pkg</span> <span class="ow">in</span> <span class="n">pkgs</span><span class="p">:</span>
@@ -418,7 +418,7 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 </div>
-<p>By default, these packages are install under your home directory <code class="docutils literal notranslate"><span class="pre">~/wekafiles/packages/</span></code>:</p>
+<p>By default, these packages are installed under your home directory <code class="docutils literal notranslate"><span class="pre">~/wekafiles/packages/</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>ls ~/wekafiles/packages
@@ -427,7 +427,7 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 <p>For the packages to take effect, you must restart the kernel (<code class="docutils literal notranslate"><span class="pre">Kernel</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">Restart</span></code>). Note that running <code class="docutils literal notranslate"><span class="pre">jvm.stop()</span></code> followed by <code class="docutils literal notranslate"><span class="pre">jvm.start(packages=True)</span></code> will not work because <a class="reference external" href="https://stackoverflow.com/questions/51795945/after-stopping-jvm-unable-to-start-it-again"><code class="docutils literal notranslate"><span class="pre">javabridge</span></code> currently does not support restarting a virtual machine</a>.</p>
-<p>After restarting the kernel, check that the packages have been successfully by running the following code:</p>
+<p>After restarting the kernel, check that the packages have been successfully installed by running the following code:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">weka.core.classes</span> <span class="kn">import</span> <span class="n">complete_classname</span>
@@ -440,7 +440,7 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 <p>We will use the same mammography dataset from
-<a class="reference external" href="https://www.openml.org/d/310">OpenML</a> and J48 as the base classifier. The following loads the dataset into this notebook:</p>
+<a class="reference external" href="https://www.openml.org/d/310">OpenML</a> and J48 as the base classifier. The following loads the dataset into the notebook:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">loader</span> <span class="o">=</span> <span class="n">Loader</span><span class="p">(</span><span class="n">classname</span><span class="o">=</span><span class="s2">&quot;weka.core.converters.ArffLoader&quot;</span><span class="p">)</span>
@@ -475,7 +475,7 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 <p>The maximum recall is 100% as expected by setting the threshold to 1.</p>
 <p><strong>Exercise</strong> Using J48 as the base classifier and 10-fold cross-validation, obtain the highest precision and <span class="math notranslate nohighlight">\(F\)</span> score. Assign the values to <code class="docutils literal notranslate"><span class="pre">max_precision</span></code> and <code class="docutils literal notranslate"><span class="pre">max_f</span></code> respectively.</p>
-<p>If you use <code class="docutils literal notranslate"><span class="pre">python-weka-wrapper</span></code>, be careful that reseting <code class="docutils literal notranslate"><span class="pre">tsc.options</span></code> may reset the base classifier to the default value, which is not J48. To ensure that you are using J48, set the base classifier again after the options:</p>
+<p>If you use <code class="docutils literal notranslate"><span class="pre">python-weka-wrapper</span></code>, be careful that reseting <code class="docutils literal notranslate"><span class="pre">tsc.options</span></code> may also reset the base classifier to the default one, which is not J48. To ensure that you are using J48, set the base classifier again after the options:</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">tsc</span><span class="o">.</span><span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;-M&#39;</span><span class="p">,</span> <span class="n">___</span><span class="p">]</span>
 <span class="n">tsc</span><span class="o">.</span><span class="n">classifier</span> <span class="o">=</span> <span class="n">clf</span>
 </pre></div>
@@ -506,15 +506,15 @@ commentsRunWhenDOMLoaded(addUtterances);
 <li><p>Choose Cost/Benefit analysis and 1 as the positive class value.</p></li>
 <li><p>Specify the cost matrix:</p></li>
 </ol>
-<div class="amsmath math notranslate nohighlight" id="equation-58183093-7302-41ee-bd8c-b66bab09218f">
-<span class="eqno">(2.4)<a class="headerlink" href="#equation-58183093-7302-41ee-bd8c-b66bab09218f" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-8ecdb8da-ebfc-4dfa-8e6b-8d80df1167dc">
+<span class="eqno">(2.4)<a class="headerlink" href="#equation-8ecdb8da-ebfc-4dfa-8e6b-8d80df1167dc" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \begin{bmatrix} \text{cost}_\text{TP} &amp; \text{cost}_\text{FN}\\ \text{cost}_\text{FP} &amp; \text{cost}_\text{TN}\end{bmatrix}.
 \end{align}\]</div>
 <ol class="simple">
 <li><p>Click <code class="docutils literal notranslate"><span class="pre">Minimize</span> <span class="pre">Cost/Benefit</span></code> to minimize the cost:</p></li>
 </ol>
-<div class="amsmath math notranslate nohighlight" id="equation-053eb24a-0f93-4185-bbb3-f018ffe79d1d">
-<span class="eqno">(2.5)<a class="headerlink" href="#equation-053eb24a-0f93-4185-bbb3-f018ffe79d1d" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-a1714d98-45fc-46b2-ac8c-b59901ac4398">
+<span class="eqno">(2.5)<a class="headerlink" href="#equation-a1714d98-45fc-46b2-ac8c-b59901ac4398" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \text{cost}_\text{TP} \text{TP}
 + \text{cost}_\text{FN} \text{FN}
 + \text{cost}_\text{FP} \text{FP} 
@@ -535,7 +535,7 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 </div>
-<p>The following test cell demonstrate how to train a meta classifier to minimize the cost defined using the cost matrix your provided.</p>
+<p>The following test cell demonstrate how to train a meta classifier to minimize the cost defined using the cost matrix you provided.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># tests</span>
@@ -563,7 +563,7 @@ commentsRunWhenDOMLoaded(addUtterances);
 <div class="section" id="smote">
 <h2><span class="section-number">2.4. </span>SMOTE<a class="headerlink" href="#smote" title="Permalink to this headline">¶</a></h2>
 <p>Synthetic Minority Over-sampling TEchnique (SMOTE) is a filter that up-samples the minority class. Instead of creating duplicates of the same instance, it creates new samples as convex combinations of existing ones. See a more detailed explanation of SMOTE <a class="reference external" href="http://rikunert.com/SMOTE_explained">here</a>.</p>
-<p><strong>Exercise</strong> Using the FilteredClassifier with J48 as the classifer and SMOTE as the filter, try to tweek the setting of SMOTE to give the highest possilbe value of <span class="math notranslate nohighlight">\(F\)</span> score larget than the maximum one achieved by <code class="docutils literal notranslate"><span class="pre">ThresholdSelector</span></code>. Assign to <code class="docutils literal notranslate"><span class="pre">smote.options</span></code> your choice of the filter. E.g., you can change the percentage of SMOTE instances to 150% as follows:</p>
+<p><strong>Exercise</strong> Using the FilteredClassifier with J48 as the classifer and SMOTE as the filter, try to tweek the setting of SMOTE to give the highest possilbe value of <span class="math notranslate nohighlight">\(F\)</span> score larger than the maximum one achieved by <code class="docutils literal notranslate"><span class="pre">ThresholdSelector</span></code>. Assign to <code class="docutils literal notranslate"><span class="pre">smote.options</span></code> your choice of the filter. E.g., you can change the percentage of SMOTE instances to 150% as follows:</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">smote</span><span class="o">.</span><span class="n">options</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;-P&#39;</span><span class="p">,</span> <span class="s1">&#39;150&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
