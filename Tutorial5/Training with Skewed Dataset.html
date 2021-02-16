@@ -410,6 +410,7 @@ commentsRunWhenDOMLoaded(addUtterances);
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">pkg</span> <span class="ow">in</span> <span class="n">pkgs</span><span class="p">:</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">packages</span><span class="o">.</span><span class="n">is_installed</span><span class="p">(</span><span class="n">pkg</span><span class="p">):</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Installing </span><span class="si">{</span><span class="n">pkg</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">)</span>
+        <span class="n">packages</span><span class="o">.</span><span class="n">install_package</span><span class="p">(</span><span class="n">pkg</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Skipping </span><span class="si">{</span><span class="n">pkg</span><span class="si">}</span><span class="s2">, already installed. &quot;</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
