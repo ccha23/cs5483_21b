@@ -37,7 +37,7 @@
   - file: Tutorial5/Evaluation for Skewed Dataset
   - file: Tutorial5/Training with Skewed Dataset
 
-  - part: Tutorial 6
+- part: Tutorial 6
   numbered: true
   chapters:
   - file: Tutorial6/Machine vs Machine
