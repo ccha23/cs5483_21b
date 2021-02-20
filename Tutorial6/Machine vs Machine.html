@@ -353,23 +353,18 @@ commentsRunWhenDOMLoaded(addUtterances);
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#data-preparation">
-     1.2.1. Data Preparation
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#bagging">
-     1.2.2. Bagging
+     1.2.1. Bagging
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#random-forest">
-     1.2.3. Random Forest
+     1.2.2. Random Forest
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#adaboost">
-     1.2.4. AdaBoost
+     1.2.3. AdaBoost
     </a>
    </li>
   </ul>
@@ -462,7 +457,7 @@ commentsRunWhenDOMLoaded(addUtterances);
 ></iframe>
 </div></div>
 </div>
-<p>Unlike the other interfaces, KnowledgeFlow interface can train a classifier incrementally as more and more data becomes available. For more details, refer to the manual <a class="reference external" href="https://www.cs.waikato.ac.nz/ml/weka/Witten_et_al_2016_appendix.pdf">here</a> and the <a class="reference external" href="https://www.futurelearn.com/info/courses/more-data-mining-with-weka/0/steps/29106">video tutorial</a> by Witten.</p>
+<p>Unlike other interfaces (Explorer and Experimenter), KnowledgeFlow interface can train a classifier incrementally as more and more data are available. For more details, refer to the manual <a class="reference external" href="https://www.cs.waikato.ac.nz/ml/weka/Witten_et_al_2016_appendix.pdf">here</a> and the <a class="reference external" href="https://www.futurelearn.com/info/courses/more-data-mining-with-weka/0/steps/29106">video tutorial</a> by Witten.</p>
 <p>Unlike the Explorer interface, we can flow data through multiple classification algorithms simultaneously as illustrated below:</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
@@ -510,16 +505,22 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 <div class="section" id="ensemble-methods">
 <h2><span class="section-number">1.2. </span>Ensemble Methods<a class="headerlink" href="#ensemble-methods" title="Permalink to this headline">¶</a></h2>
-<p>Next, we use the ensemble methods implemented in scikit-learn and Weka to train armies of classifiers.</p>
-<div class="section" id="data-preparation">
-<h3><span class="section-number">1.2.1. </span>Data Preparation<a class="headerlink" href="#data-preparation" title="Permalink to this headline">¶</a></h3>
-<p>The following load the data for scikit-learn.</p>
+<p>Unlike training an individual classifier, ensemble methods</p>
+<ul class="simple">
+<li><p>train an army of base classifiers and</p></li>
+<li><p>combine their decisions into a final decision.</p></li>
+</ul>
+<p>We use the ensemble methods implemented in scikit-learn and Weka. To load the data for scikit-learn:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">load_url</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
     <span class="n">ftpstream</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
-    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">arff</span><span class="o">.</span><span class="n">loadarff</span><span class="p">(</span><span class="n">io</span><span class="o">.</span><span class="n">StringIO</span><span class="p">(</span><span class="n">ftpstream</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)))[</span><span class="mi">0</span><span class="p">])</span>
-    <span class="k">return</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="k">lambda</span> <span class="n">df</span><span class="p">:</span> <span class="o">~</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">&#39;class&#39;</span><span class="p">])],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;class&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+        <span class="n">arff</span><span class="o">.</span><span class="n">loadarff</span><span class="p">(</span><span class="n">io</span><span class="o">.</span><span class="n">StringIO</span><span class="p">(</span><span class="n">ftpstream</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)))[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span>
+                  <span class="k">lambda</span> <span class="n">df</span><span class="p">:</span> <span class="o">~</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">&#39;class&#39;</span><span class="p">])],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;class&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span>
+                      <span class="nb">str</span><span class="p">)</span>
+
 
 <span class="n">weka_data_path</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/Waikato/weka-3.8/master/wekadocs/data/&#39;</span>
 <span class="n">X_train</span><span class="p">,</span> <span class="n">Y_train</span> <span class="o">=</span> <span class="n">load_url</span><span class="p">(</span><span class="n">weka_data_path</span> <span class="o">+</span> <span class="s1">&#39;segment-challenge.arff&#39;</span><span class="p">)</span>
@@ -528,7 +529,7 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 </div>
-<p>The following loads the data for <code class="docutils literal notranslate"><span class="pre">python-weka-wrapper</span></code>.</p>
+<p>To load the data for <code class="docutils literal notranslate"><span class="pre">python-weka-wrapper</span></code> and start the Java virtual machine:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">jvm</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
@@ -544,10 +545,9 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 </div>
-</div>
 <div class="section" id="bagging">
-<h3><span class="section-number">1.2.2. </span>Bagging<a class="headerlink" href="#bagging" title="Permalink to this headline">¶</a></h3>
-<p>A simple ensemble method is called Bagging (Bootstrap Aggregation), which train different base classifiers by applying one classification algorithm to different bootstrapped datasets.</p>
+<h3><span class="section-number">1.2.1. </span>Bagging<a class="headerlink" href="#bagging" title="Permalink to this headline">¶</a></h3>
+<p>A simple ensemble method is called Bagging (Bootstrap Aggregation), which trains different base classifiers by <em>applying a classification algorithm to different bootstrapped datasets.</em></p>
 <p>For instance, the following uses the <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.BaggingClassifier.html"><code class="docutils literal notranslate"><span class="pre">sklearn.ensemble.BaggingClassifier</span></code></a> to train 10 decision trees with maximum depth 5:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -564,19 +564,19 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 </div>
-<p>The ensemble method can be parallelized for both training and classification, by setting additional parameter <code class="docutils literal notranslate"><span class="pre">n_jobs</span></code> (number of jobs to run in parallel) to a number other than 1. To see the effect, execute the following cell and answer <code class="docutils literal notranslate"><span class="pre">y</span></code> to the prompt or just press enter.</p>
+<p>The ensemble method can be parallelized for both training and classification, by setting the additional parameter <code class="docutils literal notranslate"><span class="pre">n_jobs</span></code> (number of jobs to run in parallel) to a number other than 1. Different jobs can be run in different CPU cores or threads. To see the effect, execute the following cell and answer <code class="docutils literal notranslate"><span class="pre">y</span></code> to the prompt or just press enter.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;execute? [Y/n] &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">!=</span> <span class="s1">&#39;n&#39;</span><span class="p">:</span>
     <span class="k">for</span> <span class="n">n_jobs</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">]:</span>
-        <span class="n">BAG</span><span class="o">.</span><span class="n">set_params</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_jobs</span> <span class="o">=</span> <span class="n">n_jobs</span><span class="p">)</span>
+        <span class="n">BAG</span><span class="o">.</span><span class="n">set_params</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="n">n_jobs</span><span class="p">)</span>
         <span class="n">BAG</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">Y_train</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>Note that there is a diminishing speedup as the number of jobs increases. This is because of both the memory and communication overheads required to parallelize the training.</p>
-<p>Next, we would like to see the effect of changing the depth and number of estimators as follows.</p>
+<p>Note that there is a diminishing speedup as the number of jobs increases. This is because of both the memory and communication overheads required to parallelize the training. Concurrent access to the same memory can lead to unexpected behavior, and so it must be prevented by duplicating or locking the data, leading to the overheads. For more details, see the documentation <a class="reference external" href="https://joblib.readthedocs.io/en/latest/parallel.html">here</a>.</p>
+<p>Next, we would like to see the effect of changing the depth and number of estimators as follows. The following are the lists of possible values to explore:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">max_depth_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">]</span>
@@ -585,14 +585,15 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 </div>
-<p>To avoid re-training a classifier, we can cache the result using <code class="docutils literal notranslate"><span class="pre">joblib.Memory</span></code>:</p>
+<p>We will define a function <code class="docutils literal notranslate"><span class="pre">bagging(n_estimators,</span> <span class="pre">max_depth)</span></code> that returns the accuracy of Bagging <code class="docutils literal notranslate"><span class="pre">n_estimators</span></code> decision trees of maximum depth <code class="docutils literal notranslate"><span class="pre">max_depth</span></code>. To avoid re-training/evaluating a classifier, we additionally cache the result using <code class="docutils literal notranslate"><span class="pre">joblib.Memory</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">joblib</span> <span class="kn">import</span> <span class="n">Memory</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">joblib</span> <span class="kn">import</span> <span class="n">Memory</span>
 <span class="kn">import</span> <span class="nn">os</span>
-
+<span class="c1"># cache to private folder</span>
 <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="s1">&#39;private&#39;</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">memory</span> <span class="o">=</span> <span class="n">Memory</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="s2">&quot;private&quot;</span><span class="p">,</span><span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">memory</span> <span class="o">=</span> <span class="n">Memory</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="s2">&quot;private&quot;</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
 
 <span class="nd">@memory</span><span class="o">.</span><span class="n">cache</span>
 <span class="k">def</span> <span class="nf">bagging</span><span class="p">(</span><span class="n">n_estimators</span><span class="p">,</span> <span class="n">max_depth</span><span class="p">):</span>
@@ -606,39 +607,36 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 </div>
-<p>We will run <code class="docutils literal notranslate"><span class="pre">bag</span></code> for different values of <code class="docutils literal notranslate"><span class="pre">max_depth</span></code> and <code class="docutils literal notranslate"><span class="pre">n_estimators</span></code> stored in <code class="docutils literal notranslate"><span class="pre">max_depth_list</span></code> and <code class="docutils literal notranslate"><span class="pre">n_estimators_list</span></code> respectively. The following parallelize the execution using <code class="docutils literal notranslate"><span class="pre">joblib</span></code>.</p>
+<p>As shown below, we can use <code class="docutils literal notranslate"><span class="pre">joblib</span></code> to run <code class="docutils literal notranslate"><span class="pre">bagging</span></code> in parallel for different values of <code class="docutils literal notranslate"><span class="pre">max_depth</span></code> and <code class="docutils literal notranslate"><span class="pre">n_estimators</span></code> stored in <code class="docutils literal notranslate"><span class="pre">max_depth_list</span></code> and <code class="docutils literal notranslate"><span class="pre">n_estimators_list</span></code> respectively.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">joblib</span> <span class="kn">import</span> <span class="n">Parallel</span><span class="p">,</span> <span class="n">delayed</span>
 
 <span class="k">if</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;execute? [Y/n] &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">!=</span> <span class="s1">&#39;n&#39;</span><span class="p">:</span>
-    <span class="n">results</span> <span class="o">=</span> <span class="n">Parallel</span><span class="p">(</span><span class="n">n_jobs</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">)(</span>
-        <span class="n">delayed</span><span class="p">(</span><span class="n">bagging</span><span class="p">)(</span><span class="n">n_estimators</span><span class="p">,</span> <span class="n">max_depth</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">max_depth</span> <span class="ow">in</span> <span class="n">max_depth_list</span> <span class="k">for</span> <span class="n">n_estimators</span> <span class="ow">in</span> <span class="n">n_estimators_list</span><span class="p">)</span>
+    <span class="n">BAG_results</span> <span class="o">=</span> <span class="n">Parallel</span><span class="p">(</span><span class="n">n_jobs</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+                           <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">)(</span><span class="n">delayed</span><span class="p">(</span><span class="n">bagging</span><span class="p">)(</span><span class="n">n_estimators</span><span class="p">,</span> <span class="n">max_depth</span><span class="p">)</span>
+                                      <span class="k">for</span> <span class="n">max_depth</span> <span class="ow">in</span> <span class="n">max_depth_list</span>
+                                      <span class="k">for</span> <span class="n">n_estimators</span> <span class="ow">in</span> <span class="n">n_estimators_list</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>To present the result nicely in a table and a plot:</p>
+<p>Note that <code class="docutils literal notranslate"><span class="pre">delayed(bagging)</span></code> is the lazy-version of <code class="docutils literal notranslate"><span class="pre">bagging</span></code> so that its invocation can be delayed until the task is assigned to a core/thread. The argument to <code class="docutils literal notranslate"><span class="pre">Parallel(n_jobs=4,</span> <span class="pre">verbose=1)</span></code> is a generator defined using python comprehension syntax. For more details, see the notebook <a class="reference external" href="https://ccha23.github.io/CS1302ICP/Lecture6/More%20on%20Functions.html#generator">here</a> and the documentation <a class="reference external" href="https://joblib.readthedocs.io/en/latest/generated/joblib.Parallel.html">here</a>.</p>
+<p>To present the result nicely in a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;execute? [Y/n] &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">!=</span> <span class="s1">&#39;n&#39;</span><span class="p">:</span>
-    <span class="n">BAG_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
-    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;max_depth=</span><span class="si">{</span><span class="n">max_depth</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">max_depth</span> <span class="ow">in</span> <span class="n">max_depth_list</span><span class="p">],</span>
-    <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
-    <span class="n">BAG_df</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;n_estimators&#39;</span><span class="p">,</span> <span class="n">n_estimators_list</span><span class="p">)</span>
-    <span class="n">BAG_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="k">lambda</span> <span class="n">df</span><span class="p">:</span> <span class="o">~</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">&#39;n_estimators&#39;</span><span class="p">])]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">tabulate</span><span class="p">(</span><span class="n">results</span><span class="p">):</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+        <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;max_depth=</span><span class="si">{</span><span class="n">max_depth</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">max_depth</span> <span class="ow">in</span> <span class="n">max_depth_list</span><span class="p">],</span>
+        <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;n_estimators&#39;</span><span class="p">,</span> <span class="n">n_estimators_list</span><span class="p">)</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="k">lambda</span> <span class="n">df</span><span class="p">:</span> <span class="o">~</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">&#39;n_estimators&#39;</span><span class="p">])]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span>
         <span class="n">results</span><span class="p">,</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">n_estimators_list</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">max_depth_list</span><span class="p">)),</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;F&#39;</span><span class="p">)</span>
-    <span class="n">display</span><span class="o">.</span><span class="n">display</span><span class="p">(</span><span class="n">BAG_df</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">df</span>
 
-    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
-    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">BAG_df</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">BAG_df</span><span class="p">[</span><span class="s1">&#39;n_estimators&#39;</span><span class="p">],</span> <span class="n">BAG_df</span><span class="p">[</span><span class="n">col</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;n_estimators&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Accuracies&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Bagging decision trees&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">BAG_df</span> <span class="o">=</span> <span class="n">tabulate</span><span class="p">(</span><span class="n">BAG_results</span><span class="p">)</span>
+<span class="n">display</span><span class="o">.</span><span class="n">display</span><span class="p">(</span><span class="n">BAG_df</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -651,12 +649,31 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 </div>
-<p>It is often useful to save the <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> to a particular file:</p>
+<p>To plot the <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;n_estimators&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;n_estimators&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Accuracies&#39;</span><span class="p">)</span>
+
+
+<span class="n">plot</span><span class="p">(</span><span class="n">BAG_df</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Bagging decision trees&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>It is useful to save the <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> to a particular file. This can be done using <a class="reference external" href="https://joblib.readthedocs.io/en/latest/generated/joblib.dump.html"><code class="docutils literal notranslate"><span class="pre">joblib.dump</span></code></a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">joblib</span> <span class="kn">import</span> <span class="n">dump</span>
 
-<span class="k">if</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;execute? [Y/n] &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">!=</span> <span class="s1">&#39;n&#39;</span><span class="p">:</span>
+<span class="k">if</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;(over-)write file? [Y/n] &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">!=</span> <span class="s1">&#39;n&#39;</span><span class="p">:</span>
     <span class="n">dump</span><span class="p">(</span><span class="n">BAG_df</span><span class="p">,</span> <span class="s1">&#39;BAG_df.gz&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -682,14 +699,13 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 <p><strong>Exercise</strong> What happens to the accuracy as <code class="docutils literal notranslate"><span class="pre">n_estimators</span></code> and <code class="docutils literal notranslate"><span class="pre">max_depth</span></code> increase?</p>
 <p>YOUR ANSWER HERE</p>
-<p>To use <code class="docutils literal notranslate"><span class="pre">python-weka-wrapper</span></code> instead of scikit-learn:</p>
+<p>To apply the ensemble method using <code class="docutils literal notranslate"><span class="pre">python-weka-wrapper</span></code> instead of scikit-learn:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">REPTree</span> <span class="o">=</span> <span class="n">Classifier</span><span class="p">(</span><span class="n">classname</span><span class="o">=</span><span class="s2">&quot;weka.classifiers.trees.REPTree&quot;</span><span class="p">)</span>
 <span class="n">REPTree</span><span class="o">.</span><span class="n">options</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;-L&#39;</span><span class="p">,</span> <span class="s1">&#39;5&#39;</span><span class="p">]</span>
 <span class="n">BAG_weka</span> <span class="o">=</span> <span class="n">SingleClassifierEnhancer</span><span class="p">(</span><span class="n">classname</span><span class="o">=</span><span class="s2">&quot;weka.classifiers.meta.Bagging&quot;</span><span class="p">)</span>
-<span class="n">BAG_weka</span><span class="o">.</span><span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;-I&#39;</span><span class="p">,</span> <span class="s1">&#39;10&#39;</span><span class="p">,</span>
-             <span class="s1">&#39;-S&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">]</span>
+<span class="n">BAG_weka</span><span class="o">.</span><span class="n">options</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;-I&#39;</span><span class="p">,</span> <span class="s1">&#39;10&#39;</span><span class="p">,</span> <span class="s1">&#39;-S&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">]</span>
 <span class="n">BAG_weka</span><span class="o">.</span><span class="n">classifier</span> <span class="o">=</span> <span class="n">REPTree</span>
 <span class="n">BAG_weka</span><span class="o">.</span><span class="n">build_classifier</span><span class="p">(</span><span class="n">trainset</span><span class="p">)</span>
 <span class="n">evl</span> <span class="o">=</span> <span class="n">Evaluation</span><span class="p">(</span><span class="n">testset</span><span class="p">)</span>
@@ -699,34 +715,33 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 </div>
-<p>The base classifiers for <code class="docutils literal notranslate"><span class="pre">Bagging</span></code> are trained using <code class="docutils literal notranslate"><span class="pre">REPTree</span></code>, which is a fast decision tree induction algorithm that is neither C4.5 nor CART.</p>
+<p>The base classifiers for <a class="reference external" href="https://weka.sourceforge.io/doc.dev/weka/classifiers/meta/Bagging.html"><code class="docutils literal notranslate"><span class="pre">Bagging</span></code></a> are trained using <a class="reference external" href="https://weka.sourceforge.io/doc.dev/weka/classifiers/trees/REPTree.html"><code class="docutils literal notranslate"><span class="pre">REPTree</span></code></a>, which is a fast decision tree induction algorithm that is neither C4.5 nor CART.</p>
 <p><strong>Exercise</strong> Complete the pandas <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> <code class="docutils literal notranslate"><span class="pre">BAG_weka_df</span></code> in the following cell by filling in the accuracies (as floating point numbers) for different <code class="docutils literal notranslate"><span class="pre">n_estimators</span></code> and <code class="docutils literal notranslate"><span class="pre">max_depth</span></code>.</p>
-<p>Note that we saved your result to a file <code class="docutils literal notranslate"><span class="pre">BAG_weka_df.gz</span></code> to avoid re-training. Otherwise, the server cannot auto-grade your submission as it aborts execution that takes excessive time or memory. Please also ensure that your code is under the body of the conditional <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">input('execute?</span> <span class="pre">[Y/n]</span> <span class="pre">').lower()</span> <span class="pre">!=</span> <span class="pre">'n':</span></code>.</p>
+<p>Note that we saved your result to a file <code class="docutils literal notranslate"><span class="pre">BAG_weka_df.gz</span></code> to avoid re-training. Otherwise, the server cannot auto-grade your submission as it aborts execution that takes excessive time or memory. Please also ensure that your code is properly indented so it is part of the body of the conditional in the solution cell:</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+<span class="k">if</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;execute? [Y/n] &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">!=</span> <span class="s1">&#39;n&#39;</span><span class="p">:</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">max_depth_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">]</span>
 <span class="n">n_estimators_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">]</span>
 
 <span class="k">if</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;execute? [Y/n] &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">!=</span> <span class="s1">&#39;n&#39;</span><span class="p">:</span>
-    <span class="n">BAG_weka_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;max_depth=</span><span class="si">{</span><span class="n">max_depth</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">max_depth</span> <span class="ow">in</span> <span class="n">max_depth_list</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="n">BAG_weka_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+        <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;max_depth=</span><span class="si">{</span><span class="n">max_depth</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">max_depth</span> <span class="ow">in</span> <span class="n">max_depth_list</span><span class="p">],</span>
+        <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
     <span class="n">BAG_weka_df</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;n_estimators&#39;</span><span class="p">,</span> <span class="n">n_estimators_list</span><span class="p">)</span>
     <span class="c1"># YOUR CODE HERE</span>
     <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
-    
+
     <span class="n">display</span><span class="o">.</span><span class="n">display</span><span class="p">(</span><span class="n">BAG_weka_df</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
 
-    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
-    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">BAG_weka_df</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">BAG_weka_df</span><span class="p">[</span><span class="s1">&#39;n_estimators&#39;</span><span class="p">],</span>
-                 <span class="n">BAG_weka_df</span><span class="p">[</span><span class="n">col</span><span class="p">],</span>
-                 <span class="n">label</span><span class="o">=</span><span class="n">col</span><span class="p">,</span>
-                 <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;n_estimators&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Accuracies&#39;</span><span class="p">)</span>
+    <span class="n">plot</span><span class="p">(</span><span class="n">BAG_weka_df</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Bagging decision trees&#39;</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-    
+
     <span class="n">dump</span><span class="p">(</span><span class="n">BAG_weka_df</span><span class="p">,</span> <span class="s1">&#39;BAG_weka_df.gz&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -741,8 +756,8 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 <div class="section" id="random-forest">
-<h3><span class="section-number">1.2.3. </span>Random Forest<a class="headerlink" href="#random-forest" title="Permalink to this headline">¶</a></h3>
-<p>Another ensemble method, called random forest, is similar to Bagging decision trees. However, to further diversify the base classifiers, it randomly selects or combines features before building each tree. The following trains a random forest of 10 decision trees with maximum depth 5.</p>
+<h3><span class="section-number">1.2.2. </span>Random Forest<a class="headerlink" href="#random-forest" title="Permalink to this headline">¶</a></h3>
+<p>Another ensemble method, called <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html">random forest</a>, is similar to Bagging decision trees. However, to further diversify the base classifiers, it randomly selects or combines features before building each tree. The following trains a random forest of 10 decision trees with maximum depth 5.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">RF</span> <span class="o">=</span> <span class="n">ensemble</span><span class="o">.</span><span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> 
@@ -762,21 +777,15 @@ commentsRunWhenDOMLoaded(addUtterances);
 <span class="n">n_estimators_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">300</span><span class="p">]</span>
 
 <span class="k">if</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;execute? [Y/n] &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">!=</span> <span class="s1">&#39;n&#39;</span><span class="p">:</span>
-    <span class="n">RF_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;max_depth=</span><span class="si">{</span><span class="n">max_depth</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">max_depth</span> <span class="ow">in</span> <span class="n">max_depth_list</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="n">RF_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+        <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;max_depth=</span><span class="si">{</span><span class="n">max_depth</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">max_depth</span> <span class="ow">in</span> <span class="n">max_depth_list</span><span class="p">],</span>
+        <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
     <span class="n">RF_df</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;n_estimators&#39;</span><span class="p">,</span> <span class="n">n_estimators_list</span><span class="p">)</span>
     <span class="c1"># YOUR CODE HERE</span>
     <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
     <span class="n">display</span><span class="o">.</span><span class="n">display</span><span class="p">(</span><span class="n">RF_df</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
 
-    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
-    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">RF_df</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">RF_df</span><span class="p">[</span><span class="s1">&#39;n_estimators&#39;</span><span class="p">],</span>
-                 <span class="n">RF_df</span><span class="p">[</span><span class="n">col</span><span class="p">],</span>
-                 <span class="n">label</span><span class="o">=</span><span class="n">col</span><span class="p">,</span>
-                 <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;n_estimators&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Accuracies&#39;</span><span class="p">)</span>
+    <span class="n">plot</span><span class="p">(</span><span class="n">RF_df</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Random forest&#39;</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
@@ -796,9 +805,7 @@ commentsRunWhenDOMLoaded(addUtterances);
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">RF_weka</span> <span class="o">=</span> <span class="n">Classifier</span><span class="p">(</span><span class="n">classname</span><span class="o">=</span><span class="s2">&quot;weka.classifiers.trees.RandomForest&quot;</span><span class="p">)</span>
-<span class="n">RF_weka</span><span class="o">.</span><span class="n">options</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;-I&#39;</span><span class="p">,</span> <span class="s1">&#39;10&#39;</span><span class="p">,</span>
-              <span class="s1">&#39;-depth&#39;</span><span class="p">,</span> <span class="s1">&#39;5&#39;</span><span class="p">,</span>
-              <span class="s1">&#39;-S&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">]</span>
+<span class="n">RF_weka</span><span class="o">.</span><span class="n">options</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;-I&#39;</span><span class="p">,</span> <span class="s1">&#39;10&#39;</span><span class="p">,</span> <span class="s1">&#39;-depth&#39;</span><span class="p">,</span> <span class="s1">&#39;5&#39;</span><span class="p">,</span> <span class="s1">&#39;-S&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">]</span>
 <span class="n">RF_weka</span><span class="o">.</span><span class="n">build_classifier</span><span class="p">(</span><span class="n">trainset</span><span class="p">)</span>
 <span class="n">evl</span> <span class="o">=</span> <span class="n">Evaluation</span><span class="p">(</span><span class="n">testset</span><span class="p">)</span>
 <span class="n">evl</span><span class="o">.</span><span class="n">test_model</span><span class="p">(</span><span class="n">RF_weka</span><span class="p">,</span> <span class="n">testset</span><span class="p">)</span>
@@ -807,28 +814,22 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 </div>
-<p><strong>Exercise</strong> Repeat the previous exercise but with Weka instead. Use a random seed of 1.</p>
+<p><strong>Exercise</strong> Repeat the previous exercise but with <a class="reference external" href="https://weka.sourceforge.io/doc.dev/weka/classifiers/trees/RandomForest.html">Weka</a> instead. Use a random seed of 1.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">max_depth_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">]</span>
 <span class="n">n_estimators_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">300</span><span class="p">]</span>
 
 <span class="k">if</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;execute? [Y/n] &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">!=</span> <span class="s1">&#39;n&#39;</span><span class="p">:</span>
-    <span class="n">RF_weka_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;max_depth=</span><span class="si">{</span><span class="n">max_depth</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">max_depth</span> <span class="ow">in</span> <span class="n">max_depth_list</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="n">RF_weka_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+        <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;max_depth=</span><span class="si">{</span><span class="n">max_depth</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">max_depth</span> <span class="ow">in</span> <span class="n">max_depth_list</span><span class="p">],</span>
+        <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
     <span class="n">RF_weka_df</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;n_estimators&#39;</span><span class="p">,</span> <span class="n">n_estimators_list</span><span class="p">)</span>
     <span class="c1"># YOUR CODE HERE</span>
     <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
     <span class="n">display</span><span class="o">.</span><span class="n">display</span><span class="p">(</span><span class="n">RF_weka_df</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
 
-    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
-    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">RF_weka_df</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">RF_weka_df</span><span class="p">[</span><span class="s1">&#39;n_estimators&#39;</span><span class="p">],</span>
-                 <span class="n">RF_weka_df</span><span class="p">[</span><span class="n">col</span><span class="p">],</span>
-                 <span class="n">label</span><span class="o">=</span><span class="n">col</span><span class="p">,</span>
-                 <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;n_estimators&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Accuracies&#39;</span><span class="p">)</span>
+    <span class="n">plot</span><span class="p">(</span><span class="n">RF_weka_df</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Random forest&#39;</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
@@ -848,8 +849,8 @@ commentsRunWhenDOMLoaded(addUtterances);
 <p>YOUR ANSWER HERE</p>
 </div>
 <div class="section" id="adaboost">
-<h3><span class="section-number">1.2.4. </span>AdaBoost<a class="headerlink" href="#adaboost" title="Permalink to this headline">¶</a></h3>
-<p>Using AdaBoost, we can boost the performance by adding base classifiers one-by-one to improve the error made by previously trained classifiers. To train AdaBoost with 10 decision trees of maximum depth 5:</p>
+<h3><span class="section-number">1.2.3. </span>AdaBoost<a class="headerlink" href="#adaboost" title="Permalink to this headline">¶</a></h3>
+<p>Using <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.AdaBoostClassifier.html">AdaBoost</a>, we can boost the performance by adding base classifiers one-by-one to improve the error made by previously trained classifiers. To train AdaBoost with 10 decision trees of maximum depth 5:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ADB</span> <span class="o">=</span> <span class="n">ensemble</span><span class="o">.</span><span class="n">AdaBoostClassifier</span><span class="p">(</span>
@@ -862,6 +863,7 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 </div>
+<p>Note that the above is indeed the multi-class extension of AdaBoost called AdaBoost-SAMME. The original AdaBoost only work for binary classification.</p>
 <p><strong>Exercise</strong> Unlike Bagging and random forest, the training of the base classifiers for AdaBoost cannot be parallelized. Why?</p>
 <p>YOUR ANSWER HERE</p>
 <p><strong>Exercise</strong> Complete the pandas <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> <code class="docutils literal notranslate"><span class="pre">ADB_df</span></code> in the following cell by filling in the accuracies (as floating point numbers) for different <code class="docutils literal notranslate"><span class="pre">n_estimators</span></code> and <code class="docutils literal notranslate"><span class="pre">max_depth</span></code>. Use <code class="docutils literal notranslate"><span class="pre">random_state</span> <span class="pre">=</span> <span class="pre">0</span></code>.</p>
@@ -871,24 +873,18 @@ commentsRunWhenDOMLoaded(addUtterances);
 <span class="n">n_estimators_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">]</span>
 
 <span class="k">if</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;execute? [Y/n] &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">!=</span> <span class="s1">&#39;n&#39;</span><span class="p">:</span>
-    <span class="n">ADB_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;max_depth=</span><span class="si">{</span><span class="n">max_depth</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">max_depth</span> <span class="ow">in</span> <span class="n">max_depth_list</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="n">ADB_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+        <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;max_depth=</span><span class="si">{</span><span class="n">max_depth</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">max_depth</span> <span class="ow">in</span> <span class="n">max_depth_list</span><span class="p">],</span>
+        <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
     <span class="n">ADB_df</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;n_estimators&#39;</span><span class="p">,</span> <span class="n">n_estimators_list</span><span class="p">)</span>
     <span class="c1"># YOUR CODE HERE</span>
     <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
     <span class="n">display</span><span class="o">.</span><span class="n">display</span><span class="p">(</span><span class="n">ADB_df</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
 
-    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
-    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">ADB_df</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ADB_df</span><span class="p">[</span><span class="s1">&#39;n_estimators&#39;</span><span class="p">],</span>
-                 <span class="n">ADB_df</span><span class="p">[</span><span class="n">col</span><span class="p">],</span>
-                 <span class="n">label</span><span class="o">=</span><span class="n">col</span><span class="p">,</span>
-                 <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;n_estimators&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Accuracies&#39;</span><span class="p">)</span>
+    <span class="n">plot</span><span class="p">(</span><span class="n">ADB_df</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Adaboost decision trees&#39;</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-    
+
     <span class="n">dump</span><span class="p">(</span><span class="n">ADB_df</span><span class="p">,</span> <span class="s1">&#39;ADB_df.gz&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -901,14 +897,14 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 </div>
-<p>To train AdaBoost with 10 decision trees of maximum depth 5 using <code class="docutils literal notranslate"><span class="pre">python-weka-wrapper</span></code>:</p>
+<p>To train <a class="reference external" href="https://weka.sourceforge.io/doc.dev/weka/classifiers/meta/AdaBoostM1.html">AdaBoost</a> with 10 decision trees of maximum depth 5 using <code class="docutils literal notranslate"><span class="pre">python-weka-wrapper</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">REPTree</span> <span class="o">=</span> <span class="n">Classifier</span><span class="p">(</span><span class="n">classname</span><span class="o">=</span><span class="s2">&quot;weka.classifiers.trees.REPTree&quot;</span><span class="p">)</span>
 <span class="n">REPTree</span><span class="o">.</span><span class="n">options</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;-L&#39;</span><span class="p">,</span> <span class="s1">&#39;5&#39;</span><span class="p">]</span>
-<span class="n">ADB_weka</span> <span class="o">=</span> <span class="n">SingleClassifierEnhancer</span><span class="p">(</span><span class="n">classname</span><span class="o">=</span><span class="s2">&quot;weka.classifiers.meta.AdaBoostM1&quot;</span><span class="p">)</span>
-<span class="n">ADB_weka</span><span class="o">.</span><span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;-I&#39;</span><span class="p">,</span> <span class="s1">&#39;10&#39;</span><span class="p">,</span>
-             <span class="s1">&#39;-S&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">]</span>
+<span class="n">ADB_weka</span> <span class="o">=</span> <span class="n">SingleClassifierEnhancer</span><span class="p">(</span>
+    <span class="n">classname</span><span class="o">=</span><span class="s2">&quot;weka.classifiers.meta.AdaBoostM1&quot;</span><span class="p">)</span>
+<span class="n">ADB_weka</span><span class="o">.</span><span class="n">options</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;-I&#39;</span><span class="p">,</span> <span class="s1">&#39;10&#39;</span><span class="p">,</span> <span class="s1">&#39;-S&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">]</span>
 <span class="n">ADB_weka</span><span class="o">.</span><span class="n">classifier</span> <span class="o">=</span> <span class="n">REPTree</span>
 <span class="n">ADB_weka</span><span class="o">.</span><span class="n">build_classifier</span><span class="p">(</span><span class="n">trainset</span><span class="p">)</span>
 <span class="n">evl</span> <span class="o">=</span> <span class="n">Evaluation</span><span class="p">(</span><span class="n">testset</span><span class="p">)</span>
@@ -918,30 +914,25 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 </div>
+<p>Weka uses the multi-class extension called AdaboostM1, which is different from Adaboost-SAMME.</p>
 <p><strong>Exercise</strong> Repeat the previous exercise but with Weka instead. Use a random seed of 1.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;execute? [Y/n] &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">!=</span> <span class="s1">&#39;n&#39;</span><span class="p">:</span>
     <span class="n">max_depth_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
     <span class="n">n_estimators_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">]</span>
-    <span class="n">ADB_weka_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;max_depth=</span><span class="si">{</span><span class="n">max_depth</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">max_depth</span> <span class="ow">in</span> <span class="n">max_depth_list</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="n">ADB_weka_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+        <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;max_depth=</span><span class="si">{</span><span class="n">max_depth</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">max_depth</span> <span class="ow">in</span> <span class="n">max_depth_list</span><span class="p">],</span>
+        <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
     <span class="n">ADB_weka_df</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;n_estimators&#39;</span><span class="p">,</span> <span class="n">n_estimators_list</span><span class="p">)</span>
     <span class="c1"># YOUR CODE HERE</span>
     <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
     <span class="n">display</span><span class="o">.</span><span class="n">display</span><span class="p">(</span><span class="n">ADB_weka_df</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
 
-    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
-    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">ADB_weka_df</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ADB_weka_df</span><span class="p">[</span><span class="s1">&#39;n_estimators&#39;</span><span class="p">],</span>
-                 <span class="n">ADB_weka_df</span><span class="p">[</span><span class="n">col</span><span class="p">],</span>
-                 <span class="n">label</span><span class="o">=</span><span class="n">col</span><span class="p">,</span>
-                 <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;n_estimators&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Accuracies&#39;</span><span class="p">)</span>
+    <span class="n">plot</span><span class="p">(</span><span class="n">ADB_weka_df</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Adaboost decision trees&#39;</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-    
+
     <span class="n">dump</span><span class="p">(</span><span class="n">ADB_weka_df</span><span class="p">,</span> <span class="s1">&#39;ADB_weka_df.gz&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -987,14 +978,18 @@ commentsRunWhenDOMLoaded(addUtterances);
 <span class="k">if</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;execute? [Y/n] &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">!=</span> <span class="s1">&#39;n&#39;</span><span class="p">:</span>
     <span class="n">max_depth_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">]</span>
     <span class="n">n_estimators_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">300</span><span class="p">]</span>
-    <span class="n">param_grid</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;n_estimators&#39;</span><span class="p">:</span> <span class="n">n_estimators_list</span><span class="p">,</span> <span class="s1">&#39;max_depth&#39;</span><span class="p">:</span> <span class="n">max_depth_list</span><span class="p">}</span>
-    
-    <span class="n">grid_search</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span>
-        <span class="n">ensemble</span><span class="o">.</span><span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> 
-        <span class="n">param_grid</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+    <span class="n">param_grid</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;n_estimators&#39;</span><span class="p">:</span> <span class="n">n_estimators_list</span><span class="p">,</span>
+        <span class="s1">&#39;max_depth&#39;</span><span class="p">:</span> <span class="n">max_depth_list</span>
+    <span class="p">}</span>
+
+    <span class="n">grid_search</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">ensemble</span><span class="o">.</span><span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+                               <span class="n">param_grid</span><span class="p">,</span>
+                               <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                               <span class="n">n_jobs</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
 
     <span class="n">grid_search</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">Y_train</span><span class="p">)</span>
-    
+
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Accuracy: </span><span class="si">{</span><span class="n">grid_search</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">Y_test</span><span class="p">)</span><span class="si">:</span><span class="s1">.4g</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Best parameters: </span><span class="si">{</span><span class="n">grid_search</span><span class="o">.</span><span class="n">best_params_</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
