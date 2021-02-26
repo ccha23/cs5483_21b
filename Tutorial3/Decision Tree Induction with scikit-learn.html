@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>3. Decision Tree Induction with scikit-learn &#8212; CS5483</title>
+    <title>Decision Tree Induction with scikit-learn &#8212; CS5483</title>
     
   <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
 
@@ -92,8 +92,8 @@ commentsRunWhenDOMLoaded(addUtterances);
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="1. Different Classifiers with Weka" href="../Tutorial4/Different%20Classifiers%20with%20Weka.html" />
-    <link rel="prev" title="2. Man vs Machine" href="Man%20vs%20Machine.html" />
+    <link rel="next" title="Different Classifiers with Weka" href="../Tutorial4/Different%20Classifiers%20with%20Weka.html" />
+    <link rel="prev" title="Man vs Machine" href="Man%20vs%20Machine.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -138,12 +138,12 @@ commentsRunWhenDOMLoaded(addUtterances);
 <ul class="nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="../Tutorial1/Setup.html">
-   1. Setup
+   Setup
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../Tutorial1/Data%20Files.html">
-   2. Data Files
+   Data Files
   </a>
  </li>
 </ul>
@@ -155,17 +155,17 @@ commentsRunWhenDOMLoaded(addUtterances);
 <ul class="nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="../Tutorial2/Estimation%20from%20Samples.html">
-   1. Estimation from Samples
+   Estimation from Samples
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../Tutorial2/Evaluation%20using%20Weka.html">
-   2. Evaluation using Weka
+   Evaluation using Weka
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../Tutorial2/Evaluation%20with%20scikit-learn.html">
-   3. Evaluation with scikit-learn
+   Evaluation with scikit-learn
   </a>
  </li>
 </ul>
@@ -177,17 +177,17 @@ commentsRunWhenDOMLoaded(addUtterances);
 <ul class="current nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="Information%20Quantities%20for%20Decision%20Tree%20Induction.html">
-   1. Information Quantities for Decision Tree Induction
+   Information Quantities for Decision Tree Induction
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="Man%20vs%20Machine.html">
-   2. Man vs Machine
+   Man vs Machine
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   3. Decision Tree Induction with scikit-learn
+   Decision Tree Induction with scikit-learn
   </a>
  </li>
 </ul>
@@ -199,12 +199,12 @@ commentsRunWhenDOMLoaded(addUtterances);
 <ul class="nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="../Tutorial4/Different%20Classifiers%20with%20Weka.html">
-   1. Different Classifiers with Weka
+   Different Classifiers with Weka
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../Tutorial4/Different%20Classifiers%20with%20scikit-learn.html">
-   2. Different Classifiers with scikit-learn
+   Different Classifiers with scikit-learn
   </a>
  </li>
 </ul>
@@ -216,7 +216,7 @@ commentsRunWhenDOMLoaded(addUtterances);
 <ul class="nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="../Project1/Project1.html">
-   1. Project 1
+   Project 1
   </a>
  </li>
 </ul>
@@ -228,12 +228,12 @@ commentsRunWhenDOMLoaded(addUtterances);
 <ul class="nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="../Tutorial5/Evaluation%20for%20Skewed%20Dataset.html">
-   1. Evaluation for Skewed Dataset
+   Evaluation for Skewed Dataset
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../Tutorial5/Training%20with%20Skewed%20Dataset.html">
-   2. Training with Skewed Dataset
+   Training with Skewed Dataset
   </a>
  </li>
 </ul>
@@ -357,17 +357,17 @@ commentsRunWhenDOMLoaded(addUtterances);
             <ul class="nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#decision-tree-induction">
-   3.1. Decision Tree Induction
+   Decision Tree Induction
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#compute-splitting-criterion">
-   3.2. Compute Splitting Criterion
+   Compute Splitting Criterion
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#basic-data-analysis-using-pandas">
-     3.2.1. Basic data analysis using
+     Basic data analysis using
      <code class="docutils literal notranslate">
       <span class="pre">
        pandas
@@ -377,12 +377,12 @@ commentsRunWhenDOMLoaded(addUtterances);
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#compute-impurity">
-     3.2.2. Compute impurity
+     Compute impurity
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#compute-drop-in-impurity-and-best-split">
-     3.2.3. Compute drop in impurity and best split
+     Compute drop in impurity and best split
     </a>
    </li>
   </ul>
@@ -399,7 +399,7 @@ commentsRunWhenDOMLoaded(addUtterances);
               <div>
                 
   <div class="section" id="decision-tree-induction-with-scikit-learn">
-<h1><span class="section-number">3. </span>Decision Tree Induction with scikit-learn<a class="headerlink" href="#decision-tree-induction-with-scikit-learn" title="Permalink to this headline">¶</a></h1>
+<h1>Decision Tree Induction with scikit-learn<a class="headerlink" href="#decision-tree-induction-with-scikit-learn" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">reset</span> -f
@@ -416,7 +416,7 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 <div class="section" id="decision-tree-induction">
-<h2><span class="section-number">3.1. </span>Decision Tree Induction<a class="headerlink" href="#decision-tree-induction" title="Permalink to this headline">¶</a></h2>
+<h2>Decision Tree Induction<a class="headerlink" href="#decision-tree-induction" title="Permalink to this headline">¶</a></h2>
 <p>We first import the <a class="reference external" href="https://en.wikipedia.org/wiki/Iris_flower_data_set"><em>iris dataset</em></a> from <a class="reference external" href="https://scikit-learn.org/stable/datasets/index.html"><code class="docutils literal notranslate"><span class="pre">sklearn.datasets</span></code> package</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -488,10 +488,10 @@ commentsRunWhenDOMLoaded(addUtterances);
 (See some <a class="reference external" href="https://stackoverflow.com/questions/38108832/passing-categorical-data-to-sklearn-decision-tree">workarounds</a>.)</p>
 </div>
 <div class="section" id="compute-splitting-criterion">
-<h2><span class="section-number">3.2. </span>Compute Splitting Criterion<a class="headerlink" href="#compute-splitting-criterion" title="Permalink to this headline">¶</a></h2>
+<h2>Compute Splitting Criterion<a class="headerlink" href="#compute-splitting-criterion" title="Permalink to this headline">¶</a></h2>
 <p>To understand how the decision tree is generated, we will implements the computation of the splitting criterion.</p>
 <div class="section" id="basic-data-analysis-using-pandas">
-<h3><span class="section-number">3.2.1. </span>Basic data analysis using <code class="docutils literal notranslate"><span class="pre">pandas</span></code><a class="headerlink" href="#basic-data-analysis-using-pandas" title="Permalink to this headline">¶</a></h3>
+<h3>Basic data analysis using <code class="docutils literal notranslate"><span class="pre">pandas</span></code><a class="headerlink" href="#basic-data-analysis-using-pandas" title="Permalink to this headline">¶</a></h3>
 <p>To have an idea of qualities of the features, create a <a class="reference external" href="https://pandas.pydata.org/docs/user_guide/index.html"><code class="docutils literal notranslate"><span class="pre">pandas</span></code></a> <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html?highlight=dataframe#pandas.DataFrame"><code class="docutils literal notranslate"><span class="pre">DataFrame</span></code></a>
 to operate on the dataset.</p>
 <div class="cell docutils container">
@@ -521,10 +521,10 @@ to operate on the dataset.</p>
 <p>YOUR ANSWER HERE</p>
 </div>
 <div class="section" id="compute-impurity">
-<h3><span class="section-number">3.2.2. </span>Compute impurity<a class="headerlink" href="#compute-impurity" title="Permalink to this headline">¶</a></h3>
+<h3>Compute impurity<a class="headerlink" href="#compute-impurity" title="Permalink to this headline">¶</a></h3>
 <p>Given a distribution <span class="math notranslate nohighlight">\(\boldsymbol{p}=(p_1,p_2,\dots)\)</span> where <span class="math notranslate nohighlight">\(p_k\in [0,1]\)</span> and <span class="math notranslate nohighlight">\(\sum_k p_k =1\)</span>, the Gini impurity index is defined as:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-21a6f1c2-33ba-4e7d-831d-313a17e0b052">
-<span class="eqno">(3.1)<a class="headerlink" href="#equation-21a6f1c2-33ba-4e7d-831d-313a17e0b052" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-0b6a597c-7fe8-4d68-b1ab-a9c869bcce7e">
+<span class="eqno">(4)<a class="headerlink" href="#equation-0b6a597c-7fe8-4d68-b1ab-a9c869bcce7e" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \operatorname{Gini}(\boldsymbol{p}) = \operatorname{Gini}(p_1,p_2,\dots) &amp;:= \sum_k p_k(1-p_k)\\
 &amp;= 1- \sum_k p_k^2.
 \end{align}\]</div>
@@ -556,8 +556,8 @@ to operate on the dataset.</p>
 </div>
 </div>
 <p><strong>Exercise</strong> Complete the following function to compute the entropy of a distribution:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4e3091b4-2954-4421-8852-efcc2d8efae2">
-<span class="eqno">(3.2)<a class="headerlink" href="#equation-4e3091b4-2954-4421-8852-efcc2d8efae2" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-7202c28c-8a09-4cc2-8286-eeae01849011">
+<span class="eqno">(5)<a class="headerlink" href="#equation-7202c28c-8a09-4cc2-8286-eeae01849011" title="Permalink to this equation">¶</a></span>\[\begin{align}
 h(\boldsymbol{p}) = h(p_1,p_2,\dots) &amp;= \sum_k - p_k \log_2 p_k\\
 &amp;= \sum_{k:p_k&gt;0} - p_k \log_2 p_k.
 \end{align}\]</div>
@@ -591,10 +591,10 @@ h(\boldsymbol{p}) = h(p_1,p_2,\dots) &amp;= \sum_k - p_k \log_2 p_k\\
 </div>
 </div>
 <div class="section" id="compute-drop-in-impurity-and-best-split">
-<h3><span class="section-number">3.2.3. </span>Compute drop in impurity and best split<a class="headerlink" href="#compute-drop-in-impurity-and-best-split" title="Permalink to this headline">¶</a></h3>
+<h3>Compute drop in impurity and best split<a class="headerlink" href="#compute-drop-in-impurity-and-best-split" title="Permalink to this headline">¶</a></h3>
 <p>Now, to compute the drop in impurity for given splitting criterion:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c6bc2f85-379d-43e3-876c-15bae1dcd64a">
-<span class="eqno">(3.3)<a class="headerlink" href="#equation-c6bc2f85-379d-43e3-876c-15bae1dcd64a" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-d3597918-536e-4c13-9abb-782feff07bc2">
+<span class="eqno">(6)<a class="headerlink" href="#equation-d3597918-536e-4c13-9abb-782feff07bc2" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \Delta \operatorname{Gini}_{X\leq s}(Y) = \operatorname{Gini}(P_Y) - \left[\Pr\{X\leq s\} \operatorname{Gini}(P_{Y|X\leq s}) + \Pr\{X&gt; s\}\operatorname{Gini}(P_{Y|X&gt; s})\right]
 \end{align}\]</div>
 <div class="cell docutils container">
@@ -668,8 +668,8 @@ h(\boldsymbol{p}) = h(p_1,p_2,\dots) &amp;= \sum_k - p_k \log_2 p_k\\
 </div>
 </div>
 <p><strong>Exercise</strong> Complete the following function to calculate the <em>information gain</em> for a binary split <span class="math notranslate nohighlight">\(X\leq s\)</span> and target <span class="math notranslate nohighlight">\(Y\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f753dfef-65d7-45c6-9792-a0a3567d4e02">
-<span class="eqno">(3.4)<a class="headerlink" href="#equation-f753dfef-65d7-45c6-9792-a0a3567d4e02" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-1d6a2fd6-f1f6-4865-b33a-c1aeaa9c83a7">
+<span class="eqno">(7)<a class="headerlink" href="#equation-1d6a2fd6-f1f6-4865-b33a-c1aeaa9c83a7" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \operatorname{Gain}_{X\leq s}(Y) := h(P_Y) - \left[\Pr(X\leq s) h(P_{Y|X\leq s}) + \Pr(X&gt; s) h(P_{Y|X&gt; s})\right].
 \end{align}\]</div>
 <p>You may use <code class="docutils literal notranslate"><span class="pre">dist</span></code> and <code class="docutils literal notranslate"><span class="pre">entropy</span></code> defined previously.</p>
@@ -711,8 +711,8 @@ h(\boldsymbol{p}) = h(p_1,p_2,\dots) &amp;= \sum_k - p_k \log_2 p_k\\
 </div>
 </div>
 <p><strong>Exercise</strong> Complete the following function to calculate the <em>information gain ratio</em> for a binary split <span class="math notranslate nohighlight">\(X\leq s\)</span> and target <span class="math notranslate nohighlight">\(Y\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9be4275d-d6fc-45f3-9783-3a33254ac207">
-<span class="eqno">(3.5)<a class="headerlink" href="#equation-9be4275d-d6fc-45f3-9783-3a33254ac207" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-1a829dad-6bd1-49a5-8559-62d95a740517">
+<span class="eqno">(8)<a class="headerlink" href="#equation-1a829dad-6bd1-49a5-8559-62d95a740517" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \operatorname{GainRatio}_{X\leq s}(Y) &amp;:= \frac{\operatorname{Gain}_{X\leq s}(Y)}{\operatorname{SplitInfo}(X\leq s)} \qquad\text{where}\\
 \operatorname{SplitInfo}(X\leq s) &amp;:= h(\Pr(X\leq s),\Pr(X&gt; s)).
 \end{align}\]</div>
@@ -778,8 +778,8 @@ h(\boldsymbol{p}) = h(p_1,p_2,\dots) &amp;= \sum_k - p_k \log_2 p_k\\
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="Man%20vs%20Machine.html" title="previous page"><span class="section-number">2. </span>Man vs Machine</a>
-    <a class='right-next' id="next-link" href="../Tutorial4/Different%20Classifiers%20with%20Weka.html" title="next page"><span class="section-number">1. </span>Different Classifiers with Weka</a>
+    <a class='left-prev' id="prev-link" href="Man%20vs%20Machine.html" title="previous page">Man vs Machine</a>
+    <a class='right-next' id="next-link" href="../Tutorial4/Different%20Classifiers%20with%20Weka.html" title="next page">Different Classifiers with Weka</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

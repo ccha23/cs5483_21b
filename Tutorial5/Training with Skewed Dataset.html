@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>2. Training with Skewed Dataset &#8212; CS5483</title>
+    <title>Training with Skewed Dataset &#8212; CS5483</title>
     
   <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
 
@@ -93,7 +93,7 @@ commentsRunWhenDOMLoaded(addUtterances);
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Machine vs Machine" href="../Tutorial6/Machine%20vs%20Machine.html" />
-    <link rel="prev" title="1. Evaluation for Skewed Dataset" href="Evaluation%20for%20Skewed%20Dataset.html" />
+    <link rel="prev" title="Evaluation for Skewed Dataset" href="Evaluation%20for%20Skewed%20Dataset.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -138,12 +138,12 @@ commentsRunWhenDOMLoaded(addUtterances);
 <ul class="nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="../Tutorial1/Setup.html">
-   1. Setup
+   Setup
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../Tutorial1/Data%20Files.html">
-   2. Data Files
+   Data Files
   </a>
  </li>
 </ul>
@@ -155,17 +155,17 @@ commentsRunWhenDOMLoaded(addUtterances);
 <ul class="nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="../Tutorial2/Estimation%20from%20Samples.html">
-   1. Estimation from Samples
+   Estimation from Samples
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../Tutorial2/Evaluation%20using%20Weka.html">
-   2. Evaluation using Weka
+   Evaluation using Weka
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../Tutorial2/Evaluation%20with%20scikit-learn.html">
-   3. Evaluation with scikit-learn
+   Evaluation with scikit-learn
   </a>
  </li>
 </ul>
@@ -177,17 +177,17 @@ commentsRunWhenDOMLoaded(addUtterances);
 <ul class="nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="../Tutorial3/Information%20Quantities%20for%20Decision%20Tree%20Induction.html">
-   1. Information Quantities for Decision Tree Induction
+   Information Quantities for Decision Tree Induction
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../Tutorial3/Man%20vs%20Machine.html">
-   2. Man vs Machine
+   Man vs Machine
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../Tutorial3/Decision%20Tree%20Induction%20with%20scikit-learn.html">
-   3. Decision Tree Induction with scikit-learn
+   Decision Tree Induction with scikit-learn
   </a>
  </li>
 </ul>
@@ -199,12 +199,12 @@ commentsRunWhenDOMLoaded(addUtterances);
 <ul class="nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="../Tutorial4/Different%20Classifiers%20with%20Weka.html">
-   1. Different Classifiers with Weka
+   Different Classifiers with Weka
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../Tutorial4/Different%20Classifiers%20with%20scikit-learn.html">
-   2. Different Classifiers with scikit-learn
+   Different Classifiers with scikit-learn
   </a>
  </li>
 </ul>
@@ -216,7 +216,7 @@ commentsRunWhenDOMLoaded(addUtterances);
 <ul class="nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="../Project1/Project1.html">
-   1. Project 1
+   Project 1
   </a>
  </li>
 </ul>
@@ -228,12 +228,12 @@ commentsRunWhenDOMLoaded(addUtterances);
 <ul class="current nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="Evaluation%20for%20Skewed%20Dataset.html">
-   1. Evaluation for Skewed Dataset
+   Evaluation for Skewed Dataset
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   2. Training with Skewed Dataset
+   Training with Skewed Dataset
   </a>
  </li>
 </ul>
@@ -357,22 +357,22 @@ commentsRunWhenDOMLoaded(addUtterances);
             <ul class="nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#setup">
-   2.1. Setup
+   Setup
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#threshold-selector">
-   2.2. Threshold Selector
+   Threshold Selector
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#cost-sensitive-classifier">
-   2.3. Cost-sensitive Classifier
+   Cost-sensitive Classifier
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#smote">
-   2.4. SMOTE
+   SMOTE
   </a>
  </li>
 </ul>
@@ -387,7 +387,7 @@ commentsRunWhenDOMLoaded(addUtterances);
               <div>
                 
   <div class="section" id="training-with-skewed-dataset">
-<h1><span class="section-number">2. </span>Training with Skewed Dataset<a class="headerlink" href="#training-with-skewed-dataset" title="Permalink to this headline">¶</a></h1>
+<h1>Training with Skewed Dataset<a class="headerlink" href="#training-with-skewed-dataset" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">reset</span> -f
@@ -411,7 +411,7 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 <div class="section" id="setup">
-<h2><span class="section-number">2.1. </span>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
+<h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
 <p>In this notebook, we will train classifiers properly on the skewed dataset for detecting microcalcifications in mammograms.</p>
 <p>In particular, we will use the meta classifier <code class="docutils literal notranslate"><span class="pre">ThresholdSelector</span></code> and the filter <code class="docutils literal notranslate"><span class="pre">SMOTE</span></code> <a class="reference external" href="https://doi.org/10.1613/jair.953">Synthetic Minority Over-sampling Technique</a>, which needs to be installed as <a class="reference external" href="https://weka.sourceforge.io/packageMetaData/">additional packages in WEKA</a>:</p>
 <div class="cell docutils container">
@@ -480,7 +480,7 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 <div class="section" id="threshold-selector">
-<h2><span class="section-number">2.2. </span>Threshold Selector<a class="headerlink" href="#threshold-selector" title="Permalink to this headline">¶</a></h2>
+<h2>Threshold Selector<a class="headerlink" href="#threshold-selector" title="Permalink to this headline">¶</a></h2>
 <p>The meta classifier <code class="docutils literal notranslate"><span class="pre">ThresholdSelector</span></code> uses the threshold-moving technique to optimize a performance measure you specify, which can be the precision, recall, <span class="math notranslate nohighlight">\(F\)</span>-score, etc. See an explanation of threshold moving technique <a class="reference external" href="https://machinelearningmastery.com/threshold-moving-for-imbalanced-classification/">here</a>.</p>
 <p>The following shows how to maximize recall:</p>
 <div class="cell docutils container">
@@ -524,7 +524,7 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 <div class="section" id="cost-sensitive-classifier">
-<h2><span class="section-number">2.3. </span>Cost-sensitive Classifier<a class="headerlink" href="#cost-sensitive-classifier" title="Permalink to this headline">¶</a></h2>
+<h2>Cost-sensitive Classifier<a class="headerlink" href="#cost-sensitive-classifier" title="Permalink to this headline">¶</a></h2>
 <p>We can build a classifier to maximize certain cost. Weka provides a convenient interface for the <a class="reference external" href="https://wiki.pentaho.com/display/DATAMINING/Cost+Benefit+Analysis">cost/benefit analysis</a>:</p>
 <ol>
 <li> In the explorer interface, train J48 on the mammography dataset with 10-fold cross-validation.
@@ -582,7 +582,7 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 <div class="section" id="smote">
-<h2><span class="section-number">2.4. </span>SMOTE<a class="headerlink" href="#smote" title="Permalink to this headline">¶</a></h2>
+<h2>SMOTE<a class="headerlink" href="#smote" title="Permalink to this headline">¶</a></h2>
 <p>Synthetic Minority Over-sampling TEchnique (SMOTE) is a filter that up-samples the minority class. Instead of creating duplicates of the same instance, it creates new samples as convex combinations of existing ones. See a more detailed explanation of SMOTE <a class="reference external" href="http://rikunert.com/SMOTE_explained">here</a>.</p>
 <p><strong>Exercise</strong> Using the FilteredClassifier with J48 as the classifer and SMOTE as the filter, try to tweek the setting of SMOTE to give the highest possilbe value of <span class="math notranslate nohighlight">\(F\)</span> score larger than the maximum one achieved by <code class="docutils literal notranslate"><span class="pre">ThresholdSelector</span></code>. Assign to <code class="docutils literal notranslate"><span class="pre">smote.options</span></code> your choice of the filter. E.g., you can change the percentage of SMOTE instances to 150% as follows:</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">smote</span><span class="o">.</span><span class="n">options</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;-P&#39;</span><span class="p">,</span> <span class="s1">&#39;150&#39;</span><span class="p">]</span>
@@ -646,7 +646,7 @@ commentsRunWhenDOMLoaded(addUtterances);
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="Evaluation%20for%20Skewed%20Dataset.html" title="previous page"><span class="section-number">1. </span>Evaluation for Skewed Dataset</a>
+    <a class='left-prev' id="prev-link" href="Evaluation%20for%20Skewed%20Dataset.html" title="previous page">Evaluation for Skewed Dataset</a>
     <a class='right-next' id="next-link" href="../Tutorial6/Machine%20vs%20Machine.html" title="next page">Machine vs Machine</a>
 
     </div>
