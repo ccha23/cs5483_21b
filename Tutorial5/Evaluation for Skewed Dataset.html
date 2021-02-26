@@ -249,6 +249,18 @@ commentsRunWhenDOMLoaded(addUtterances);
   </a>
  </li>
 </ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Tutorial 6
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Tutorial7/Deep%20Learning.html">
+   1. Deep Learning
+  </a>
+ </li>
+</ul>
 
 </nav> <!-- To handle the deprecated key -->
 
@@ -483,8 +495,8 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 <p>Although specificity is close to 100%, precision and recall are below 80% and 60% respectively. These metrics can be computed from the numbers of true/false positives/negatives:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c6e5fb6f-efc5-49fd-a22a-780471dfe150">
-<span class="eqno">(1.4)<a class="headerlink" href="#equation-c6e5fb6f-efc5-49fd-a22a-780471dfe150" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-4a0bedc4-0193-4ac5-8a6c-31e370fa1218">
+<span class="eqno">(1.4)<a class="headerlink" href="#equation-4a0bedc4-0193-4ac5-8a6c-31e370fa1218" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \text{precision} &amp;= \frac{\text{TP}}{\text{TP} + \text{FP}}\\ 
 \text{recall} &amp;= \frac{\text{TP}}{\text{TP} + \text{FN}}\\ 
 \text{specificity} &amp;= \frac{\text{TN}}{\text{TN} + \text{FP}}
@@ -537,8 +549,8 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 <p><span class="math notranslate nohighlight">\(F_{\beta}\)</span> score is another measure that captures the performance in both precision and recall:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-40c62a64-9496-4653-820b-48d0504bc04b">
-<span class="eqno">(1.5)<a class="headerlink" href="#equation-40c62a64-9496-4653-820b-48d0504bc04b" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-8c510d7b-b09d-4b4d-bac7-e7e101b2c240">
+<span class="eqno">(1.5)<a class="headerlink" href="#equation-8c510d7b-b09d-4b4d-bac7-e7e101b2c240" title="Permalink to this equation">¶</a></span>\[\begin{align}
 F_{\beta} &amp;:= \left( \frac{\text{precision}^{-1} + \beta^2 \cdot \text{recall}^{-1}}{\beta^2 + 1}\right)^{-1} = \frac{(\beta^2+1)\cdot \text{precision}\cdot \text{recall} }{\beta^2\text{precision} + \text{recall}}\\
 F := F_1 &amp;= \left( \frac{\text{precision}^{-1} + \text{recall}^{-1}}{2}\right)^{-1} = \frac{2\cdot \text{precision}\cdot \text{recall} }{\text{precision} + \text{recall}},
 \end{align}\]</div>
