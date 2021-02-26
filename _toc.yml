@@ -41,3 +41,8 @@
   numbered: true
   chapters:
   - file: Tutorial6/Machine vs Machine
+
+- part: Tutorial 7
+  numbered: true
+  chapters:
+  - file: Tutorial7/Deep Learning
