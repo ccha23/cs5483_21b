@@ -251,7 +251,7 @@ commentsRunWhenDOMLoaded(addUtterances);
 </ul>
 <p class="caption collapsible-parent">
  <span class="caption-text">
-  Tutorial 6
+  Tutorial 7
  </span>
 </p>
 <ul class="nav sidenav_l1">
@@ -492,13 +492,13 @@ commentsRunWhenDOMLoaded(addUtterances);
 <div class="section" id="min-max-normalization">
 <h3><span class="section-number">2.1.1. </span>Min-max Normalization<a class="headerlink" href="#min-max-normalization" title="Permalink to this headline">¶</a></h3>
 <p>We can normalize a numeric feature to the unit interval as follows:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-948437b7-52e2-43b5-bf61-863f1364f205">
-<span class="eqno">(2.1)<a class="headerlink" href="#equation-948437b7-52e2-43b5-bf61-863f1364f205" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-00a3b634-f33e-47d8-b9ae-d7309d30f43a">
+<span class="eqno">(2.1)<a class="headerlink" href="#equation-00a3b634-f33e-47d8-b9ae-d7309d30f43a" title="Permalink to this equation">¶</a></span>\[\begin{align}
 X_i\in [X_i^{\min}, X_i^{\max}] \mapsto \frac{X_i - X_i^{\min}}{X_i^{\max} - X_i^{\min}} \in [0,1].
 \end{align}\]</div>
 <p>To perform the normalization on i.i.d. samples <span class="math notranslate nohighlight">\(x_{ij}\)</span> indexed by <span class="math notranslate nohighlight">\(j\)</span>, we use the mapping</p>
-<div class="amsmath math notranslate nohighlight" id="equation-74960058-1e08-4778-b67c-df535bfc645d">
-<span class="eqno">(2.2)<a class="headerlink" href="#equation-74960058-1e08-4778-b67c-df535bfc645d" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-a827c6ab-6a1a-4ea7-bdc2-b8b9d19a5fe6">
+<span class="eqno">(2.2)<a class="headerlink" href="#equation-a827c6ab-6a1a-4ea7-bdc2-b8b9d19a5fe6" title="Permalink to this equation">¶</a></span>\[\begin{align}
 x_{ij} \mapsto \frac{x_{ij} - \min_j x_j}{\max_j x_j - \min_j x_j}.
 \end{align}\]</div>
 <p>An implementation is as follows:</p>
@@ -554,8 +554,8 @@ x_{ij} \mapsto \frac{x_{ij} - \min_j x_j}{\max_j x_j - \min_j x_j}.
 <div class="section" id="standard-normalization">
 <h3><span class="section-number">2.1.2. </span>Standard Normalization<a class="headerlink" href="#standard-normalization" title="Permalink to this headline">¶</a></h3>
 <p>For features with unbounded support and a distribution close to the normal distribution, one may use the <span class="math notranslate nohighlight">\(z\)</span>-score/standard normalization instead of min-max normalization:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5e24028f-765e-485f-a08b-9698ae2e54e9">
-<span class="eqno">(2.3)<a class="headerlink" href="#equation-5e24028f-765e-485f-a08b-9698ae2e54e9" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-4050bb23-4965-437e-8fb4-67c8fac8f8d9">
+<span class="eqno">(2.3)<a class="headerlink" href="#equation-4050bb23-4965-437e-8fb4-67c8fac8f8d9" title="Permalink to this equation">¶</a></span>\[\begin{align}
 X_i \mapsto \frac{X_i - \mu_{X_i}}{\sigma_{X_i}},
 \end{align}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mu_{X_i}\)</span> and <span class="math notranslate nohighlight">\(\sigma_{X_i}\)</span> are the expectation and standard deviation of the feature <span class="math notranslate nohighlight">\(X_i\)</span> respectively. The i.i.d.\ samples can be transformed using sample mean and standard deviation instead. It is okay to use a biased estimate for standard deviation and variance.</p>
