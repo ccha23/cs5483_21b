@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>1. Machine vs Machine &#8212; CS5483</title>
+    <title>Machine vs Machine &#8212; CS5483</title>
     
   <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
 
@@ -92,7 +92,7 @@ commentsRunWhenDOMLoaded(addUtterances);
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="1. Deep Learning" href="../Tutorial7/Deep%20Learning.html" />
+    <link rel="next" title="Deep Learning" href="../Tutorial7/Deep%20Learning.html" />
     <link rel="prev" title="2. Training with Skewed Dataset" href="../Tutorial5/Training%20with%20Skewed%20Dataset.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -245,7 +245,7 @@ commentsRunWhenDOMLoaded(addUtterances);
 <ul class="current nav sidenav_l1">
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   1. Machine vs Machine
+   Machine vs Machine
   </a>
  </li>
 </ul>
@@ -257,7 +257,7 @@ commentsRunWhenDOMLoaded(addUtterances);
 <ul class="nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="../Tutorial7/Deep%20Learning.html">
-   1. Deep Learning
+   Deep Learning
   </a>
  </li>
 </ul>
@@ -357,34 +357,34 @@ commentsRunWhenDOMLoaded(addUtterances);
             <ul class="nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#individual-classification-algorithms">
-   1.1. Individual Classification Algorithms
+   Individual Classification Algorithms
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#ensemble-methods">
-   1.2. Ensemble Methods
+   Ensemble Methods
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#bagging">
-     1.2.1. Bagging
+     Bagging
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#random-forest">
-     1.2.2. Random Forest
+     Random Forest
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#adaboost">
-     1.2.3. AdaBoost
+     AdaBoost
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#optional-challenge">
-   1.3. Optional Challenge
+   Optional Challenge
   </a>
  </li>
 </ul>
@@ -399,7 +399,7 @@ commentsRunWhenDOMLoaded(addUtterances);
               <div>
                 
   <div class="section" id="machine-vs-machine">
-<h1><span class="section-number">1. </span>Machine vs Machine<a class="headerlink" href="#machine-vs-machine" title="Permalink to this headline">¶</a></h1>
+<h1>Machine vs Machine<a class="headerlink" href="#machine-vs-machine" title="Permalink to this headline">¶</a></h1>
 <p><a title="Freddycastillo9871, CC BY-SA 4.0 &lt;https://creativecommons.org/licenses/by-sa/4.0&gt;, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Terminator_2.png"><img width="512" alt="Terminator 2" src="https://upload.wikimedia.org/wikipedia/commons/3/38/Terminator_2.png"></a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -433,7 +433,7 @@ commentsRunWhenDOMLoaded(addUtterances);
 <li><p><code class="docutils literal notranslate"><span class="pre">segment-test.arff</span></code> for testing.</p></li>
 </ul>
 <div class="section" id="individual-classification-algorithms">
-<h2><span class="section-number">1.1. </span>Individual Classification Algorithms<a class="headerlink" href="#individual-classification-algorithms" title="Permalink to this headline">¶</a></h2>
+<h2>Individual Classification Algorithms<a class="headerlink" href="#individual-classification-algorithms" title="Permalink to this headline">¶</a></h2>
 <p>Weka provides a KnowledgeFlow interface to flow data through a learning algorithm. The following is a demo for training and testing a J48 decision tree.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
@@ -517,7 +517,7 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 <div class="section" id="ensemble-methods">
-<h2><span class="section-number">1.2. </span>Ensemble Methods<a class="headerlink" href="#ensemble-methods" title="Permalink to this headline">¶</a></h2>
+<h2>Ensemble Methods<a class="headerlink" href="#ensemble-methods" title="Permalink to this headline">¶</a></h2>
 <p>Unlike training an individual classifier, ensemble methods</p>
 <ul class="simple">
 <li><p>train an army of base classifiers and</p></li>
@@ -559,7 +559,7 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 <div class="section" id="bagging">
-<h3><span class="section-number">1.2.1. </span>Bagging<a class="headerlink" href="#bagging" title="Permalink to this headline">¶</a></h3>
+<h3>Bagging<a class="headerlink" href="#bagging" title="Permalink to this headline">¶</a></h3>
 <p>A simple ensemble method is called Bagging (Bootstrap Aggregation), which trains different base classifiers by <em>applying a classification algorithm to different bootstrapped datasets.</em></p>
 <p>For instance, the following uses the <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.BaggingClassifier.html"><code class="docutils literal notranslate"><span class="pre">sklearn.ensemble.BaggingClassifier</span></code></a> to train 10 decision trees with maximum depth 5:</p>
 <div class="cell docutils container">
@@ -769,7 +769,7 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 <div class="section" id="random-forest">
-<h3><span class="section-number">1.2.2. </span>Random Forest<a class="headerlink" href="#random-forest" title="Permalink to this headline">¶</a></h3>
+<h3>Random Forest<a class="headerlink" href="#random-forest" title="Permalink to this headline">¶</a></h3>
 <p>Another ensemble method, called <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html">random forest</a>, is similar to Bagging decision trees. However, to further diversify the base classifiers, it randomly selects or combines features before building each tree. The following trains a random forest of 10 decision trees with maximum depth 5.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -862,7 +862,7 @@ commentsRunWhenDOMLoaded(addUtterances);
 <p>YOUR ANSWER HERE</p>
 </div>
 <div class="section" id="adaboost">
-<h3><span class="section-number">1.2.3. </span>AdaBoost<a class="headerlink" href="#adaboost" title="Permalink to this headline">¶</a></h3>
+<h3>AdaBoost<a class="headerlink" href="#adaboost" title="Permalink to this headline">¶</a></h3>
 <p>Using <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.AdaBoostClassifier.html">AdaBoost</a>, we can boost the performance by adding base classifiers one-by-one to improve the error made by previously trained classifiers. To train AdaBoost with 10 decision trees of maximum depth 5:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -963,7 +963,7 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 <div class="section" id="optional-challenge">
-<h2><span class="section-number">1.3. </span>Optional Challenge<a class="headerlink" href="#optional-challenge" title="Permalink to this headline">¶</a></h2>
+<h2>Optional Challenge<a class="headerlink" href="#optional-challenge" title="Permalink to this headline">¶</a></h2>
 <p>Train your own classifier to achieve the highest possible accuracies. You may:</p>
 <ul class="simple">
 <li><p>choose different classification algorithms or ensemble methods such as Bagging, Stacking, Voting, XGBoost, etc.</p></li>
@@ -1041,7 +1041,7 @@ commentsRunWhenDOMLoaded(addUtterances);
     <div class='prev-next-bottom'>
         
     <a class='left-prev' id="prev-link" href="../Tutorial5/Training%20with%20Skewed%20Dataset.html" title="previous page"><span class="section-number">2. </span>Training with Skewed Dataset</a>
-    <a class='right-next' id="next-link" href="../Tutorial7/Deep%20Learning.html" title="next page"><span class="section-number">1. </span>Deep Learning</a>
+    <a class='right-next' id="next-link" href="../Tutorial7/Deep%20Learning.html" title="next page">Deep Learning</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

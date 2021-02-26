@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>1. Deep Learning &#8212; CS5483</title>
+    <title>Deep Learning &#8212; CS5483</title>
     
   <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
 
@@ -92,7 +92,7 @@ commentsRunWhenDOMLoaded(addUtterances);
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="1. Machine vs Machine" href="../Tutorial6/Machine%20vs%20Machine.html" />
+    <link rel="prev" title="Machine vs Machine" href="../Tutorial6/Machine%20vs%20Machine.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -244,7 +244,7 @@ commentsRunWhenDOMLoaded(addUtterances);
 <ul class="nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="../Tutorial6/Machine%20vs%20Machine.html">
-   1. Machine vs Machine
+   Machine vs Machine
   </a>
  </li>
 </ul>
@@ -256,7 +256,7 @@ commentsRunWhenDOMLoaded(addUtterances);
 <ul class="current nav sidenav_l1">
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   1. Deep Learning
+   Deep Learning
   </a>
  </li>
 </ul>
@@ -356,59 +356,59 @@ commentsRunWhenDOMLoaded(addUtterances);
             <ul class="nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#introduction">
-   1.1. Introduction
+   Introduction
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#preliminaries">
-   1.2. Preliminaries
+   Preliminaries
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#classification-problem">
-   1.3. Classification Problem
+   Classification Problem
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#data-preparation">
-   1.4. Data Preparation
+   Data Preparation
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#load-the-dataset">
-     1.4.1. Load the dataset
+     Load the dataset
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#show-an-example">
-     1.4.2. Show an example
+     Show an example
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#preprocess-the-data">
-     1.4.3. Preprocess the data
+     Preprocess the data
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#training-and-testing">
-   1.5. Training and Testing
+   Training and Testing
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#define-the-neural-network-architecture">
-     1.5.1. Define the neural network architecture
+     Define the neural network architecture
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#train-and-validate">
-     1.5.2. Train and validate
+     Train and validate
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#log-the-results">
-     1.5.3. Log the results
+     Log the results
     </a>
    </li>
   </ul>
@@ -425,7 +425,7 @@ commentsRunWhenDOMLoaded(addUtterances);
               <div>
                 
   <div class="section" id="deep-learning">
-<h1><span class="section-number">1. </span>Deep Learning<a class="headerlink" href="#deep-learning" title="Permalink to this headline">¶</a></h1>
+<h1>Deep Learning<a class="headerlink" href="#deep-learning" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">reset</span> -f
@@ -452,7 +452,7 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 <div class="section" id="introduction">
-<h2><span class="section-number">1.1. </span>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>In this notebook, we will train the following classifier using deep learning:</p>
 <ol class="simple">
 <li><p>Handwrite a digit from 0, …, 9.</p></li>
@@ -568,7 +568,7 @@ commentsRunWhenDOMLoaded(addUtterances);
 <p>YOUR ANSWER HERE</p>
 </div>
 <div class="section" id="preliminaries">
-<h2><span class="section-number">1.2. </span>Preliminaries<a class="headerlink" href="#preliminaries" title="Permalink to this headline">¶</a></h2>
+<h2>Preliminaries<a class="headerlink" href="#preliminaries" title="Permalink to this headline">¶</a></h2>
 <p>The neural network is trained using an iterative algorithm called the <em>stochastic gradient descent</em>, which requires some background on vector calculus and probability theory. The lecture series below explain the idea nicely with mathematical animations made using the python library <a class="reference external" href="https://github.com/3b1b/manim">mathematical animation engine (<code class="docutils literal notranslate"><span class="pre">manim</span></code>)</a>.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
@@ -645,8 +645,8 @@ w_{21} &amp; \ddots &amp;  \\
 <ul class="simple">
 <li><p>For any function <span class="math notranslate nohighlight">\(g\)</span> of <span class="math notranslate nohighlight">\((\RM{x},y)\)</span>, the expectations are:</p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-50302ac9-8862-4684-be89-cce51f10d47c">
-<span class="eqno">(1.6)<a class="headerlink" href="#equation-50302ac9-8862-4684-be89-cce51f10d47c" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-1a53d2bd-ea6b-4a4b-8ac3-cd6712df0d9e">
+<span class="eqno">(1)<a class="headerlink" href="#equation-1a53d2bd-ea6b-4a4b-8ac3-cd6712df0d9e" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \E[g(\RM{x},\R{y})|\RM{x}]&amp;=\sum_{y\in \mc{Y}} g(\RM{x},y)\cdot p_{\R{y}|\RM{x}}(y|\RM{x})\tag{conditional expectation}
 \\
 \E[g(\RM{x},\R{y})] &amp;=\int_{\mc{X}} \underbrace{\sum_{y\in \mc{Y}} g(\RM{x},y)\cdot \underbrace{p_{\RM{x},\R{y}}(\M{x},y)}_{p_{\R{y}|\RM{x}}(y|\M{x}) p_{\R{x}}(\M{x})}\kern-1.7em}_{\E[g(\RM{x},\R{y})|\RM{x}]}\kern1.4em\,\d \M{x} \tag{expectation}\\
@@ -731,13 +731,15 @@ class HelloWorld(Scene):
 </div>
 </div>
 <div class="section" id="classification-problem">
-<h2><span class="section-number">1.3. </span>Classification Problem<a class="headerlink" href="#classification-problem" title="Permalink to this headline">¶</a></h2>
+<h2>Classification Problem<a class="headerlink" href="#classification-problem" title="Permalink to this headline">¶</a></h2>
 <p>A neural network learns from many examples collected together as a <em>dataset</em>. For instance, the <a class="reference external" href="https://en.wikipedia.org/wiki/MNIST_database">MNIST (Modified National Institute of Standards and Technology)</a> dataset consists of labeled handwritten digits.</p>
 <p><a title="Josef Steppan, CC BY-SA 4.0 &lt;https://creativecommons.org/licenses/by-sa/4.0&gt;, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:MnistExamples.png"><img alt="MnistExamples" src="https://upload.wikimedia.org/wikipedia/commons/2/27/MnistExamples.png"></a></p>
 <p><strong>What is an example in a dataset?</strong></p>
 <p>A dataset is a sequence</p>
-<div class="math notranslate nohighlight">
-\[(\RM{x}_1,\R{y}_1),(\RM{x}_2,\R{y}_2), \dots\tag{dataset}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-38df20cc-f3b2-422f-a1a5-ae86c6c77c8c">
+<span class="eqno">(2)<a class="headerlink" href="#equation-38df20cc-f3b2-422f-a1a5-ae86c6c77c8c" title="Permalink to this equation">¶</a></span>\[\begin{align}
+(\RM{x}_1,\R{y}_1),(\RM{x}_2,\R{y}_2), \dots\tag{dataset}
+\end{align}\]</div>
 <p>of <em>tuples/instances</em> <span class="math notranslate nohighlight">\((\RM{x}_i,\R{y}_i)\)</span>, each of which consists of</p>
 <ul class="simple">
 <li><p>an <em>input feature vector</em> <span class="math notranslate nohighlight">\(\RM{x}_i\)</span> such as an image of a handwritten digit and</p></li>
@@ -759,7 +761,9 @@ class HelloWorld(Scene):
 <p>We often train a neural network as a probabilistic classifer because:</p>
 <ul>
 <li><p>A probabilistic classifer is more general and can give a hard decision as well</p>
-<p>$<span class="math notranslate nohighlight">\(f(\RM{x}):=\arg\max_{y\in \mc{Y}} q_{\R{y}|\RM{x}}(y|\RM{x})\)</span>$ by returning the estimated most likely digit type.</p>
+<div class="math notranslate nohighlight">
+\[f(\RM{x}):=\arg\max_{y\in \mc{Y}} q_{\R{y}|\RM{x}}(y|\RM{x})\]</div>
+<p>by returning the estimated most likely digit type.</p>
 </li>
 <li><p>A neural network can model the distribution <span class="math notranslate nohighlight">\(p_{\R{y}|\RM{x}}(\cdot|\RM{x})\)</span> better than <span class="math notranslate nohighlight">\(\R{y}\)</span> because its output is continous.</p></li>
 </ul>
@@ -789,8 +793,8 @@ class HelloWorld(Scene):
 \[\{(\RM{x}_i,\R{y}_i)\}_{i=1}^N\]</div>
 <p>of <span class="math notranslate nohighlight">\((\RM{x},\R{y})\)</span> (but independent of <span class="math notranslate nohighlight">\((\RM{x},\R{y})\)</span>).
 The classifier is said to be a <em>consistent</em> estimate (of <span class="math notranslate nohighlight">\(p_{\R{y}|\M{x}}\)</span>) if</p>
-<div class="amsmath math notranslate nohighlight" id="equation-dd807037-f34a-45eb-b6c8-348ffc26c519">
-<span class="eqno">(1.7)<a class="headerlink" href="#equation-dd807037-f34a-45eb-b6c8-348ffc26c519" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-b3fc9a0a-b012-444f-92b8-32ec17fc4474">
+<span class="eqno">(3)<a class="headerlink" href="#equation-b3fc9a0a-b012-444f-92b8-32ec17fc4474" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \lim_{N\to \infty} \Pr\Set{\R{q}_{\R{y}|\RM{x}}(y|\RM{x})=p_{\R{y}|\RM{x}}(y|\RM{x})\text{ for all } y\in \mc{Y}}=1,\tag{consistency}
 \end{align}\]</div>
 <p>namely, <span class="math notranslate nohighlight">\(\R{q}_{\R{y}|\RM{x}}(y|\RM{x})\)</span> converges almost surely (a.s.) to <span class="math notranslate nohighlight">\(p_{\R{y}|\RM{x}}\)</span>. <span class="math notranslate nohighlight">\(\square\)</span></p>
@@ -799,11 +803,11 @@ The classifier is said to be a <em>consistent</em> estimate (of <span class="mat
 <div class="math notranslate nohighlight">
 \[\Pr\Set{\R{q}_{\R{y}|\RM{x}}(y|\RM{x})=p_{\R{y}|\RM{x}}(y|\RM{x}) \text{ for all } y\in \mc{Y}}=1-\epsilon,\]</div>
 <p>the (hard-decision) classifier</p>
-<div class="amsmath math notranslate nohighlight" id="equation-14835a01-dfde-4b86-ae9e-5286ebc27cf7">
-<span class="eqno">(1.8)<a class="headerlink" href="#equation-14835a01-dfde-4b86-ae9e-5286ebc27cf7" title="Permalink to this equation">¶</a></span>\[\begin{align}\R{f}(\RM{x}):=\arg\max_{y\in \mc{Y}} \R{q}_{\R{y}|\RM{x}}(y|\RM{x})\tag{hard decision}\end{align}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-2149ba33-e33a-4221-919f-54b73fd2efe1">
+<span class="eqno">(4)<a class="headerlink" href="#equation-2149ba33-e33a-4221-919f-54b73fd2efe1" title="Permalink to this equation">¶</a></span>\[\begin{align}\R{f}(\RM{x}):=\arg\max_{y\in \mc{Y}} \R{q}_{\R{y}|\RM{x}}(y|\RM{x})\tag{hard decision}\end{align}\]</div>
 <p>achieves an accuracy</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3b9b4e8c-ad2d-4e83-9820-66233013a270">
-<span class="eqno">(1.9)<a class="headerlink" href="#equation-3b9b4e8c-ad2d-4e83-9820-66233013a270" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-068cbad6-e3ec-46d9-a8a3-0de60e80d9ba">
+<span class="eqno">(5)<a class="headerlink" href="#equation-068cbad6-e3ec-46d9-a8a3-0de60e80d9ba" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \sup_{f:\mc{X}\to \mc{Y}} \Pr(\R{y}= f(\RM{x})) &amp;\geq \E\left[\max_{y\in \mc{Y}} p_{\R{y}|\M{x}}(y|\RM{x})\right] - \epsilon.\tag{accuracy lower bound}
 \end{align}\]</div>
 <p>where the expectation is the maximum possible accuracy. <span class="math notranslate nohighlight">\(\square\)</span></p>
@@ -818,8 +822,8 @@ The classifier is said to be a <em>consistent</em> estimate (of <span class="mat
 <p><strong>How can we obtain a consistent classifier?</strong></p>
 <p>We train a neural network to minimize certain <em>loss</em>. A common loss function for classification uses the <a class="reference external" href="https://en.wikipedia.org/wiki/Cross_entropy">cross entropy</a> measure in information theory.</p>
 <p>The theoretical underpinning is the following identity that relates three information quantities:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2c63e038-9cbb-41cc-8523-f0853ed35a90">
-<span class="eqno">(1.10)<a class="headerlink" href="#equation-2c63e038-9cbb-41cc-8523-f0853ed35a90" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-72dd90be-f4a9-4865-8f87-f7bc0f32f80f">
+<span class="eqno">(6)<a class="headerlink" href="#equation-72dd90be-f4a9-4865-8f87-f7bc0f32f80f" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \overbrace{\E\left[\log \frac{1}{q_{\R{y}|\RM{x}}(\R{y}|\RM{x})}\right]}^{ \text{Cross entropy}\\ H(p_{\R{y}|\RM{x}}\|q_{\R{y}|\RM{x}}|p_{\RM{x}}):=} &amp;\equiv \overbrace{\E\left[\log \frac{1}{p_{\R{y}|\RM{x}}(\R{y}|\RM{x})}\right]}^{\text{Conditional entropy}\\ H(\R{y}|\RM{x}):=} + \overbrace{\E\left[\log \frac{p_{\R{y}|\RM{x}}(\R{y}|\RM{x})}{q_{\R{y}|\RM{x}}(\R{y}|\RM{x})}\right].}^{\text{Divergence}\\ D(p_{\R{y}|\RM{x}}\|q_{\R{y}|\RM{x}}|p_{\RM{x}}):=}\tag{identity}
 \end{align}\]</div>
 <p>The identity can be proved quite easily using the linearity of expectation</p>
@@ -845,29 +849,30 @@ The classifier is said to be a <em>consistent</em> estimate (of <span class="mat
 </video>
 </div></div>
 </div>
-<p><strong>Proposition</strong> With <span class="math notranslate nohighlight">\(q_{\R{y}|\RM{x}}(y|\M{x})\)</span> being a valid pmf of a random variable taking values from <span class="math notranslate nohighlight">\(\mc{Y}\)</span> conditioned on a random variable taking values from <span class="math notranslate nohighlight">\(\mc{X}\)</span>,
-$<span class="math notranslate nohighlight">\( \begin{align}
+<p><strong>Proposition</strong> With <span class="math notranslate nohighlight">\(q_{\R{y}|\RM{x}}(y|\M{x})\)</span> being a valid pmf of a random variable taking values from <span class="math notranslate nohighlight">\(\mc{Y}\)</span> conditioned on a random variable taking values from <span class="math notranslate nohighlight">\(\mc{X}\)</span>,</p>
+<div class="amsmath math notranslate nohighlight" id="equation-4c960583-01f7-4984-a123-a46317bdf4df">
+<span class="eqno">(7)<a class="headerlink" href="#equation-4c960583-01f7-4984-a123-a46317bdf4df" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \min_{q_{\R{y}|\RM{x}}} H(p_{\R{y}|\RM{x}}\|q_{\R{y}|\RM{x}}|p_{\RM{x}})
 &amp;= H(\R{y}|\RM{x})
-\end{align}\)</span><span class="math notranslate nohighlight">\(
-and the optimal solution equals \)</span>p_{\R{y}|\RM{x}}(y|\RM{x})<span class="math notranslate nohighlight">\( a.s. for all \)</span>y\in \mc{Y}<span class="math notranslate nohighlight">\(. \)</span>\square$</p>
+\end{align}\]</div>
+<p>and the optimal solution equals <span class="math notranslate nohighlight">\(p_{\R{y}|\RM{x}}(y|\RM{x})\)</span> a.s. for all <span class="math notranslate nohighlight">\(y\in \mc{Y}\)</span>. <span class="math notranslate nohighlight">\(\square\)</span></p>
 <p>Hence, a neural network that minimizes the cross entropy equals <span class="math notranslate nohighlight">\(p_{\R{y}|\RM{x}}(y|\RM{x})\)</span> a.s. for all <span class="math notranslate nohighlight">\(y\in \mc{Y}\)</span> and any possible input image <span class="math notranslate nohighlight">\(\RM{x}\)</span>.</p>
 <p><em>Proof:</em> It suffices to show that</p>
-<div class="amsmath math notranslate nohighlight" id="equation-cf0fc0a0-c87f-476c-8bf5-be4f42eca960">
-<span class="eqno">(1.11)<a class="headerlink" href="#equation-cf0fc0a0-c87f-476c-8bf5-be4f42eca960" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-188b3e5e-ba82-46af-a0dd-1a2623666506">
+<span class="eqno">(8)<a class="headerlink" href="#equation-188b3e5e-ba82-46af-a0dd-1a2623666506" title="Permalink to this equation">¶</a></span>\[\begin{align}
 D(p_{\R{y}|\RM{x}}\|q_{\R{y}|\RM{x}}|p_{\RM{x}})\geq 0 \tag{positivity of divergence}
 \end{align}\]</div>
 <p>with equality iff <span class="math notranslate nohighlight">\(q_{\R{y}|\RM{x}}(y|\RM{x})=p_{\R{y}|\RM{x}}(y|\RM{x})\)</span> a.s. This, in turn, can be proved using the <a class="reference external" href="https://en.wikipedia.org/wiki/Log_sum_inequality">log-sum inequality</a>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-69ffddeb-0a88-4f5b-bd1d-73432236a8e6">
-<span class="eqno">(1.12)<a class="headerlink" href="#equation-69ffddeb-0a88-4f5b-bd1d-73432236a8e6" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-4cb78036-d278-4508-915b-fa06ffaf6b6f">
+<span class="eqno">(9)<a class="headerlink" href="#equation-4cb78036-d278-4508-915b-fa06ffaf6b6f" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \sum_{i} a_i \log\left(\frac{a_i}{b_i}\right) \geq (\textstyle \sum_{i} a_i) \log\left(\frac{\sum_{i} a_i}{\sum_{i} b_i}\right)\tag{log-sum inequality}
 \end{align}\]</div>
 <p>for any sequences <span class="math notranslate nohighlight">\(\{a_i\}\)</span>, <span class="math notranslate nohighlight">\(\{b_i\}\)</span>, and <span class="math notranslate nohighlight">\(\{c_i\}\)</span>. <span class="math notranslate nohighlight">\(\blacksquare\)</span></p>
 </div>
 <div class="section" id="data-preparation">
-<h2><span class="section-number">1.4. </span>Data Preparation<a class="headerlink" href="#data-preparation" title="Permalink to this headline">¶</a></h2>
+<h2>Data Preparation<a class="headerlink" href="#data-preparation" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="load-the-dataset">
-<h3><span class="section-number">1.4.1. </span>Load the dataset<a class="headerlink" href="#load-the-dataset" title="Permalink to this headline">¶</a></h3>
+<h3>Load the dataset<a class="headerlink" href="#load-the-dataset" title="Permalink to this headline">¶</a></h3>
 <p>Like the iris dataset, the MNIST dataset can be obtained in many ways due to its popularity in image recognition. For instance, one may use <code class="docutils literal notranslate"><span class="pre">tensorflow.keras.datasets.mnist.load_data</span></code> to load the data as tuples/arrays and convert it to <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>. However, training a neural network often requires a lot of data and computational power. It may be inefficient or impossible to load all data into memory.</p>
 <p>A better way is to use the package <a class="reference external" href="https://blog.tensorflow.org/2019/02/introducing-tensorflow-datasets.html"><code class="docutils literal notranslate"><span class="pre">tensorflow_datasets</span></code></a>, which lazily load the dataset and prepare the data as <a class="reference external" href="https://www.tensorflow.org/guide/tensor"><code class="docutils literal notranslate"><span class="pre">Tensor</span></code>s</a>, which can be operated faster by GPU or TPU instead of CPU.</p>
 <div class="cell docutils container">
@@ -934,7 +939,7 @@ D(p_{\R{y}|\RM{x}}\|q_{\R{y}|\RM{x}}|p_{\RM{x}})\geq 0 \tag{positivity of diverg
 </ul>
 </div>
 <div class="section" id="show-an-example">
-<h3><span class="section-number">1.4.2. </span>Show an example<a class="headerlink" href="#show-an-example" title="Permalink to this headline">¶</a></h3>
+<h3>Show an example<a class="headerlink" href="#show-an-example" title="Permalink to this headline">¶</a></h3>
 <p>The following retrieves an example from the training set.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1006,7 +1011,7 @@ The parameter <code class="docutils literal notranslate"><span class="pre">nrows
 </pre></div>
 </div>
 <p>and the output image should look like
-<img src="mnist_examples.svg"></p>
+<img alt="mnist_examples" src="../_images/mnist_examples.svg" /></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Execute? [Y/n]&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span> <span class="o">!=</span> <span class="s1">&#39;n&#39;</span><span class="p">:</span>
@@ -1032,7 +1037,7 @@ The parameter <code class="docutils literal notranslate"><span class="pre">nrows
 </div>
 </div>
 <div class="section" id="preprocess-the-data">
-<h3><span class="section-number">1.4.3. </span>Preprocess the data<a class="headerlink" href="#preprocess-the-data" title="Permalink to this headline">¶</a></h3>
+<h3>Preprocess the data<a class="headerlink" href="#preprocess-the-data" title="Permalink to this headline">¶</a></h3>
 <p>We will use the <a class="reference external" href="https://www.tensorflow.org/"><code class="docutils literal notranslate"><span class="pre">tensorflow</span></code></a> library to process the data and train the neural network. (Another popular library is <a class="reference external" href="https://pytorch.org/">PyTorch</a>.)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1042,8 +1047,10 @@ The parameter <code class="docutils literal notranslate"><span class="pre">nrows
 </div>
 </div>
 <p>Each pixel is stored as an integer from <span class="math notranslate nohighlight">\(\Set{0,\dots,255}\)</span> (<span class="math notranslate nohighlight">\(2^8\)</span> possible values). However, for computations by the neural network, we need to convert it to a floating point number. We will also normalize each pixel value to be within the unit interval <span class="math notranslate nohighlight">\([0,1]\)</span>:</p>
-<div class="math notranslate nohighlight">
-\[ v \mapsto \frac{v - v_{\min}}{v_{\max} - v_{\min}} = \frac{v}{255}\tag{min-max normalization}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-c8bbb7f3-024b-476b-9102-085a1fd79ec3">
+<span class="eqno">(10)<a class="headerlink" href="#equation-c8bbb7f3-024b-476b-9102-085a1fd79ec3" title="Permalink to this equation">¶</a></span>\[\begin{align} 
+v \mapsto \frac{v - v_{\min}}{v_{\max} - v_{\min}} = \frac{v}{255}\tag{min-max normalization}
+\end{align}\]</div>
 <p><strong>Exercise</strong> Using the function <code class="docutils literal notranslate"><span class="pre">map</span></code>, normalize each element of an image to the unit interval <span class="math notranslate nohighlight">\([0,1]\)</span> after converting them to <code class="docutils literal notranslate"><span class="pre">tf.float32</span></code> using <a class="reference external" href="https://www.tensorflow.org/api_docs/python/tf/cast"><code class="docutils literal notranslate"><span class="pre">tf.cast</span></code></a>.</p>
 <p><em>Hint:</em> The normalization factor is NOT 256. You code may look like</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
@@ -1054,7 +1061,7 @@ The parameter <code class="docutils literal notranslate"><span class="pre">nrows
 </pre></div>
 </div>
 <p>and the output image should look like
-<img src="mnist_example_normalized.svg"/></p>
+<img alt="mnist_example" src="../_images/mnist_example_normalized.svg" /></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">normalize_mnist</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
@@ -1129,9 +1136,9 @@ The parameter <code class="docutils literal notranslate"><span class="pre">nrows
 </div>
 </div>
 <div class="section" id="training-and-testing">
-<h2><span class="section-number">1.5. </span>Training and Testing<a class="headerlink" href="#training-and-testing" title="Permalink to this headline">¶</a></h2>
+<h2>Training and Testing<a class="headerlink" href="#training-and-testing" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="define-the-neural-network-architecture">
-<h3><span class="section-number">1.5.1. </span>Define the neural network architecture<a class="headerlink" href="#define-the-neural-network-architecture" title="Permalink to this headline">¶</a></h3>
+<h3>Define the neural network architecture<a class="headerlink" href="#define-the-neural-network-architecture" title="Permalink to this headline">¶</a></h3>
 <p>As mentioned earlier, the neural network computes an estimate <span class="math notranslate nohighlight">\(q_{\R{y}|\RM{x}}(y|\M{x})\)</span> of the unknown probability <span class="math notranslate nohighlight">\(p_{\R{y}|\RM{x}}(y|\M{x})\)</span> for any image <span class="math notranslate nohighlight">\(\M{x}\in \mc{X}\)</span> and label <span class="math notranslate nohighlight">\(y\in \mc{Y}\)</span>. The computation is organized into layers of computation units called the <em>neurons</em>.</p>
 <p>For <span class="math notranslate nohighlight">\(\ell\in \{0,\dots,L\}\)</span> and integer <span class="math notranslate nohighlight">\(L\geq 1\)</span>, let</p>
 <ul class="simple">
@@ -1140,13 +1147,13 @@ The parameter <code class="docutils literal notranslate"><span class="pre">nrows
 </ul>
 <p>The <span class="math notranslate nohighlight">\(0\)</span>-th layer is called the <em>input layer</em> while the <span class="math notranslate nohighlight">\(L\)</span>-th layer is called the <em>output layer</em>. All other layers are called the <em>hidden layers</em>.</p>
 <p>A basic neural network architecture computes <span class="math notranslate nohighlight">\(q_{\R{y}|\RM{x}}(y|\M{x})\)</span> as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-92aa89a7-71ed-4577-b934-719290c10b65">
-<span class="eqno">(1.13)<a class="headerlink" href="#equation-92aa89a7-71ed-4577-b934-719290c10b65" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-6e04a17e-0e57-40ef-b8b1-30fe36255640">
+<span class="eqno">(11)<a class="headerlink" href="#equation-6e04a17e-0e57-40ef-b8b1-30fe36255640" title="Permalink to this equation">¶</a></span>\[\begin{align}
 [q_{\R{y}|\RM{x}}(y|\M{x})]_{y\in \mc{Y}} &amp;:= \M{a}^{(L)} 
 \end{align}\]</div>
 <p>where</p>
-<div class="amsmath math notranslate nohighlight" id="equation-bf9272d6-220e-4339-b67b-c359c8032bfe">
-<span class="eqno">(1.14)<a class="headerlink" href="#equation-bf9272d6-220e-4339-b67b-c359c8032bfe" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-b80cf2c1-bf34-4706-8f83-f3d1e846b37a">
+<span class="eqno">(12)<a class="headerlink" href="#equation-b80cf2c1-bf34-4706-8f83-f3d1e846b37a" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \M{a}^{(\ell)}&amp;:=\begin{cases}
 \M{x} &amp; \ell=0\\
 \sigma^{(\ell)}(\overbrace{\M{W}^{(\ell)}\M{a}^{(\ell-1)}+\M{b}^{(\ell)}}^{\RM{z}^{(\ell)}:=})&amp; \ell&gt;0;
@@ -1271,18 +1278,22 @@ The parameter <code class="docutils literal notranslate"><span class="pre">nrows
 </div>
 </div>
 <div class="section" id="train-and-validate">
-<h3><span class="section-number">1.5.2. </span>Train and validate<a class="headerlink" href="#train-and-validate" title="Permalink to this headline">¶</a></h3>
+<h3>Train and validate<a class="headerlink" href="#train-and-validate" title="Permalink to this headline">¶</a></h3>
 <p>Recall that a neural network that minimizes the cross entropy gives <span class="math notranslate nohighlight">\(p_{\R{y}|\RM{x}}(y|\RM{x})\)</span> a.s. for all <span class="math notranslate nohighlight">\(y\in \mc{Y}\)</span> and any possible input image <span class="math notranslate nohighlight">\(\RM{x}\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-740f08f7-8118-401b-b80d-a2b8f59caed8">
-<span class="eqno">(1.15)<a class="headerlink" href="#equation-740f08f7-8118-401b-b80d-a2b8f59caed8" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-4061eda4-1e76-4568-b33b-04348d78fd42">
+<span class="eqno">(13)<a class="headerlink" href="#equation-4061eda4-1e76-4568-b33b-04348d78fd42" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \min_{q_{\R{y}|\RM{x}}} \overbrace{\E\left[\log \frac{1}{q_{\R{y}|\RM{x}}(\R{y}|\RM{x})}\right]}^{ \text{Cross entropy}\\ H(p_{\R{y}|\RM{x}}\|q_{\R{y}|\RM{x}}|p_{\RM{x}}):=}
 &amp;= H(\R{y}|\RM{x})
 \end{align}\]</div>
 <p>The cross entropy cannot be computed exactly without knowing the joint distribution <span class="math notranslate nohighlight">\(p_{\RM{x}\R{y}}\)</span>. Nevertheless, it can be estimated from a batch of i.i.d. samples <span class="math notranslate nohighlight">\((\RM{x}_{\R{j}_i},\R{y}_{\R{j}_i})\)</span> for <span class="math notranslate nohighlight">\(1\leq i\leq n\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-212b8d5f-49e3-4c55-bb10-78bd5431eac7">
-<span class="eqno">(1.16)<a class="headerlink" href="#equation-212b8d5f-49e3-4c55-bb10-78bd5431eac7" title="Permalink to this equation">¶</a></span>\[\begin{align}\R{L}(\theta)&amp;:=\frac1n \sum_{i=1}^n \log \frac{1}{q_{\R{y}|\RM{x}}(\R{y}_{\R{j}_i}|\RM{x}_{\R{j}_i})}\tag{empirical loss}\end{align}\]</div>
-<p>where $<span class="math notranslate nohighlight">\(\theta := \operatorname{flat}(\M{W}^{(\ell)},\M{b}^{(\ell)}\mid 0\leq \ell \leq L)\)</span>$
-is the vector of parameters of the neural network defined in (net).</p>
+<div class="amsmath math notranslate nohighlight" id="equation-0257fc4c-2c4e-4bd8-a4f1-9018f9c37bba">
+<span class="eqno">(14)<a class="headerlink" href="#equation-0257fc4c-2c4e-4bd8-a4f1-9018f9c37bba" title="Permalink to this equation">¶</a></span>\[\begin{align}
+\R{L}(\theta)&amp;:=\frac1n \sum_{i=1}^n \log \frac{1}{q_{\R{y}|\RM{x}}(\R{y}_{\R{j}_i}|\RM{x}_{\R{j}_i})}\tag{empirical loss}
+\end{align}\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[\theta := \operatorname{flat}(\M{W}^{(\ell)},\M{b}^{(\ell)}\mid 0\leq \ell \leq L)\]</div>
+<p>is the vector of parameters of the neural network defined in (net).</p>
 <p>A mini-batch <a class="reference external" href="https://en.wikipedia.org/wiki/Stochastic_gradient_descent">gradient descent algorithm</a> is often used to reduce the loss. It iteratively updates/trains the neural network parameters:</p>
 <div class="math notranslate nohighlight">
 \[\theta \leftarrow \theta -s\nabla \R{L}(\theta)\]</div>
@@ -1364,7 +1375,7 @@ is the vector of parameters of the neural network defined in (net).</p>
 <p>YOUR ANSWER HERE</p>
 </div>
 <div class="section" id="log-the-results">
-<h3><span class="section-number">1.5.3. </span>Log the results<a class="headerlink" href="#log-the-results" title="Permalink to this headline">¶</a></h3>
+<h3>Log the results<a class="headerlink" href="#log-the-results" title="Permalink to this headline">¶</a></h3>
 <p>To call additional functions during training, we can add the functions to the <code class="docutils literal notranslate"><span class="pre">callbacks</span></code> parameter of the model <code class="docutils literal notranslate"><span class="pre">fit</span></code> method. For instance:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1516,8 +1527,8 @@ is the vector of parameters of the neural network defined in (net).</p>
 </div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">SCALARS</span></code> tab shows the curves of training and validation losses/accuracies after different batches/epoches. The curves often have jitters as the gradient descent is stochastic (random). To see the typical performance, a smoothing factor <span class="math notranslate nohighlight">\(\theta\in [0,1]\)</span> can be applied on the left panel. The smoothed curve <span class="math notranslate nohighlight">\(\bar{l}(t)\)</span> of the original curve <span class="math notranslate nohighlight">\(l(t)\)</span> is defined as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a26fa684-1694-4cc6-8019-4daf733df59b">
-<span class="eqno">(1.17)<a class="headerlink" href="#equation-a26fa684-1694-4cc6-8019-4daf733df59b" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-a4e6f9ef-d5f4-4d63-bc43-1c3f87982094">
+<span class="eqno">(15)<a class="headerlink" href="#equation-a4e6f9ef-d5f4-4d63-bc43-1c3f87982094" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \bar{l}(t) = \theta \bar{l}(t-1) + (1-\theta) l(t)
 \end{align}\]</div>
 <p>which is called the moving average. Try changing the smoothing factor on the left panel to see the effect.</p>
@@ -1670,7 +1681,7 @@ is the vector of parameters of the neural network defined in (net).</p>
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="../Tutorial6/Machine%20vs%20Machine.html" title="previous page"><span class="section-number">1. </span>Machine vs Machine</a>
+    <a class='left-prev' id="prev-link" href="../Tutorial6/Machine%20vs%20Machine.html" title="previous page">Machine vs Machine</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

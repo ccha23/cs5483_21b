@@ -245,7 +245,7 @@ commentsRunWhenDOMLoaded(addUtterances);
 <ul class="nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="../Tutorial6/Machine%20vs%20Machine.html">
-   1. Machine vs Machine
+   Machine vs Machine
   </a>
  </li>
 </ul>
@@ -257,7 +257,7 @@ commentsRunWhenDOMLoaded(addUtterances);
 <ul class="nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="../Tutorial7/Deep%20Learning.html">
-   1. Deep Learning
+   Deep Learning
   </a>
  </li>
 </ul>
@@ -523,8 +523,8 @@ to operate on the dataset.</p>
 <div class="section" id="compute-impurity">
 <h3><span class="section-number">3.2.2. </span>Compute impurity<a class="headerlink" href="#compute-impurity" title="Permalink to this headline">¶</a></h3>
 <p>Given a distribution <span class="math notranslate nohighlight">\(\boldsymbol{p}=(p_1,p_2,\dots)\)</span> where <span class="math notranslate nohighlight">\(p_k\in [0,1]\)</span> and <span class="math notranslate nohighlight">\(\sum_k p_k =1\)</span>, the Gini impurity index is defined as:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-bf132bf2-bab0-4e70-a7f3-2fcd911842fd">
-<span class="eqno">(3.1)<a class="headerlink" href="#equation-bf132bf2-bab0-4e70-a7f3-2fcd911842fd" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-21a6f1c2-33ba-4e7d-831d-313a17e0b052">
+<span class="eqno">(3.1)<a class="headerlink" href="#equation-21a6f1c2-33ba-4e7d-831d-313a17e0b052" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \operatorname{Gini}(\boldsymbol{p}) = \operatorname{Gini}(p_1,p_2,\dots) &amp;:= \sum_k p_k(1-p_k)\\
 &amp;= 1- \sum_k p_k^2.
 \end{align}\]</div>
@@ -556,8 +556,8 @@ to operate on the dataset.</p>
 </div>
 </div>
 <p><strong>Exercise</strong> Complete the following function to compute the entropy of a distribution:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e89453a6-cb96-4c89-966c-8943080c3838">
-<span class="eqno">(3.2)<a class="headerlink" href="#equation-e89453a6-cb96-4c89-966c-8943080c3838" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-4e3091b4-2954-4421-8852-efcc2d8efae2">
+<span class="eqno">(3.2)<a class="headerlink" href="#equation-4e3091b4-2954-4421-8852-efcc2d8efae2" title="Permalink to this equation">¶</a></span>\[\begin{align}
 h(\boldsymbol{p}) = h(p_1,p_2,\dots) &amp;= \sum_k - p_k \log_2 p_k\\
 &amp;= \sum_{k:p_k&gt;0} - p_k \log_2 p_k.
 \end{align}\]</div>
@@ -593,8 +593,8 @@ h(\boldsymbol{p}) = h(p_1,p_2,\dots) &amp;= \sum_k - p_k \log_2 p_k\\
 <div class="section" id="compute-drop-in-impurity-and-best-split">
 <h3><span class="section-number">3.2.3. </span>Compute drop in impurity and best split<a class="headerlink" href="#compute-drop-in-impurity-and-best-split" title="Permalink to this headline">¶</a></h3>
 <p>Now, to compute the drop in impurity for given splitting criterion:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-af9c5a42-285b-4dab-a796-3345c9b2c52f">
-<span class="eqno">(3.3)<a class="headerlink" href="#equation-af9c5a42-285b-4dab-a796-3345c9b2c52f" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-c6bc2f85-379d-43e3-876c-15bae1dcd64a">
+<span class="eqno">(3.3)<a class="headerlink" href="#equation-c6bc2f85-379d-43e3-876c-15bae1dcd64a" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \Delta \operatorname{Gini}_{X\leq s}(Y) = \operatorname{Gini}(P_Y) - \left[\Pr\{X\leq s\} \operatorname{Gini}(P_{Y|X\leq s}) + \Pr\{X&gt; s\}\operatorname{Gini}(P_{Y|X&gt; s})\right]
 \end{align}\]</div>
 <div class="cell docutils container">
@@ -668,8 +668,8 @@ h(\boldsymbol{p}) = h(p_1,p_2,\dots) &amp;= \sum_k - p_k \log_2 p_k\\
 </div>
 </div>
 <p><strong>Exercise</strong> Complete the following function to calculate the <em>information gain</em> for a binary split <span class="math notranslate nohighlight">\(X\leq s\)</span> and target <span class="math notranslate nohighlight">\(Y\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-cf201c33-5807-4be5-b0c9-ef9abd357106">
-<span class="eqno">(3.4)<a class="headerlink" href="#equation-cf201c33-5807-4be5-b0c9-ef9abd357106" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-f753dfef-65d7-45c6-9792-a0a3567d4e02">
+<span class="eqno">(3.4)<a class="headerlink" href="#equation-f753dfef-65d7-45c6-9792-a0a3567d4e02" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \operatorname{Gain}_{X\leq s}(Y) := h(P_Y) - \left[\Pr(X\leq s) h(P_{Y|X\leq s}) + \Pr(X&gt; s) h(P_{Y|X&gt; s})\right].
 \end{align}\]</div>
 <p>You may use <code class="docutils literal notranslate"><span class="pre">dist</span></code> and <code class="docutils literal notranslate"><span class="pre">entropy</span></code> defined previously.</p>
@@ -711,8 +711,8 @@ h(\boldsymbol{p}) = h(p_1,p_2,\dots) &amp;= \sum_k - p_k \log_2 p_k\\
 </div>
 </div>
 <p><strong>Exercise</strong> Complete the following function to calculate the <em>information gain ratio</em> for a binary split <span class="math notranslate nohighlight">\(X\leq s\)</span> and target <span class="math notranslate nohighlight">\(Y\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-de8c0208-cc27-4d3f-b544-115e7529c298">
-<span class="eqno">(3.5)<a class="headerlink" href="#equation-de8c0208-cc27-4d3f-b544-115e7529c298" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-9be4275d-d6fc-45f3-9783-3a33254ac207">
+<span class="eqno">(3.5)<a class="headerlink" href="#equation-9be4275d-d6fc-45f3-9783-3a33254ac207" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \operatorname{GainRatio}_{X\leq s}(Y) &amp;:= \frac{\operatorname{Gain}_{X\leq s}(Y)}{\operatorname{SplitInfo}(X\leq s)} \qquad\text{where}\\
 \operatorname{SplitInfo}(X\leq s) &amp;:= h(\Pr(X\leq s),\Pr(X&gt; s)).
 \end{align}\]</div>
