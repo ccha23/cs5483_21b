@@ -38,11 +38,11 @@
   - file: Tutorial5/Training with Skewed Dataset
 
 - part: Tutorial 6
-  numbered: true
+  numbered: false
   chapters:
   - file: Tutorial6/Machine vs Machine
 
 - part: Tutorial 7
-  numbered: true
+  numbered: false
   chapters:
   - file: Tutorial7/Deep Learning
