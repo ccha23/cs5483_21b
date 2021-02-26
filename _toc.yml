@@ -1,38 +1,38 @@
 - file: README.md
 
 - part: Tutorial 1
-  numbered: true
+  numbered: false
   chapters:
   - file: Tutorial1/Setup
   - file: Tutorial1/Data Files
   
 - part: Tutorial 2
-  numbered: true
+  numbered: false
   chapters:
   - file: Tutorial2/Estimation from Samples
   - file: Tutorial2/Evaluation using Weka
   - file: Tutorial2/Evaluation with scikit-learn
 
 - part: Tutorial 3
-  numbered: true
+  numbered: false
   chapters:
   - file: Tutorial3/Information Quantities for Decision Tree Induction
   - file: Tutorial3/Man vs Machine
   - file: Tutorial3/Decision Tree Induction with scikit-learn
 
 - part: Tutorial 4
-  numbered: true
+  numbered: false
   chapters:
   - file: Tutorial4/Different Classifiers with Weka
   - file: Tutorial4/Different Classifiers with scikit-learn
 
 - part: Project 1
-  numbered: true
+  numbered: false
   chapters:
   - file: Project1/Project1
 
 - part: Tutorial 5
-  numbered: true
+  numbered: false
   chapters:
   - file: Tutorial5/Evaluation for Skewed Dataset
   - file: Tutorial5/Training with Skewed Dataset

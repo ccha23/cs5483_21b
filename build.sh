@@ -1,5 +1,5 @@
 #!/bin/bash
-for cmd in "nbgrader generate_assignment $1 --force" "jupyter-book build ." "ghp-import -n -p -f _build/html" "nbgrader release_assignment $1 --force"
+for cmd in "nbgrader generate_assignment $1 --force" "./add.sh" "jupyter-book build ." "ghp-import -n -p -f _build/html" "nbgrader release_assignment $1 --force"
 do
     read -r -p "${cmd}?[Y/n] " input
 
