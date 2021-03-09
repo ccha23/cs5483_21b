@@ -25,8 +25,8 @@
     href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
 
     
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -40,7 +40,6 @@
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
     <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
@@ -81,8 +80,6 @@ commentsRunWhenDOMLoaded(addUtterances);
 </script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
@@ -90,6 +87,8 @@ commentsRunWhenDOMLoaded(addUtterances);
         const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Different Classifiers with Weka" href="../Tutorial4/Different%20Classifiers%20with%20Weka.html" />
@@ -258,6 +257,18 @@ commentsRunWhenDOMLoaded(addUtterances);
  <li class="toctree-l1">
   <a class="reference internal" href="../Tutorial7/Deep%20Learning.html">
    Deep Learning
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Tutorial 8
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Tutorial8/Partitional%20Clustering.html">
+   Partitional Clustering
   </a>
  </li>
 </ul>
@@ -523,8 +534,8 @@ to operate on the dataset.</p>
 <div class="section" id="compute-impurity">
 <h3>Compute impurity<a class="headerlink" href="#compute-impurity" title="Permalink to this headline">¶</a></h3>
 <p>Given a distribution <span class="math notranslate nohighlight">\(\boldsymbol{p}=(p_1,p_2,\dots)\)</span> where <span class="math notranslate nohighlight">\(p_k\in [0,1]\)</span> and <span class="math notranslate nohighlight">\(\sum_k p_k =1\)</span>, the Gini impurity index is defined as:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0b6a597c-7fe8-4d68-b1ab-a9c869bcce7e">
-<span class="eqno">(4)<a class="headerlink" href="#equation-0b6a597c-7fe8-4d68-b1ab-a9c869bcce7e" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-652d3d6b-c331-4259-8e2d-b2d3028e4792">
+<span class="eqno">(4)<a class="headerlink" href="#equation-652d3d6b-c331-4259-8e2d-b2d3028e4792" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \operatorname{Gini}(\boldsymbol{p}) = \operatorname{Gini}(p_1,p_2,\dots) &amp;:= \sum_k p_k(1-p_k)\\
 &amp;= 1- \sum_k p_k^2.
 \end{align}\]</div>
@@ -556,8 +567,8 @@ to operate on the dataset.</p>
 </div>
 </div>
 <p><strong>Exercise</strong> Complete the following function to compute the entropy of a distribution:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7202c28c-8a09-4cc2-8286-eeae01849011">
-<span class="eqno">(5)<a class="headerlink" href="#equation-7202c28c-8a09-4cc2-8286-eeae01849011" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-b3f96dee-b373-4eaf-a037-483088695069">
+<span class="eqno">(5)<a class="headerlink" href="#equation-b3f96dee-b373-4eaf-a037-483088695069" title="Permalink to this equation">¶</a></span>\[\begin{align}
 h(\boldsymbol{p}) = h(p_1,p_2,\dots) &amp;= \sum_k - p_k \log_2 p_k\\
 &amp;= \sum_{k:p_k&gt;0} - p_k \log_2 p_k.
 \end{align}\]</div>
@@ -593,8 +604,8 @@ h(\boldsymbol{p}) = h(p_1,p_2,\dots) &amp;= \sum_k - p_k \log_2 p_k\\
 <div class="section" id="compute-drop-in-impurity-and-best-split">
 <h3>Compute drop in impurity and best split<a class="headerlink" href="#compute-drop-in-impurity-and-best-split" title="Permalink to this headline">¶</a></h3>
 <p>Now, to compute the drop in impurity for given splitting criterion:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d3597918-536e-4c13-9abb-782feff07bc2">
-<span class="eqno">(6)<a class="headerlink" href="#equation-d3597918-536e-4c13-9abb-782feff07bc2" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-b203cd6b-647f-4baf-b760-caf3454bd198">
+<span class="eqno">(6)<a class="headerlink" href="#equation-b203cd6b-647f-4baf-b760-caf3454bd198" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \Delta \operatorname{Gini}_{X\leq s}(Y) = \operatorname{Gini}(P_Y) - \left[\Pr\{X\leq s\} \operatorname{Gini}(P_{Y|X\leq s}) + \Pr\{X&gt; s\}\operatorname{Gini}(P_{Y|X&gt; s})\right]
 \end{align}\]</div>
 <div class="cell docutils container">
@@ -668,8 +679,8 @@ h(\boldsymbol{p}) = h(p_1,p_2,\dots) &amp;= \sum_k - p_k \log_2 p_k\\
 </div>
 </div>
 <p><strong>Exercise</strong> Complete the following function to calculate the <em>information gain</em> for a binary split <span class="math notranslate nohighlight">\(X\leq s\)</span> and target <span class="math notranslate nohighlight">\(Y\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1d6a2fd6-f1f6-4865-b33a-c1aeaa9c83a7">
-<span class="eqno">(7)<a class="headerlink" href="#equation-1d6a2fd6-f1f6-4865-b33a-c1aeaa9c83a7" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-b3d23d84-81a3-4361-97a5-073c1e51e073">
+<span class="eqno">(7)<a class="headerlink" href="#equation-b3d23d84-81a3-4361-97a5-073c1e51e073" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \operatorname{Gain}_{X\leq s}(Y) := h(P_Y) - \left[\Pr(X\leq s) h(P_{Y|X\leq s}) + \Pr(X&gt; s) h(P_{Y|X&gt; s})\right].
 \end{align}\]</div>
 <p>You may use <code class="docutils literal notranslate"><span class="pre">dist</span></code> and <code class="docutils literal notranslate"><span class="pre">entropy</span></code> defined previously.</p>
@@ -711,8 +722,8 @@ h(\boldsymbol{p}) = h(p_1,p_2,\dots) &amp;= \sum_k - p_k \log_2 p_k\\
 </div>
 </div>
 <p><strong>Exercise</strong> Complete the following function to calculate the <em>information gain ratio</em> for a binary split <span class="math notranslate nohighlight">\(X\leq s\)</span> and target <span class="math notranslate nohighlight">\(Y\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1a829dad-6bd1-49a5-8559-62d95a740517">
-<span class="eqno">(8)<a class="headerlink" href="#equation-1a829dad-6bd1-49a5-8559-62d95a740517" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-51589168-3684-40e8-9d6e-3d8b4bc71b72">
+<span class="eqno">(8)<a class="headerlink" href="#equation-51589168-3684-40e8-9d6e-3d8b4bc71b72" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \operatorname{GainRatio}_{X\leq s}(Y) &amp;:= \frac{\operatorname{Gain}_{X\leq s}(Y)}{\operatorname{SplitInfo}(X\leq s)} \qquad\text{where}\\
 \operatorname{SplitInfo}(X\leq s) &amp;:= h(\Pr(X\leq s),\Pr(X&gt; s)).
 \end{align}\]</div>

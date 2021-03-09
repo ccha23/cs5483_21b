@@ -25,8 +25,8 @@
     href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
 
     
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -40,7 +40,6 @@
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
     <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
@@ -81,8 +80,6 @@ commentsRunWhenDOMLoaded(addUtterances);
 </script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
@@ -90,6 +87,8 @@ commentsRunWhenDOMLoaded(addUtterances);
         const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Training with Skewed Dataset" href="Training%20with%20Skewed%20Dataset.html" />
@@ -258,6 +257,18 @@ commentsRunWhenDOMLoaded(addUtterances);
  <li class="toctree-l1">
   <a class="reference internal" href="../Tutorial7/Deep%20Learning.html">
    Deep Learning
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Tutorial 8
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Tutorial8/Partitional%20Clustering.html">
+   Partitional Clustering
   </a>
  </li>
 </ul>
@@ -495,8 +506,8 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 <p>Although specificity is close to 100%, precision and recall are below 80% and 60% respectively. These metrics can be computed from the numbers of true/false positives/negatives:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-70f749aa-aef4-4964-af3c-fc1b23894f38">
-<span class="eqno">(12)<a class="headerlink" href="#equation-70f749aa-aef4-4964-af3c-fc1b23894f38" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-4897fd99-c43d-4fbe-b2e8-d3f55939a0e4">
+<span class="eqno">(12)<a class="headerlink" href="#equation-4897fd99-c43d-4fbe-b2e8-d3f55939a0e4" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \text{precision} &amp;= \frac{\text{TP}}{\text{TP} + \text{FP}}\\ 
 \text{recall} &amp;= \frac{\text{TP}}{\text{TP} + \text{FN}}\\ 
 \text{specificity} &amp;= \frac{\text{TN}}{\text{TN} + \text{FP}}
@@ -549,8 +560,8 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 <p><span class="math notranslate nohighlight">\(F_{\beta}\)</span> score is another measure that captures the performance in both precision and recall:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b1234e85-d5f5-441b-8ce2-547522101537">
-<span class="eqno">(13)<a class="headerlink" href="#equation-b1234e85-d5f5-441b-8ce2-547522101537" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-37a71ee2-6ac6-43c4-bc17-14c88eb2a548">
+<span class="eqno">(13)<a class="headerlink" href="#equation-37a71ee2-6ac6-43c4-bc17-14c88eb2a548" title="Permalink to this equation">¶</a></span>\[\begin{align}
 F_{\beta} &amp;:= \left( \frac{\text{precision}^{-1} + \beta^2 \cdot \text{recall}^{-1}}{\beta^2 + 1}\right)^{-1} = \frac{(\beta^2+1)\cdot \text{precision}\cdot \text{recall} }{\beta^2\text{precision} + \text{recall}}\\
 F := F_1 &amp;= \left( \frac{\text{precision}^{-1} + \text{recall}^{-1}}{2}\right)^{-1} = \frac{2\cdot \text{precision}\cdot \text{recall} }{\text{precision} + \text{recall}},
 \end{align}\]</div>

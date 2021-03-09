@@ -25,8 +25,8 @@
     href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
 
     
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -40,7 +40,6 @@
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
     <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
@@ -81,8 +80,6 @@ commentsRunWhenDOMLoaded(addUtterances);
 </script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
@@ -90,6 +87,8 @@ commentsRunWhenDOMLoaded(addUtterances);
         const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Man vs Machine" href="Man%20vs%20Machine.html" />
@@ -261,6 +260,18 @@ commentsRunWhenDOMLoaded(addUtterances);
   </a>
  </li>
 </ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Tutorial 8
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Tutorial8/Partitional%20Clustering.html">
+   Partitional Clustering
+  </a>
+ </li>
+</ul>
 
 </nav> <!-- To handle the deprecated key -->
 
@@ -404,16 +415,16 @@ commentsRunWhenDOMLoaded(addUtterances);
 <div class="section" id="information-measures">
 <h2>Information Measures<a class="headerlink" href="#information-measures" title="Permalink to this headline">¶</a></h2>
 <p>The followings are the mathemtical definitions of <em>entropy</em> and <em>mutual information</em>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b1df354a-f44c-4a44-a752-579f3c6ceaf0">
-<span class="eqno">(1)<a class="headerlink" href="#equation-b1df354a-f44c-4a44-a752-579f3c6ceaf0" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-80237b79-5451-46e6-89f3-3fa0626d47c5">
+<span class="eqno">(1)<a class="headerlink" href="#equation-80237b79-5451-46e6-89f3-3fa0626d47c5" title="Permalink to this equation">¶</a></span>\[\begin{align}
 H(Y) &amp;= E\left[\log \tfrac1{P_{Y}(Y)}\right] &amp;&amp; \text{entropy of $Y$}\\
 H(Y|X) &amp;= E\left[\log \tfrac1{P_{Y|X}(Y|X)}\right] &amp;&amp; \text{conditional entropy of $Y$ given $X$}\\
 I(X;Y) &amp;= E\left[\log \tfrac{P_{Y|X}(Y|X)}{P_Y(Y)}\right] &amp;&amp; \text{mutual information of $X$ and $Y$}\\
 \end{align}\]</div>
 <p>These information quantities can be related using a <em>Venn Diagram</em>:</p>
 <p><a title="KonradVoelkel, Public domain, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Entropy-mutual-information-relative-entropy-relation-diagram.svg"><img width="512" alt="Entropy-mutual-information-relative-entropy-relation-diagram" src="https://upload.wikimedia.org/wikipedia/commons/d/d4/Entropy-mutual-information-relative-entropy-relation-diagram.svg"></a></p>
-<div class="amsmath math notranslate nohighlight" id="equation-2c6d121b-3875-4468-97df-c0f7679fd6a6">
-<span class="eqno">(2)<a class="headerlink" href="#equation-2c6d121b-3875-4468-97df-c0f7679fd6a6" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-8e1488f5-4818-440f-90ef-db0239c8022f">
+<span class="eqno">(2)<a class="headerlink" href="#equation-8e1488f5-4818-440f-90ef-db0239c8022f" title="Permalink to this equation">¶</a></span>\[\begin{align}
 H(X,Y)&amp;=H(X)+H(Y|X) &amp;&amp; \text{chain rule of entropy}\\
 &amp;=H(Y)+H(X|Y)\\
 I(X;Y)&amp;=H(Y)-H(Y|X) &amp;&amp; \text{mutual information in terms of entropies}\\
@@ -424,8 +435,8 @@ I(X;Y)&amp;=H(Y)-H(Y|X) &amp;&amp; \text{mutual information in terms of entropie
 <div class="section" id="entropy">
 <h2>Entropy<a class="headerlink" href="#entropy" title="Permalink to this headline">¶</a></h2>
 <p>Consider the following distribution:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c015622d-7771-4a4a-8596-b1062a41e4b9">
-<span class="eqno">(3)<a class="headerlink" href="#equation-c015622d-7771-4a4a-8596-b1062a41e4b9" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-b531b4f1-3642-44e4-bf36-b5f34d6d9c5b">
+<span class="eqno">(3)<a class="headerlink" href="#equation-b531b4f1-3642-44e4-bf36-b5f34d6d9c5b" title="Permalink to this equation">¶</a></span>\[\begin{align}
 p_k=\begin{cases}
 \frac12 &amp; k=0\\
 \frac14 &amp; k=1,2\\

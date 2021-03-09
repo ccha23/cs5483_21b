@@ -25,8 +25,8 @@
     href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
 
     
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -40,7 +40,6 @@
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
     <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
@@ -81,8 +80,6 @@ commentsRunWhenDOMLoaded(addUtterances);
 </script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
@@ -90,6 +87,8 @@ commentsRunWhenDOMLoaded(addUtterances);
         const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Project 1" href="../Project1/Project1.html" />
@@ -258,6 +257,18 @@ commentsRunWhenDOMLoaded(addUtterances);
  <li class="toctree-l1">
   <a class="reference internal" href="../Tutorial7/Deep%20Learning.html">
    Deep Learning
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Tutorial 8
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Tutorial8/Partitional%20Clustering.html">
+   Partitional Clustering
   </a>
  </li>
 </ul>
@@ -492,13 +503,13 @@ commentsRunWhenDOMLoaded(addUtterances);
 <div class="section" id="min-max-normalization">
 <h3>Min-max Normalization<a class="headerlink" href="#min-max-normalization" title="Permalink to this headline">¶</a></h3>
 <p>We can normalize a numeric feature to the unit interval as follows:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-fe9296a5-a171-43f9-8bc1-d65e0631a144">
-<span class="eqno">(9)<a class="headerlink" href="#equation-fe9296a5-a171-43f9-8bc1-d65e0631a144" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-ae554313-c2c0-43c1-b778-4a10341387bb">
+<span class="eqno">(9)<a class="headerlink" href="#equation-ae554313-c2c0-43c1-b778-4a10341387bb" title="Permalink to this equation">¶</a></span>\[\begin{align}
 X_i\in [X_i^{\min}, X_i^{\max}] \mapsto \frac{X_i - X_i^{\min}}{X_i^{\max} - X_i^{\min}} \in [0,1].
 \end{align}\]</div>
 <p>To perform the normalization on i.i.d. samples <span class="math notranslate nohighlight">\(x_{ij}\)</span> indexed by <span class="math notranslate nohighlight">\(j\)</span>, we use the mapping</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6c3447a5-357d-4fa8-8c10-acd1ab88b0b2">
-<span class="eqno">(10)<a class="headerlink" href="#equation-6c3447a5-357d-4fa8-8c10-acd1ab88b0b2" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-d0ed8a53-c14d-4ff8-a438-b4c1fa173404">
+<span class="eqno">(10)<a class="headerlink" href="#equation-d0ed8a53-c14d-4ff8-a438-b4c1fa173404" title="Permalink to this equation">¶</a></span>\[\begin{align}
 x_{ij} \mapsto \frac{x_{ij} - \min_j x_j}{\max_j x_j - \min_j x_j}.
 \end{align}\]</div>
 <p>An implementation is as follows:</p>
@@ -554,8 +565,8 @@ x_{ij} \mapsto \frac{x_{ij} - \min_j x_j}{\max_j x_j - \min_j x_j}.
 <div class="section" id="standard-normalization">
 <h3>Standard Normalization<a class="headerlink" href="#standard-normalization" title="Permalink to this headline">¶</a></h3>
 <p>For features with unbounded support and a distribution close to the normal distribution, one may use the <span class="math notranslate nohighlight">\(z\)</span>-score/standard normalization instead of min-max normalization:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-93946c17-1fe9-42a7-a1b4-d413ce00447e">
-<span class="eqno">(11)<a class="headerlink" href="#equation-93946c17-1fe9-42a7-a1b4-d413ce00447e" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-c99003be-4934-487c-91e0-45c16d6d04e5">
+<span class="eqno">(11)<a class="headerlink" href="#equation-c99003be-4934-487c-91e0-45c16d6d04e5" title="Permalink to this equation">¶</a></span>\[\begin{align}
 X_i \mapsto \frac{X_i - \mu_{X_i}}{\sigma_{X_i}},
 \end{align}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mu_{X_i}\)</span> and <span class="math notranslate nohighlight">\(\sigma_{X_i}\)</span> are the expectation and standard deviation of the feature <span class="math notranslate nohighlight">\(X_i\)</span> respectively. The i.i.d.\ samples can be transformed using sample mean and standard deviation instead. It is okay to use a biased estimate for standard deviation and variance.</p>
