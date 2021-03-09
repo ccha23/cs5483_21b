@@ -46,3 +46,8 @@
   numbered: false
   chapters:
   - file: Tutorial7/Deep Learning
+
+- part: Tutorial 8
+  numbered: false
+  chapters:
+  - file: Tutorial8/Partitional Clustering
