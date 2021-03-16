@@ -91,6 +91,7 @@ commentsRunWhenDOMLoaded(addUtterances);
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Hierarchical Clustering" href="../Tutorial9/Hierarchical%20Clustering.html" />
     <link rel="prev" title="Deep Learning" href="../Tutorial7/Deep%20Learning.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -271,6 +272,18 @@ commentsRunWhenDOMLoaded(addUtterances);
   </a>
  </li>
 </ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Tutorial 9
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Tutorial9/Hierarchical%20Clustering.html">
+   Hierarchical Clustering
+  </a>
+ </li>
+</ul>
 
 </nav> <!-- To handle the deprecated key -->
 
@@ -415,7 +428,7 @@ commentsRunWhenDOMLoaded(addUtterances);
 <ol class="simple">
 <li><p>Using the <code class="docutils literal notranslate"><span class="pre">Preprocess</span></code> panel, load <code class="docutils literal notranslate"><span class="pre">iris.2D.arff</span></code> from the Weka data folder.</p></li>
 <li><p>Using the <code class="docutils literal notranslate"><span class="pre">Cluster</span></code> panel, choose the <code class="docutils literal notranslate"><span class="pre">Clusterer</span></code> as <code class="docutils literal notranslate"><span class="pre">SimpleKMeans</span></code>, which implements the (k)-means clustering algorithm.</p></li>
-<li><p>The default number of clsuters is (k=2). Change it to (k=3) instead, i.e., set <code class="docutils literal notranslate"><span class="pre">numCluster</span></code> to 3.</p></li>
+<li><p>The default number of clusters is (k=2). Change it to (k=3) instead, i.e., set <code class="docutils literal notranslate"><span class="pre">numClusters</span></code> to 3.</p></li>
 <li><p>Click the <code class="docutils literal notranslate"><span class="pre">ignore</span> <span class="pre">attributes</span></code> button below <code class="docutils literal notranslate"><span class="pre">Cluster</span> <span class="pre">mode</span></code> and select <code class="docutils literal notranslate"><span class="pre">class</span></code>.</p></li>
 <li><p>Click <code class="docutils literal notranslate"><span class="pre">Start</span></code> to run the clustering algorithm.</p></li>
 </ol>
@@ -455,11 +468,12 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 </div>
-<p><strong>Exercise</strong> Right click your result and click <code class="docutils literal notranslate"><span class="pre">visualize</span> <span class="pre">cluster</span> <span class="pre">assignments</span></code>. Does the <span class="math notranslate nohighlight">\(k\)</span>-means algorithm appear to return the global optimal solution that minimizes WSS? Can <span class="math notranslate nohighlight">\(k\)</span>-means algorithm identify the three types of iris?</p>
+<p><strong>Exercise</strong> Right click your result and click <code class="docutils literal notranslate"><span class="pre">visualize</span> <span class="pre">cluster</span> <span class="pre">assignments</span></code>. (If the item is disabled, check the <code class="docutils literal notranslate"><span class="pre">Store</span> <span class="pre">clusters</span> <span class="pre">for</span> <span class="pre">visualization</span></code> option and rerun the clustering.) Does the <span class="math notranslate nohighlight">\(k\)</span>-means algorithm appear to return the global optimal solution that minimizes WSS? Can <span class="math notranslate nohighlight">\(k\)</span>-means algorithm identify the three types of iris?</p>
 <p><span class="math notranslate nohighlight">\(k\)</span>-means appears to return the global optimal solution by choosing the axes to be <code class="docutils literal notranslate"><span class="pre">petallength</span></code> and <code class="docutils literal notranslate"><span class="pre">petalwidth</span></code>. If we choose the axes to be <code class="docutils literal notranslate"><span class="pre">cluster</span></code> and <code class="docutils literal notranslate"><span class="pre">class</span></code>, it can be seen that the clustering solution identifies Iris-setosa correctly but not the other types of iris.</p>
 <p><strong>Exercise</strong> Run the same clustering algorithm again but without ignoring the class attribute. To do so, click the <code class="docutils literal notranslate"><span class="pre">Ignore</span> <span class="pre">attributes</span></code> button and then the <code class="docutils literal notranslate"><span class="pre">Cancel</span></code> button. Does WSS increase? Why or why not?</p>
 <p>YOUR ANSWER HERE</p>
-<p><strong>Exercise</strong> Select <code class="docutils literal notranslate"><span class="pre">classes</span> <span class="pre">to</span> <span class="pre">clusters</span> <span class="pre">evaluation</span></code> as the <code class="docutils literal notranslate"><span class="pre">cluster</span> <span class="pre">mode</span></code> instead.  Assign to <code class="docutils literal notranslate"><span class="pre">error_rate</span></code> the fraction (NOT percentage) of incorrectly clustered instances?</p>
+<p><strong>Exercise</strong> Select <code class="docutils literal notranslate"><span class="pre">Classes</span> <span class="pre">to</span> <span class="pre">clusters</span> <span class="pre">evaluation</span></code> as the <code class="docutils literal notranslate"><span class="pre">cluster</span> <span class="pre">mode</span></code> instead.  Assign to <code class="docutils literal notranslate"><span class="pre">error_rate</span></code> the fraction (NOT percentage) of incorrectly clustered instances.</p>
+<p>For <code class="docutils literal notranslate"><span class="pre">python-weka-wrapper</span></code>, see an example <a class="reference external" href="https://github.com/fracpete/python-weka-wrapper-examples/blob/master/src/wekaexamples/clusterers/classes_to_clusters.py">here</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># YOUR CODE HERE</span>
@@ -516,14 +530,20 @@ commentsRunWhenDOMLoaded(addUtterances);
 <span class="n">kmeans_minmax_normalized</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="n">feature1</span><span class="p">,</span> <span class="n">feature2</span><span class="p">]])</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">feature1</span><span class="p">],</span>
             <span class="n">df</span><span class="p">[</span><span class="n">feature2</span><span class="p">],</span>
             <span class="n">c</span><span class="o">=</span><span class="n">kmeans_minmax_normalized</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="n">feature1</span><span class="p">,</span> <span class="n">feature2</span><span class="p">]]))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Cluster assignment&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="n">feature1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="n">feature2</span><span class="p">)</span>
+
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">feature1</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="n">feature2</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Class (ground truth)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="n">feature1</span><span class="p">)</span>
+
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -553,8 +573,140 @@ commentsRunWhenDOMLoaded(addUtterances);
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.output_html .hll { background-color: #ffffcc }
+.output_html { background: #f8f8f8; }
+.output_html .c { color: #408080; font-style: italic } /* Comment */
+.output_html .err { border: 1px solid #FF0000 } /* Error */
+.output_html .k { color: #008000; font-weight: bold } /* Keyword */
+.output_html .o { color: #666666 } /* Operator */
+.output_html .ch { color: #408080; font-style: italic } /* Comment.Hashbang */
+.output_html .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.output_html .cp { color: #BC7A00 } /* Comment.Preproc */
+.output_html .cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
+.output_html .c1 { color: #408080; font-style: italic } /* Comment.Single */
+.output_html .cs { color: #408080; font-style: italic } /* Comment.Special */
+.output_html .gd { color: #A00000 } /* Generic.Deleted */
+.output_html .ge { font-style: italic } /* Generic.Emph */
+.output_html .gr { color: #FF0000 } /* Generic.Error */
+.output_html .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.output_html .gi { color: #00A000 } /* Generic.Inserted */
+.output_html .go { color: #888888 } /* Generic.Output */
+.output_html .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.output_html .gs { font-weight: bold } /* Generic.Strong */
+.output_html .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.output_html .gt { color: #0044DD } /* Generic.Traceback */
+.output_html .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.output_html .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.output_html .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.output_html .kp { color: #008000 } /* Keyword.Pseudo */
+.output_html .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.output_html .kt { color: #B00040 } /* Keyword.Type */
+.output_html .m { color: #666666 } /* Literal.Number */
+.output_html .s { color: #BA2121 } /* Literal.String */
+.output_html .na { color: #7D9029 } /* Name.Attribute */
+.output_html .nb { color: #008000 } /* Name.Builtin */
+.output_html .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.output_html .no { color: #880000 } /* Name.Constant */
+.output_html .nd { color: #AA22FF } /* Name.Decorator */
+.output_html .ni { color: #999999; font-weight: bold } /* Name.Entity */
+.output_html .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.output_html .nf { color: #0000FF } /* Name.Function */
+.output_html .nl { color: #A0A000 } /* Name.Label */
+.output_html .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.output_html .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.output_html .nv { color: #19177C } /* Name.Variable */
+.output_html .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.output_html .w { color: #bbbbbb } /* Text.Whitespace */
+.output_html .mb { color: #666666 } /* Literal.Number.Bin */
+.output_html .mf { color: #666666 } /* Literal.Number.Float */
+.output_html .mh { color: #666666 } /* Literal.Number.Hex */
+.output_html .mi { color: #666666 } /* Literal.Number.Integer */
+.output_html .mo { color: #666666 } /* Literal.Number.Oct */
+.output_html .sa { color: #BA2121 } /* Literal.String.Affix */
+.output_html .sb { color: #BA2121 } /* Literal.String.Backtick */
+.output_html .sc { color: #BA2121 } /* Literal.String.Char */
+.output_html .dl { color: #BA2121 } /* Literal.String.Delimiter */
+.output_html .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.output_html .s2 { color: #BA2121 } /* Literal.String.Double */
+.output_html .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.output_html .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.output_html .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.output_html .sx { color: #008000 } /* Literal.String.Other */
+.output_html .sr { color: #BB6688 } /* Literal.String.Regex */
+.output_html .s1 { color: #BA2121 } /* Literal.String.Single */
+.output_html .ss { color: #19177C } /* Literal.String.Symbol */
+.output_html .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.output_html .fm { color: #0000FF } /* Name.Function.Magic */
+.output_html .vc { color: #19177C } /* Name.Variable.Class */
+.output_html .vg { color: #19177C } /* Name.Variable.Global */
+.output_html .vi { color: #19177C } /* Name.Variable.Instance */
+.output_html .vm { color: #19177C } /* Name.Variable.Magic */
+.output_html .il { color: #666666 } /* Literal.Number.Integer.Long */</style><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">joblib</span> <span class="kn">import</span> <span class="n">Memory</span> <span class="c1"># for caching</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="s1">&#39;private&#39;</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">memory</span> <span class="o">=</span> <span class="n">Memory</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="s2">&quot;private&quot;</span><span class="p">,</span><span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="nd">@memory</span><span class="o">.</span><span class="n">cache</span>
+<span class="k">def</span> <span class="nf">plot_cluster_regions</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">clusterer</span><span class="p">,</span> <span class="n">target_names</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">200</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Plot the cluster regions of a clusterer on a 2D dataset.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    X (array-like): 2D input features.</span>
+<span class="sd">    Y (array-like): 1D target values for X.</span>
+<span class="sd">    clusterer (sklean): A clusterer trained to cluster X.</span>
+<span class="sd">    target_names (array-like): array of possible target names. If None, infer from Y.</span>
+<span class="sd">    ax (axis): axis to plot the boundaries.</span>
+<span class="sd">    N: number of points for each dimension to scan for the decision boundaries.</span>
+<span class="sd">    </span>
+<span class="sd">    Return</span>
+<span class="sd">    ------</span>
+<span class="sd">    axis: axis for the plot of the decision boundaries</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">color</span><span class="p">(</span><span class="n">target_array</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">target_array</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="n">target_names</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span> <span class="o">*</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">target_names</span><span class="p">))</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+
+    <span class="n">X_</span><span class="p">,</span> <span class="n">Y_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
+
+    <span class="n">X_min</span> <span class="o">=</span> <span class="n">X_</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">X_max</span> <span class="o">=</span> <span class="n">X_</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">x1</span><span class="p">,</span> <span class="n">x2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">X_min</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">X_max</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">N</span><span class="p">),</span>
+                         <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">X_min</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">X_max</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">N</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="n">target_names</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">target_names</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">Y_</span><span class="p">)</span>
+
+    <span class="n">c</span> <span class="o">=</span> <span class="n">color</span><span class="p">(</span><span class="n">Y_</span><span class="p">)</span>
+    <span class="n">yhat</span> <span class="o">=</span> <span class="n">clusterer</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">c_</span><span class="p">[</span><span class="n">x1</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">x2</span><span class="o">.</span><span class="n">ravel</span><span class="p">()])</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">x1</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> 
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">yhat</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
+    <span class="n">scatter</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X_</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">X_min</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">X_max</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">X_min</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">X_max</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">add_artist</span><span class="p">(</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">scatter</span><span class="o">.</span><span class="n">legend_elements</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span>
+                  <span class="n">target_names</span><span class="p">,</span>
+                  <span class="n">loc</span><span class="o">=</span><span class="s2">&quot;upper left&quot;</span><span class="p">,</span>
+                  <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Classes&quot;</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">ax</span>
+</pre></div>
+</div></div>
 </div>
-<p><strong>Exercise</strong> Complete the following code to assign to <code class="docutils literal notranslate"><span class="pre">kmeans</span></code> a trained <span class="math notranslate nohighlight">\(k\)</span>-means clusterer that</p>
+<p><strong>Exercise</strong> Complete the following code to assign to <code class="docutils literal notranslate"><span class="pre">kmeans</span></code> a trained and piplined <span class="math notranslate nohighlight">\(k\)</span>-means clusterer that</p>
 <ul class="simple">
 <li><p>normalizes the features according to the method specified by <code class="docutils literal notranslate"><span class="pre">normalization</span></code>, and</p></li>
 <li><p>clusters the instances of features specified by <code class="docutils literal notranslate"><span class="pre">feature1</span></code> and <code class="docutils literal notranslate"><span class="pre">feature2</span></code> into <code class="docutils literal notranslate"><span class="pre">k</span></code> clusters.</p></li>
@@ -626,6 +778,7 @@ commentsRunWhenDOMLoaded(addUtterances);
     <div class='prev-next-bottom'>
         
     <a class='left-prev' id="prev-link" href="../Tutorial7/Deep%20Learning.html" title="previous page">Deep Learning</a>
+    <a class='right-next' id="next-link" href="../Tutorial9/Hierarchical%20Clustering.html" title="next page">Hierarchical Clustering</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
