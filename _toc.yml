@@ -51,3 +51,8 @@
   numbered: false
   chapters:
   - file: Tutorial8/Partitional Clustering
+
+- part: Tutorial 9
+  numbered: false
+  chapters:
+  - file: Tutorial9/Hierarchical Clustering
