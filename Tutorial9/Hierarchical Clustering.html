@@ -465,8 +465,8 @@ commentsRunWhenDOMLoaded(addUtterances);
 <div class="section" id="single-linkage">
 <h3>Single-linkage<a class="headerlink" href="#single-linkage" title="Permalink to this headline">¶</a></h3>
 <p>The default <code class="docutils literal notranslate"><span class="pre">linkType</span></code> is <code class="docutils literal notranslate"><span class="pre">SINGLE</span></code>, which measures the distance between two clusters, say <span class="math notranslate nohighlight">\(C\)</span> and <span class="math notranslate nohighlight">\(C'\)</span>, by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d27f8943-529b-4837-bc51-1a1a9a032a43">
-<span class="eqno">(29)<a class="headerlink" href="#equation-d27f8943-529b-4837-bc51-1a1a9a032a43" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-37bd44f0-a598-449f-89b7-50235a23b86d">
+<span class="eqno">(29)<a class="headerlink" href="#equation-37bd44f0-a598-449f-89b7-50235a23b86d" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \min_{\boldsymbol{p}\in C, \boldsymbol{p'}\in C'} \operatorname{dist}(\boldsymbol{p}, \boldsymbol{p'}),
 \end{align}\]</div>
 <p>which is the minimum distance between points in different clusters. This gives the <a class="reference external" href="https://en.wikipedia.org/wiki/Single-linkage_clustering">single-linkage clustering solution</a>.</p>
@@ -493,8 +493,8 @@ commentsRunWhenDOMLoaded(addUtterances);
 <div class="section" id="complete-linkage">
 <h3>Complete-linkage<a class="headerlink" href="#complete-linkage" title="Permalink to this headline">¶</a></h3>
 <p>Repeat the hierarchical clustering procedure but with the complete linkage algorithm by setting the <code class="docutils literal notranslate"><span class="pre">linkType</span></code> to COMPLETE. The distance between two clusters is measured by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-364f1d03-97a3-4b22-8569-4ae4442764ab">
-<span class="eqno">(30)<a class="headerlink" href="#equation-364f1d03-97a3-4b22-8569-4ae4442764ab" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-12354c44-0652-47c4-8856-20becf91493b">
+<span class="eqno">(30)<a class="headerlink" href="#equation-12354c44-0652-47c4-8856-20becf91493b" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \max_{\boldsymbol{p}\in C, \boldsymbol{p'}\in C'} \operatorname{dist}(\boldsymbol{p}, \boldsymbol{p'}),
 \end{align}\]</div>
 <p>which is the maximum distance between points in different clusters. This gives the <a class="reference external" href="https://en.wikipedia.org/wiki/Complete_linkage">complete-linkage clustering solution</a>.</p>
@@ -829,16 +829,17 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="p">):</span>
     <span class="c1"># YOUR CODE HERE</span>
     <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
+    <span class="n">agnes</span> <span class="o">=</span> <span class="n">agnes_minmax_normalized</span><span class="p">[</span><span class="s1">&#39;agglomerativeclustering&#39;</span><span class="p">]</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
 
     <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">211</span><span class="p">)</span>
-    <span class="n">plot_dendrogram</span><span class="p">(</span><span class="n">agnes_minmax_normalized</span><span class="p">[</span><span class="s1">&#39;agglomerativeclustering&#39;</span><span class="p">])</span>
+    <span class="n">plot_dendrogram</span><span class="p">(</span><span class="n">agnes</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Dendrogram for </span><span class="si">{</span><span class="n">linkage</span><span class="si">}</span><span class="s1">-linkage method on iris dataset&#39;</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;cophenetic distance&#39;</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;instance index&quot;</span><span class="p">)</span>
 
     <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">223</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">feature1</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="n">feature2</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">cluster_labels</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">feature1</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="n">feature2</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">agnes</span><span class="o">.</span><span class="n">labels_</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Cluster assignment&quot;</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="n">feature2</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="n">feature1</span><span class="p">)</span>
