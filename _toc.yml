@@ -56,3 +56,9 @@
   numbered: false
   chapters:
   - file: Tutorial9/Hierarchical Clustering
+
+- part: Tutorial A
+  numbered: false
+  chapters:
+  - file: TutorialA/Evaluation of Clusters
+  - file: TutorialA/Density-Based Clustering
