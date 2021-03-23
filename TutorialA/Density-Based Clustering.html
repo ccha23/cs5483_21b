@@ -417,6 +417,16 @@ commentsRunWhenDOMLoaded(addUtterances);
                 
   <div class="section" id="density-based-clustering">
 <h1>Density-Based Clustering<a class="headerlink" href="#density-based-clustering" title="Permalink to this headline">¶</a></h1>
+<p><span class="math notranslate nohighlight">\(\def\abs#1{\left\lvert #1 \right\rvert}
+\def\Set#1{\left\{ #1 \right\}}
+\def\mc#1{\mathcal{#1}}
+\def\M#1{\boldsymbol{#1}}
+\def\R#1{\mathsf{#1}}
+\def\RM#1{\boldsymbol{\mathsf{#1}}}
+\def\op#1{\operatorname{#1}}
+\def\E{\op{E}}
+\def\d{\mathrm{\mathstrut d}}
+\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">reset</span> -f
@@ -428,7 +438,7 @@ commentsRunWhenDOMLoaded(addUtterances);
 <span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">make_pipeline</span>
 <span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">DBSCAN</span><span class="p">,</span> <span class="n">OPTICS</span>
 <span class="c1"># produce vector inline graphics</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">set_matplotlib_formats</span><span class="p">,</span> <span class="n">IFrame</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">set_matplotlib_formats</span>
 <span class="n">set_matplotlib_formats</span><span class="p">(</span><span class="s1">&#39;svg&#39;</span><span class="p">)</span>
 <span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">interact</span>
 <span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
@@ -575,7 +585,7 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/Density-Based Clustering_17_0.svg" src="../_images/Density-Based Clustering_17_0.svg" /></div>
+<img alt="../_images/Density-Based Clustering_18_0.svg" src="../_images/Density-Based Clustering_18_0.svg" /></div>
 </div>
 <p><strong>Exercise</strong> The clustering solution above is not correct because the points at the top (<code class="docutils literal notranslate"><span class="pre">feature2</span> <span class="pre">&gt;</span> <span class="pre">2</span></code>) have the same cluster label but they may belong to two different classes. Explain how we should change the parameters, <code class="docutils literal notranslate"><span class="pre">eps</span> <span class="pre">=</span> <span class="pre">0.3</span></code> and <code class="docutils literal notranslate"><span class="pre">min_samples</span> <span class="pre">=</span> <span class="pre">3</span></code>, to improve the solution. Note that the pairwise distance of points in different clusters appear to be larger than 1.</p>
 <p>YOUR ANSWER HERE</p>
@@ -639,14 +649,14 @@ commentsRunWhenDOMLoaded(addUtterances);
 <li><p>Click <code class="docutils literal notranslate"><span class="pre">Start</span></code>.</p></li>
 </ol>
 <p>The OPTICS Visualizer will appear. The <code class="docutils literal notranslate"><span class="pre">Table</span></code> tab shows the list of data points in the order visited by the algorithm. The order of visit is based on a priority queue that prioritize a point <span class="math notranslate nohighlight">\(\M{q}\)</span> with smaller</p>
-<div class="amsmath math notranslate nohighlight" id="equation-79123ba0-731d-49fe-badb-3740835b316e">
-<span class="eqno">(36)<a class="headerlink" href="#equation-79123ba0-731d-49fe-badb-3740835b316e" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-0701b5e7-9ea2-48e4-9f57-f0494ab64811">
+<span class="eqno">(36)<a class="headerlink" href="#equation-0701b5e7-9ea2-48e4-9f57-f0494ab64811" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \op{reachability-distance}(\M{q}) &amp;:= \max \Set{\op{dist}(\M{p}, \M{q}), \op{core-distance}(\M{p})} \quad \text{where}\\
 \op{core-distance}(\M{p}) &amp;:= \min\Set{0\leq \varepsilon' \leq \varepsilon| |D\cap N_{\varepsilon'}(\M{p})|\geq \op{MinPts}} 
 \end{align}\]</div>
 <p>and <span class="math notranslate nohighlight">\(\M{p}\)</span> is a core point, i.e.,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b7788293-899c-47b2-92f8-6898887f61bf">
-<span class="eqno">(37)<a class="headerlink" href="#equation-b7788293-899c-47b2-92f8-6898887f61bf" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-8bbd3977-1e8a-4c27-8ef4-3e30a90190d9">
+<span class="eqno">(37)<a class="headerlink" href="#equation-8bbd3977-1e8a-4c27-8ef4-3e30a90190d9" title="Permalink to this equation">¶</a></span>\[\begin{align}
 |D\cap N_{\varepsilon}(\M{p})|\geq \op{MinPts},
 \end{align}\]</div>
 <p>that is last visited before <span class="math notranslate nohighlight">\(\M{q}\)</span>. Both the reachability distance of <span class="math notranslate nohighlight">\(\M{q}\)</span> and core distance of <span class="math notranslate nohighlight">\(\M{p}\)</span> are undefined if <span class="math notranslate nohighlight">\(\M{p}\)</span> does not exists or is not a core point.</p>

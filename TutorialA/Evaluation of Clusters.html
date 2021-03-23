@@ -447,6 +447,16 @@ commentsRunWhenDOMLoaded(addUtterances);
                 
   <div class="section" id="evaluation-of-clusters">
 <h1>Evaluation of Clusters<a class="headerlink" href="#evaluation-of-clusters" title="Permalink to this headline">¶</a></h1>
+<p><span class="math notranslate nohighlight">\(\def\abs#1{\left\lvert #1 \right\rvert}
+\def\Set#1{\left\{ #1 \right\}}
+\def\mc#1{\mathcal{#1}}
+\def\M#1{\boldsymbol{#1}}
+\def\R#1{\mathsf{#1}}
+\def\RM#1{\boldsymbol{\mathsf{#1}}}
+\def\op#1{\operatorname{#1}}
+\def\E{\op{E}}
+\def\d{\mathrm{\mathstrut d}}
+\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">reset</span> -f
@@ -459,7 +469,7 @@ commentsRunWhenDOMLoaded(addUtterances);
 <span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">KMeans</span>
 <span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">silhouette_samples</span><span class="p">,</span> <span class="n">silhouette_score</span>
 <span class="c1"># produce vector inline graphics</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">set_matplotlib_formats</span><span class="p">,</span> <span class="n">Code</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">set_matplotlib_formats</span><span class="p">,</span> <span class="n">IFrame</span>
 <span class="n">set_matplotlib_formats</span><span class="p">(</span><span class="s1">&#39;svg&#39;</span><span class="p">)</span>
 <span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">interact</span>
 <span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
@@ -485,15 +495,15 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="mi">85</span><span class="n">b4fc4ec643</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">IFrame</span><span class="p">(</span><span class="n">src</span><span class="o">=</span><span class="s2">&quot;https://cityuhk-lms.ap.panopto.com/Panopto/Pages/Embed.aspx?id=e38e4edb-816e-4535-b0d2-acf40085c0e4&amp;autoplay=false&amp;offerviewer=true&amp;showtitle=true&amp;showbrand=false&amp;start=0&amp;interactivity=all&quot;</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">450</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">805</span><span class="p">)</span>
-
-<span class="ne">NameError</span>: name &#39;IFrame&#39; is not defined
-</pre></div>
-</div>
-</div>
+<div class="output text_html">
+<iframe
+    width="805"
+    height="450"
+    src="https://cityuhk-lms.ap.panopto.com/Panopto/Pages/Embed.aspx?id=e38e4edb-816e-4535-b0d2-acf40085c0e4&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&start=0&interactivity=all"
+    frameborder="0"
+    allowfullscreen
+></iframe>
+</div></div>
 </div>
 <ul class="simple">
 <li><p>Under the <code class="docutils literal notranslate"><span class="pre">Files</span></code> tab, click the <code class="docutils literal notranslate"><span class="pre">new</span></code> button on the right and choose <code class="docutils literal notranslate"><span class="pre">xpra</span> <span class="pre">desktop</span></code>.</p></li>
@@ -557,6 +567,125 @@ commentsRunWhenDOMLoaded(addUtterances);
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sepal length (cm)</th>
+      <th>sepal width (cm)</th>
+      <th>petal length (cm)</th>
+      <th>petal width (cm)</th>
+      <th>target</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>5.1</td>
+      <td>3.5</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>4.9</td>
+      <td>3.0</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>4.7</td>
+      <td>3.2</td>
+      <td>1.3</td>
+      <td>0.2</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4.6</td>
+      <td>3.1</td>
+      <td>1.5</td>
+      <td>0.2</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5.0</td>
+      <td>3.6</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>setosa</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>145</th>
+      <td>6.7</td>
+      <td>3.0</td>
+      <td>5.2</td>
+      <td>2.3</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>146</th>
+      <td>6.3</td>
+      <td>2.5</td>
+      <td>5.0</td>
+      <td>1.9</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>147</th>
+      <td>6.5</td>
+      <td>3.0</td>
+      <td>5.2</td>
+      <td>2.0</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>148</th>
+      <td>6.2</td>
+      <td>3.4</td>
+      <td>5.4</td>
+      <td>2.3</td>
+      <td>virginica</td>
+    </tr>
+    <tr>
+      <th>149</th>
+      <td>5.9</td>
+      <td>3.0</td>
+      <td>5.1</td>
+      <td>1.8</td>
+      <td>virginica</td>
+    </tr>
+  </tbody>
+</table>
+<p>150 rows × 5 columns</p>
+</div></div></div>
 </div>
 <p>To cluster the data using <span class="math notranslate nohighlight">\(k\)</span>-means clustering:</p>
 <div class="cell docutils container">
@@ -587,6 +716,8 @@ commentsRunWhenDOMLoaded(addUtterances);
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/Evaluation of Clusters_23_0.svg" src="../_images/Evaluation of Clusters_23_0.svg" /></div>
 </div>
 <p><strong>Exercise</strong> Complete the following <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> <code class="docutils literal notranslate"><span class="pre">df_silouette</span></code> by recording the <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.silhouette_score.html"><code class="docutils literal notranslate"><span class="pre">silouette_score</span></code></a> for different number <span class="math notranslate nohighlight">\(k\)</span> of clusters from 2 to 10. Your answer may look like</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span>        <span class="o">...</span>
@@ -631,16 +762,16 @@ commentsRunWhenDOMLoaded(addUtterances);
 <div class="section" id="extrinsic-measures-of-cluster-quality">
 <h3>Extrinsic measures of cluster quality<a class="headerlink" href="#extrinsic-measures-of-cluster-quality" title="Permalink to this headline">¶</a></h3>
 <p>Suppose <span class="math notranslate nohighlight">\(L(\M{p})\)</span> and <span class="math notranslate nohighlight">\(C(\M{p})\)</span> are the class and cluster labels of each sample <span class="math notranslate nohighlight">\(\M{p}\in D\)</span>. An extrinsic measure compares how similar the corresponding partitions <span class="math notranslate nohighlight">\(\Set{L_i}\)</span> and <span class="math notranslate nohighlight">\(\Set{C_i}\)</span> are, where</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c3e60254-b3b4-4a73-b0a5-fa4481e701cd">
-<span class="eqno">(31)<a class="headerlink" href="#equation-c3e60254-b3b4-4a73-b0a5-fa4481e701cd" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-28546aea-cf10-470c-9fd2-680281b3f5ee">
+<span class="eqno">(31)<a class="headerlink" href="#equation-28546aea-cf10-470c-9fd2-680281b3f5ee" title="Permalink to this equation">¶</a></span>\[\begin{align}
 L_i &amp;:=\Set{\M{p}|L(\M{p})=i}\\
 C_i &amp;:=\Set{\M{p}|C(\M{p})=i}.
 \end{align}\]</div>
 <div class="section" id="pairwise-correctness">
 <h4>Pairwise correctness<a class="headerlink" href="#pairwise-correctness" title="Permalink to this headline">¶</a></h4>
 <p>Define the indicator of correct clustering for a pair <span class="math notranslate nohighlight">\(\M{p}, \M{q}\in D\)</span> as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5339e20d-eefe-4730-9d19-046e2565ea50">
-<span class="eqno">(32)<a class="headerlink" href="#equation-5339e20d-eefe-4730-9d19-046e2565ea50" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-2df359cd-c888-4947-8a3d-1d7792d2fff1">
+<span class="eqno">(32)<a class="headerlink" href="#equation-2df359cd-c888-4947-8a3d-1d7792d2fff1" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \op{correctness}(\M{p},\M{q}) := 
 \begin{cases}
 1 &amp; L(\M{p})=L(\M{q}) \iff C(\M{p})=C(\M{q})\\
@@ -761,8 +892,8 @@ C_i &amp;:=\Set{\M{p}|C(\M{p})=i}.
 <h4>B-Cubed metrics<a class="headerlink" href="#b-cubed-metrics" title="Permalink to this headline">¶</a></h4>
 <p>The accuracy computed from the pairwise correctness matrix can be misleading as it is dominated by true negatives. Similar to the class-imbalance problem, precision and recall can be used instead.</p>
 <p>For every point <span class="math notranslate nohighlight">\(\M{p}\in D\)</span>, the B-Cubed precision and recall are defined as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a9273dc1-737c-47e0-872b-150faa252292">
-<span class="eqno">(33)<a class="headerlink" href="#equation-a9273dc1-737c-47e0-872b-150faa252292" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-2161aa25-44c9-4b3b-9682-e57c831e9688">
+<span class="eqno">(33)<a class="headerlink" href="#equation-2161aa25-44c9-4b3b-9682-e57c831e9688" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \op{precision}(\M{p}) &amp;:= \frac{\abs{\Set{\M{q}\in D|C(\M{p})=C(\M{q}), L(\M{p})=L(\M{q})}}}{\abs{\Set{\M{q}\in D|C(\M{p})=C(\M{q})}}}\\
 \op{recall}(\M{p}) &amp;:= \frac{\abs{\Set{\M{q}\in D|C(\M{p})=C(\M{q}), L(\M{p})=L(\M{q})}}}{\abs{\Set{\M{q}\in D|L(\M{p})=L(\M{q})}}}.
 \end{align}\]</div>
@@ -888,8 +1019,8 @@ C_i &amp;:=\Set{\M{p}|C(\M{p})=i}.
 <div class="section" id="classes-to-clusters-evaluation">
 <h4>Classes to Clusters Evaluation<a class="headerlink" href="#classes-to-clusters-evaluation" title="Permalink to this headline">¶</a></h4>
 <p>Instead of using pairwise comparison, Weka uses the classes-to-clusters evaluation. The computation of accuracy can be cast as a linear sum assignment problem (maximum weight matching in bipartite graphs). First, note that a classes-to-clusters assignment is a matching between the class and cluster labels, which can be represented by a boolean matrix <span class="math notranslate nohighlight">\([\delta_{ij}]\)</span> for class label <span class="math notranslate nohighlight">\(i\)</span> and cluster label <span class="math notranslate nohighlight">\(j\)</span>, where</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ac1482be-53a0-4df3-b6b3-a1fcf6ad2bf6">
-<span class="eqno">(34)<a class="headerlink" href="#equation-ac1482be-53a0-4df3-b6b3-a1fcf6ad2bf6" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-d3f7fc01-473a-4d5f-a751-dc5b8ec81814">
+<span class="eqno">(34)<a class="headerlink" href="#equation-d3f7fc01-473a-4d5f-a751-dc5b8ec81814" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \delta_{ij} 
 &amp;= \begin{cases}
 1 &amp; \text{if class $i$ is assigned to cluster $j$,}\\
@@ -897,8 +1028,8 @@ C_i &amp;:=\Set{\M{p}|C(\M{p})=i}.
 \end{cases}
 \end{align}\]</div>
 <p>The accuracy for classes-to-clusters evaluation is then given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8bd9ebfa-e6bb-4a07-8074-fa0bf2bf84a8">
-<span class="eqno">(35)<a class="headerlink" href="#equation-8bd9ebfa-e6bb-4a07-8074-fa0bf2bf84a8" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-09a69b81-6411-4f84-8e62-fe73363f42a9">
+<span class="eqno">(35)<a class="headerlink" href="#equation-09a69b81-6411-4f84-8e62-fe73363f42a9" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \text{accuracy} &amp;= 
 \max_{[\delta_{ij}]} \sum_{i} \sum_{j} 
 \overbrace{\left|\{\boldsymbol{p}\in D|L(\boldsymbol{p})=i, C(\boldsymbol{p})=j\}\right|}^{n_{ij}:=} 
@@ -936,6 +1067,18 @@ C_i &amp;:=\Set{\M{p}|C(\M{p})=i}.
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">counts</span> <span class="o">=</span> <span class="n">class_cluster_counts</span><span class="p">(</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">],</span> <span class="n">labels</span><span class="p">)</span>
 <span class="n">df_counts</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span>
 <span class="n">df_counts</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">5</span><span class="o">-</span><span class="n">d62e02b44cf0</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">counts</span> <span class="o">=</span> <span class="n">class_cluster_counts</span><span class="p">(</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">],</span> <span class="n">labels</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">df_counts</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">df_counts</span>
+
+<span class="ne">NameError</span>: name &#39;class_cluster_counts&#39; is not defined
 </pre></div>
 </div>
 </div>
