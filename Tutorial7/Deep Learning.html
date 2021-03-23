@@ -284,6 +284,23 @@ commentsRunWhenDOMLoaded(addUtterances);
   </a>
  </li>
 </ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Tutorial A
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../TutorialA/Evaluation%20of%20Clusters.html">
+   Evaluation of Clusters
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../TutorialA/Density-Based%20Clustering.html">
+   Density-Based Clustering
+  </a>
+ </li>
+</ul>
 
 </nav> <!-- To handle the deprecated key -->
 
@@ -673,8 +690,8 @@ w_{21} &amp; \ddots &amp;  \\
 <ul class="simple">
 <li><p>For any function <span class="math notranslate nohighlight">\(g\)</span> of <span class="math notranslate nohighlight">\((\RM{x},y)\)</span>, the expectations are:</p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-83692bc6-551f-4c29-a6a3-e7b696b7e2ab">
-<span class="eqno">(14)<a class="headerlink" href="#equation-83692bc6-551f-4c29-a6a3-e7b696b7e2ab" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-24760a5d-f524-459c-95cf-b60845405b20">
+<span class="eqno">(14)<a class="headerlink" href="#equation-24760a5d-f524-459c-95cf-b60845405b20" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \E[g(\RM{x},\R{y})|\RM{x}]&amp;=\sum_{y\in \mc{Y}} g(\RM{x},y)\cdot p_{\R{y}|\RM{x}}(y|\RM{x})\tag{conditional expectation}
 \\
 \E[g(\RM{x},\R{y})] &amp;=\int_{\mc{X}} \underbrace{\sum_{y\in \mc{Y}} g(\RM{x},y)\cdot \underbrace{p_{\RM{x},\R{y}}(\M{x},y)}_{p_{\R{y}|\RM{x}}(y|\M{x}) p_{\R{x}}(\M{x})}\kern-1.7em}_{\E[g(\RM{x},\R{y})|\RM{x}]}\kern1.4em\,\d \M{x} \tag{expectation}\\
@@ -764,8 +781,8 @@ class HelloWorld(Scene):
 <p><a title="Josef Steppan, CC BY-SA 4.0 &lt;https://creativecommons.org/licenses/by-sa/4.0&gt;, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:MnistExamples.png"><img alt="MnistExamples" src="https://upload.wikimedia.org/wikipedia/commons/2/27/MnistExamples.png"></a></p>
 <p><strong>What is an example in a dataset?</strong></p>
 <p>A dataset is a sequence</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8288e1db-7068-4fac-8596-6fa229a0862c">
-<span class="eqno">(15)<a class="headerlink" href="#equation-8288e1db-7068-4fac-8596-6fa229a0862c" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-0767e9f3-5b24-42b3-8261-62736760f7bf">
+<span class="eqno">(15)<a class="headerlink" href="#equation-0767e9f3-5b24-42b3-8261-62736760f7bf" title="Permalink to this equation">¶</a></span>\[\begin{align}
 (\RM{x}_1,\R{y}_1),(\RM{x}_2,\R{y}_2), \dots\tag{dataset}
 \end{align}\]</div>
 <p>of <em>tuples/instances</em> <span class="math notranslate nohighlight">\((\RM{x}_i,\R{y}_i)\)</span>, each of which consists of</p>
@@ -821,8 +838,8 @@ class HelloWorld(Scene):
 \[\{(\RM{x}_i,\R{y}_i)\}_{i=1}^N\]</div>
 <p>of <span class="math notranslate nohighlight">\((\RM{x},\R{y})\)</span> (but independent of <span class="math notranslate nohighlight">\((\RM{x},\R{y})\)</span>).
 The classifier is said to be a <em>consistent</em> estimate (of <span class="math notranslate nohighlight">\(p_{\R{y}|\M{x}}\)</span>) if</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ec0709a0-4ce3-4569-8faf-4037f6c97172">
-<span class="eqno">(16)<a class="headerlink" href="#equation-ec0709a0-4ce3-4569-8faf-4037f6c97172" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-14d74bbf-85c0-4130-b25f-aef6b25ae29a">
+<span class="eqno">(16)<a class="headerlink" href="#equation-14d74bbf-85c0-4130-b25f-aef6b25ae29a" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \lim_{N\to \infty} \Pr\Set{\R{q}_{\R{y}|\RM{x}}(y|\RM{x})=p_{\R{y}|\RM{x}}(y|\RM{x})\text{ for all } y\in \mc{Y}}=1,\tag{consistency}
 \end{align}\]</div>
 <p>namely, <span class="math notranslate nohighlight">\(\R{q}_{\R{y}|\RM{x}}(y|\RM{x})\)</span> converges almost surely (a.s.) to <span class="math notranslate nohighlight">\(p_{\R{y}|\RM{x}}\)</span>. <span class="math notranslate nohighlight">\(\square\)</span></p>
@@ -831,11 +848,11 @@ The classifier is said to be a <em>consistent</em> estimate (of <span class="mat
 <div class="math notranslate nohighlight">
 \[\Pr\Set{\R{q}_{\R{y}|\RM{x}}(y|\RM{x})=p_{\R{y}|\RM{x}}(y|\RM{x}) \text{ for all } y\in \mc{Y}}=1-\epsilon,\]</div>
 <p>the (hard-decision) classifier</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6446a426-ec1c-4364-a9f0-c8327c3adc24">
-<span class="eqno">(17)<a class="headerlink" href="#equation-6446a426-ec1c-4364-a9f0-c8327c3adc24" title="Permalink to this equation">¶</a></span>\[\begin{align}\R{f}(\RM{x}):=\arg\max_{y\in \mc{Y}} \R{q}_{\R{y}|\RM{x}}(y|\RM{x})\tag{hard decision}\end{align}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-8a751917-d109-4a03-9f77-441912de1c34">
+<span class="eqno">(17)<a class="headerlink" href="#equation-8a751917-d109-4a03-9f77-441912de1c34" title="Permalink to this equation">¶</a></span>\[\begin{align}\R{f}(\RM{x}):=\arg\max_{y\in \mc{Y}} \R{q}_{\R{y}|\RM{x}}(y|\RM{x})\tag{hard decision}\end{align}\]</div>
 <p>achieves an accuracy</p>
-<div class="amsmath math notranslate nohighlight" id="equation-21091420-8ea2-45d8-ad94-948c26e54e02">
-<span class="eqno">(18)<a class="headerlink" href="#equation-21091420-8ea2-45d8-ad94-948c26e54e02" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-db4bb635-6232-4f41-b03f-b94aa25f0eb4">
+<span class="eqno">(18)<a class="headerlink" href="#equation-db4bb635-6232-4f41-b03f-b94aa25f0eb4" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \sup_{f:\mc{X}\to \mc{Y}} \Pr(\R{y}= f(\RM{x})) &amp;\geq \E\left[\max_{y\in \mc{Y}} p_{\R{y}|\M{x}}(y|\RM{x})\right] - \epsilon.\tag{accuracy lower bound}
 \end{align}\]</div>
 <p>where the expectation is the maximum possible accuracy. <span class="math notranslate nohighlight">\(\square\)</span></p>
@@ -850,8 +867,8 @@ The classifier is said to be a <em>consistent</em> estimate (of <span class="mat
 <p><strong>How can we obtain a consistent classifier?</strong></p>
 <p>We train a neural network to minimize certain <em>loss</em>. A common loss function for classification uses the <a class="reference external" href="https://en.wikipedia.org/wiki/Cross_entropy">cross entropy</a> measure in information theory.</p>
 <p>The theoretical underpinning is the following identity that relates three information quantities:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1e50add1-ce49-4ac2-a480-282d95027636">
-<span class="eqno">(19)<a class="headerlink" href="#equation-1e50add1-ce49-4ac2-a480-282d95027636" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-7409df99-a1fb-4fd7-88fb-d81c50142206">
+<span class="eqno">(19)<a class="headerlink" href="#equation-7409df99-a1fb-4fd7-88fb-d81c50142206" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \overbrace{\E\left[\log \frac{1}{q_{\R{y}|\RM{x}}(\R{y}|\RM{x})}\right]}^{ \text{Cross entropy}\\ H(p_{\R{y}|\RM{x}}\|q_{\R{y}|\RM{x}}|p_{\RM{x}}):=} &amp;\equiv \overbrace{\E\left[\log \frac{1}{p_{\R{y}|\RM{x}}(\R{y}|\RM{x})}\right]}^{\text{Conditional entropy}\\ H(\R{y}|\RM{x}):=} + \overbrace{\E\left[\log \frac{p_{\R{y}|\RM{x}}(\R{y}|\RM{x})}{q_{\R{y}|\RM{x}}(\R{y}|\RM{x})}\right].}^{\text{Divergence}\\ D(p_{\R{y}|\RM{x}}\|q_{\R{y}|\RM{x}}|p_{\RM{x}}):=}\tag{identity}
 \end{align}\]</div>
 <p>The identity can be proved quite easily using the linearity of expectation</p>
@@ -878,21 +895,21 @@ The classifier is said to be a <em>consistent</em> estimate (of <span class="mat
 </div></div>
 </div>
 <p><strong>Proposition</strong> With <span class="math notranslate nohighlight">\(q_{\R{y}|\RM{x}}(y|\M{x})\)</span> being a valid pmf of a random variable taking values from <span class="math notranslate nohighlight">\(\mc{Y}\)</span> conditioned on a random variable taking values from <span class="math notranslate nohighlight">\(\mc{X}\)</span>,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6c8fa09a-8490-465b-a20d-b89aef12fd45">
-<span class="eqno">(20)<a class="headerlink" href="#equation-6c8fa09a-8490-465b-a20d-b89aef12fd45" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-575c433f-e554-4a30-a782-17c3589d1936">
+<span class="eqno">(20)<a class="headerlink" href="#equation-575c433f-e554-4a30-a782-17c3589d1936" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \min_{q_{\R{y}|\RM{x}}} H(p_{\R{y}|\RM{x}}\|q_{\R{y}|\RM{x}}|p_{\RM{x}})
 &amp;= H(\R{y}|\RM{x})
 \end{align}\]</div>
 <p>and the optimal solution equals <span class="math notranslate nohighlight">\(p_{\R{y}|\RM{x}}(y|\RM{x})\)</span> a.s. for all <span class="math notranslate nohighlight">\(y\in \mc{Y}\)</span>. <span class="math notranslate nohighlight">\(\square\)</span></p>
 <p>Hence, a neural network that minimizes the cross entropy equals <span class="math notranslate nohighlight">\(p_{\R{y}|\RM{x}}(y|\RM{x})\)</span> a.s. for all <span class="math notranslate nohighlight">\(y\in \mc{Y}\)</span> and any possible input image <span class="math notranslate nohighlight">\(\RM{x}\)</span>.</p>
 <p><em>Proof:</em> It suffices to show that</p>
-<div class="amsmath math notranslate nohighlight" id="equation-11097135-dbbf-4d66-a6c0-f9d964791436">
-<span class="eqno">(21)<a class="headerlink" href="#equation-11097135-dbbf-4d66-a6c0-f9d964791436" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-f02d81e2-f7ca-4284-9816-c52e0a333102">
+<span class="eqno">(21)<a class="headerlink" href="#equation-f02d81e2-f7ca-4284-9816-c52e0a333102" title="Permalink to this equation">¶</a></span>\[\begin{align}
 D(p_{\R{y}|\RM{x}}\|q_{\R{y}|\RM{x}}|p_{\RM{x}})\geq 0 \tag{positivity of divergence}
 \end{align}\]</div>
 <p>with equality iff <span class="math notranslate nohighlight">\(q_{\R{y}|\RM{x}}(y|\RM{x})=p_{\R{y}|\RM{x}}(y|\RM{x})\)</span> a.s. This, in turn, can be proved using the <a class="reference external" href="https://en.wikipedia.org/wiki/Log_sum_inequality">log-sum inequality</a>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-72e78b00-100e-4ec1-aa34-9ada57703506">
-<span class="eqno">(22)<a class="headerlink" href="#equation-72e78b00-100e-4ec1-aa34-9ada57703506" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-861d9c26-76e7-4d65-8524-27948f936caf">
+<span class="eqno">(22)<a class="headerlink" href="#equation-861d9c26-76e7-4d65-8524-27948f936caf" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \sum_{i} a_i \log\left(\frac{a_i}{b_i}\right) \geq (\textstyle \sum_{i} a_i) \log\left(\frac{\sum_{i} a_i}{\sum_{i} b_i}\right)\tag{log-sum inequality}
 \end{align}\]</div>
 <p>for any sequences <span class="math notranslate nohighlight">\(\{a_i\}\)</span>, <span class="math notranslate nohighlight">\(\{b_i\}\)</span>, and <span class="math notranslate nohighlight">\(\{c_i\}\)</span>. <span class="math notranslate nohighlight">\(\blacksquare\)</span></p>
@@ -1075,8 +1092,8 @@ The parameter <code class="docutils literal notranslate"><span class="pre">nrows
 </div>
 </div>
 <p>Each pixel is stored as an integer from <span class="math notranslate nohighlight">\(\Set{0,\dots,255}\)</span> (<span class="math notranslate nohighlight">\(2^8\)</span> possible values). However, for computations by the neural network, we need to convert it to a floating point number. We will also normalize each pixel value to be within the unit interval <span class="math notranslate nohighlight">\([0,1]\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-06adcaa5-ad12-4eb7-8355-16add385b704">
-<span class="eqno">(23)<a class="headerlink" href="#equation-06adcaa5-ad12-4eb7-8355-16add385b704" title="Permalink to this equation">¶</a></span>\[\begin{align} 
+<div class="amsmath math notranslate nohighlight" id="equation-87f6f4f3-68ba-42cc-a24e-01f7e6c981d2">
+<span class="eqno">(23)<a class="headerlink" href="#equation-87f6f4f3-68ba-42cc-a24e-01f7e6c981d2" title="Permalink to this equation">¶</a></span>\[\begin{align} 
 v \mapsto \frac{v - v_{\min}}{v_{\max} - v_{\min}} = \frac{v}{255}\tag{min-max normalization}
 \end{align}\]</div>
 <p><strong>Exercise</strong> Using the function <code class="docutils literal notranslate"><span class="pre">map</span></code>, normalize each element of an image to the unit interval <span class="math notranslate nohighlight">\([0,1]\)</span> after converting them to <code class="docutils literal notranslate"><span class="pre">tf.float32</span></code> using <a class="reference external" href="https://www.tensorflow.org/api_docs/python/tf/cast"><code class="docutils literal notranslate"><span class="pre">tf.cast</span></code></a>.</p>
@@ -1175,13 +1192,13 @@ v \mapsto \frac{v - v_{\min}}{v_{\max} - v_{\min}} = \frac{v}{255}\tag{min-max n
 </ul>
 <p>The <span class="math notranslate nohighlight">\(0\)</span>-th layer is called the <em>input layer</em> while the <span class="math notranslate nohighlight">\(L\)</span>-th layer is called the <em>output layer</em>. All other layers are called the <em>hidden layers</em>.</p>
 <p>A basic neural network architecture computes <span class="math notranslate nohighlight">\(q_{\R{y}|\RM{x}}(y|\M{x})\)</span> as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0c6dac35-1a8a-49b0-b1cd-9676395f541b">
-<span class="eqno">(24)<a class="headerlink" href="#equation-0c6dac35-1a8a-49b0-b1cd-9676395f541b" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-d05e70ea-4c80-40e0-9ba7-d8005a6ee198">
+<span class="eqno">(24)<a class="headerlink" href="#equation-d05e70ea-4c80-40e0-9ba7-d8005a6ee198" title="Permalink to this equation">¶</a></span>\[\begin{align}
 [q_{\R{y}|\RM{x}}(y|\M{x})]_{y\in \mc{Y}} &amp;:= \M{a}^{(L)} 
 \end{align}\]</div>
 <p>where</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d65f1318-968b-40ba-bec2-52740f4337c5">
-<span class="eqno">(25)<a class="headerlink" href="#equation-d65f1318-968b-40ba-bec2-52740f4337c5" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-d718554e-d9a8-45ca-85eb-d06d3c083d10">
+<span class="eqno">(25)<a class="headerlink" href="#equation-d718554e-d9a8-45ca-85eb-d06d3c083d10" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \M{a}^{(\ell)}&amp;:=\begin{cases}
 \M{x} &amp; \ell=0\\
 \sigma^{(\ell)}(\overbrace{\M{W}^{(\ell)}\M{a}^{(\ell-1)}+\M{b}^{(\ell)}}^{\RM{z}^{(\ell)}:=})&amp; \ell&gt;0;
@@ -1308,14 +1325,14 @@ v \mapsto \frac{v - v_{\min}}{v_{\max} - v_{\min}} = \frac{v}{255}\tag{min-max n
 <div class="section" id="train-and-validate">
 <h3>Train and validate<a class="headerlink" href="#train-and-validate" title="Permalink to this headline">¶</a></h3>
 <p>Recall that a neural network that minimizes the cross entropy gives <span class="math notranslate nohighlight">\(p_{\R{y}|\RM{x}}(y|\RM{x})\)</span> a.s. for all <span class="math notranslate nohighlight">\(y\in \mc{Y}\)</span> and any possible input image <span class="math notranslate nohighlight">\(\RM{x}\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-25b01ff6-d63d-43ec-b8a5-93d3ac5f9e32">
-<span class="eqno">(26)<a class="headerlink" href="#equation-25b01ff6-d63d-43ec-b8a5-93d3ac5f9e32" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-f0b134f8-aaa3-4c94-9177-0430995c3160">
+<span class="eqno">(26)<a class="headerlink" href="#equation-f0b134f8-aaa3-4c94-9177-0430995c3160" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \min_{q_{\R{y}|\RM{x}}} \overbrace{\E\left[\log \frac{1}{q_{\R{y}|\RM{x}}(\R{y}|\RM{x})}\right]}^{ \text{Cross entropy}\\ H(p_{\R{y}|\RM{x}}\|q_{\R{y}|\RM{x}}|p_{\RM{x}}):=}
 &amp;= H(\R{y}|\RM{x})
 \end{align}\]</div>
 <p>The cross entropy cannot be computed exactly without knowing the joint distribution <span class="math notranslate nohighlight">\(p_{\RM{x}\R{y}}\)</span>. Nevertheless, it can be estimated from a batch of i.i.d. samples <span class="math notranslate nohighlight">\((\RM{x}_{\R{j}_i},\R{y}_{\R{j}_i})\)</span> for <span class="math notranslate nohighlight">\(1\leq i\leq n\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ee545a6d-0cb1-42b3-8250-92e6aaf202bf">
-<span class="eqno">(27)<a class="headerlink" href="#equation-ee545a6d-0cb1-42b3-8250-92e6aaf202bf" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-eb66e277-1e88-4d75-b91e-35889dffdf6c">
+<span class="eqno">(27)<a class="headerlink" href="#equation-eb66e277-1e88-4d75-b91e-35889dffdf6c" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \R{L}(\theta)&amp;:=\frac1n \sum_{i=1}^n \log \frac{1}{q_{\R{y}|\RM{x}}(\R{y}_{\R{j}_i}|\RM{x}_{\R{j}_i})}\tag{empirical loss}
 \end{align}\]</div>
 <p>where</p>
@@ -1555,8 +1572,8 @@ v \mapsto \frac{v - v_{\min}}{v_{\max} - v_{\min}} = \frac{v}{255}\tag{min-max n
 </div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">SCALARS</span></code> tab shows the curves of training and validation losses/accuracies after different batches/epoches. The curves often have jitters as the gradient descent is stochastic (random). To see the typical performance, a smoothing factor <span class="math notranslate nohighlight">\(\theta\in [0,1]\)</span> can be applied on the left panel. The smoothed curve <span class="math notranslate nohighlight">\(\bar{l}(t)\)</span> of the original curve <span class="math notranslate nohighlight">\(l(t)\)</span> is defined as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-bceaf89a-3983-4bcd-9c4a-044253ccf5bb">
-<span class="eqno">(28)<a class="headerlink" href="#equation-bceaf89a-3983-4bcd-9c4a-044253ccf5bb" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-e65f7e1b-aafb-4c2d-a834-93fc175a027e">
+<span class="eqno">(28)<a class="headerlink" href="#equation-e65f7e1b-aafb-4c2d-a834-93fc175a027e" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \bar{l}(t) = \theta \bar{l}(t-1) + (1-\theta) l(t)
 \end{align}\]</div>
 <p>which is called the moving average. Try changing the smoothing factor on the left panel to see the effect.</p>

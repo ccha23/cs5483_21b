@@ -284,6 +284,23 @@ commentsRunWhenDOMLoaded(addUtterances);
   </a>
  </li>
 </ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Tutorial A
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../TutorialA/Evaluation%20of%20Clusters.html">
+   Evaluation of Clusters
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../TutorialA/Density-Based%20Clustering.html">
+   Density-Based Clustering
+  </a>
+ </li>
+</ul>
 
 </nav> <!-- To handle the deprecated key -->
 
@@ -515,13 +532,13 @@ commentsRunWhenDOMLoaded(addUtterances);
 <div class="section" id="min-max-normalization">
 <h3>Min-max Normalization<a class="headerlink" href="#min-max-normalization" title="Permalink to this headline">¶</a></h3>
 <p>We can normalize a numeric feature to the unit interval as follows:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5b5c8f01-37f7-4c7e-bde5-031a695f3c44">
-<span class="eqno">(9)<a class="headerlink" href="#equation-5b5c8f01-37f7-4c7e-bde5-031a695f3c44" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-753e23da-18a4-4209-8367-a6f4de15abec">
+<span class="eqno">(9)<a class="headerlink" href="#equation-753e23da-18a4-4209-8367-a6f4de15abec" title="Permalink to this equation">¶</a></span>\[\begin{align}
 X_i\in [X_i^{\min}, X_i^{\max}] \mapsto \frac{X_i - X_i^{\min}}{X_i^{\max} - X_i^{\min}} \in [0,1].
 \end{align}\]</div>
 <p>To perform the normalization on i.i.d. samples <span class="math notranslate nohighlight">\(x_{ij}\)</span> indexed by <span class="math notranslate nohighlight">\(j\)</span>, we use the mapping</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c7ac1d15-093a-4610-bddc-61e1cf6532d6">
-<span class="eqno">(10)<a class="headerlink" href="#equation-c7ac1d15-093a-4610-bddc-61e1cf6532d6" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-5858712c-e586-4d7b-ad83-467a31ad94f1">
+<span class="eqno">(10)<a class="headerlink" href="#equation-5858712c-e586-4d7b-ad83-467a31ad94f1" title="Permalink to this equation">¶</a></span>\[\begin{align}
 x_{ij} \mapsto \frac{x_{ij} - \min_j x_j}{\max_j x_j - \min_j x_j}.
 \end{align}\]</div>
 <p>An implementation is as follows:</p>
@@ -577,8 +594,8 @@ x_{ij} \mapsto \frac{x_{ij} - \min_j x_j}{\max_j x_j - \min_j x_j}.
 <div class="section" id="standard-normalization">
 <h3>Standard Normalization<a class="headerlink" href="#standard-normalization" title="Permalink to this headline">¶</a></h3>
 <p>For features with unbounded support and a distribution close to the normal distribution, one may use the <span class="math notranslate nohighlight">\(z\)</span>-score/standard normalization instead of min-max normalization:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-50aa5229-55c0-4c53-802c-3a6f36c6d064">
-<span class="eqno">(11)<a class="headerlink" href="#equation-50aa5229-55c0-4c53-802c-3a6f36c6d064" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-ca4a3e70-8d37-4aa5-8d7f-134057577d3c">
+<span class="eqno">(11)<a class="headerlink" href="#equation-ca4a3e70-8d37-4aa5-8d7f-134057577d3c" title="Permalink to this equation">¶</a></span>\[\begin{align}
 X_i \mapsto \frac{X_i - \mu_{X_i}}{\sigma_{X_i}},
 \end{align}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mu_{X_i}\)</span> and <span class="math notranslate nohighlight">\(\sigma_{X_i}\)</span> are the expectation and standard deviation of the feature <span class="math notranslate nohighlight">\(X_i\)</span> respectively. The i.i.d.\ samples can be transformed using sample mean and standard deviation instead. It is okay to use a biased estimate for standard deviation and variance.</p>
