@@ -762,16 +762,16 @@ commentsRunWhenDOMLoaded(addUtterances);
 <div class="section" id="extrinsic-measures-of-cluster-quality">
 <h3>Extrinsic measures of cluster quality<a class="headerlink" href="#extrinsic-measures-of-cluster-quality" title="Permalink to this headline">¶</a></h3>
 <p>Suppose <span class="math notranslate nohighlight">\(L(\M{p})\)</span> and <span class="math notranslate nohighlight">\(C(\M{p})\)</span> are the class and cluster labels of each sample <span class="math notranslate nohighlight">\(\M{p}\in D\)</span>. An extrinsic measure compares how similar the corresponding partitions <span class="math notranslate nohighlight">\(\Set{L_i}\)</span> and <span class="math notranslate nohighlight">\(\Set{C_i}\)</span> are, where</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f8e7ce36-47f2-40a9-9985-db88e997d8e1">
-<span class="eqno">(31)<a class="headerlink" href="#equation-f8e7ce36-47f2-40a9-9985-db88e997d8e1" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-427c06eb-be2a-46c2-9eff-ade679eb52fa">
+<span class="eqno">(31)<a class="headerlink" href="#equation-427c06eb-be2a-46c2-9eff-ade679eb52fa" title="Permalink to this equation">¶</a></span>\[\begin{align}
 L_i &amp;:=\Set{\M{p}|L(\M{p})=i}\\
 C_i &amp;:=\Set{\M{p}|C(\M{p})=i}.
 \end{align}\]</div>
 <div class="section" id="pairwise-correctness">
 <h4>Pairwise correctness<a class="headerlink" href="#pairwise-correctness" title="Permalink to this headline">¶</a></h4>
 <p>Define the indicator of correct clustering for a pair <span class="math notranslate nohighlight">\(\M{p}, \M{q}\in D\)</span> as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6be2a628-691e-4a4f-b759-2b26abcd86b0">
-<span class="eqno">(32)<a class="headerlink" href="#equation-6be2a628-691e-4a4f-b759-2b26abcd86b0" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-bc50e216-26e9-4c15-bf37-43e616876218">
+<span class="eqno">(32)<a class="headerlink" href="#equation-bc50e216-26e9-4c15-bf37-43e616876218" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \op{correctness}(\M{p},\M{q}) := 
 \begin{cases}
 1 &amp; L(\M{p})=L(\M{q}) \iff C(\M{p})=C(\M{q})\\
@@ -860,9 +860,6 @@ C_i &amp;:=\Set{\M{p}|C(\M{p})=i}.
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># tests</span>
-<span class="c1">### BEGIN TESTS</span>
-<span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">correctness_accuracy</span><span class="p">,</span> <span class="mf">0.94986666</span><span class="p">,</span> <span class="n">rtol</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">)</span>
-<span class="c1">### END TESTS</span>
 </pre></div>
 </div>
 </div>
@@ -880,9 +877,6 @@ C_i &amp;:=\Set{\M{p}|C(\M{p})=i}.
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># tests</span>
-<span class="c1">### BEGIN TESTS</span>
-<span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">correctness_accuracy</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">rtol</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">)</span>
-<span class="c1">### END TESTS</span>
 </pre></div>
 </div>
 </div>
@@ -892,8 +886,8 @@ C_i &amp;:=\Set{\M{p}|C(\M{p})=i}.
 <h4>B-Cubed metrics<a class="headerlink" href="#b-cubed-metrics" title="Permalink to this headline">¶</a></h4>
 <p>The accuracy computed from the pairwise correctness matrix can be misleading as it is dominated by true negatives. Similar to the class-imbalance problem, precision and recall can be used instead.</p>
 <p>For every point <span class="math notranslate nohighlight">\(\M{p}\in D\)</span>, the B-Cubed precision and recall are defined as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-dfa55534-6bd0-456d-a3de-3783587298d6">
-<span class="eqno">(33)<a class="headerlink" href="#equation-dfa55534-6bd0-456d-a3de-3783587298d6" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-2fbf4364-b92f-430e-a238-a3c54b4bcdb8">
+<span class="eqno">(33)<a class="headerlink" href="#equation-2fbf4364-b92f-430e-a238-a3c54b4bcdb8" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \op{precision}(\M{p}) &amp;:= \frac{\abs{\Set{\M{q}\in D|C(\M{p})=C(\M{q}), L(\M{p})=L(\M{q})}}}{\abs{\Set{\M{q}\in D|C(\M{p})=C(\M{q})}}}\\
 \op{recall}(\M{p}) &amp;:= \frac{\abs{\Set{\M{q}\in D|C(\M{p})=C(\M{q}), L(\M{p})=L(\M{q})}}}{\abs{\Set{\M{q}\in D|L(\M{p})=L(\M{q})}}}.
 \end{align}\]</div>
@@ -1019,8 +1013,8 @@ C_i &amp;:=\Set{\M{p}|C(\M{p})=i}.
 <div class="section" id="classes-to-clusters-evaluation">
 <h4>Classes to Clusters Evaluation<a class="headerlink" href="#classes-to-clusters-evaluation" title="Permalink to this headline">¶</a></h4>
 <p>Instead of using pairwise comparison, Weka uses the classes-to-clusters evaluation. The computation of accuracy can be cast as a linear sum assignment problem (maximum weight matching in bipartite graphs). First, note that a classes-to-clusters assignment is a matching between the class and cluster labels, which can be represented by a boolean matrix <span class="math notranslate nohighlight">\([\delta_{ij}]\)</span> for class label <span class="math notranslate nohighlight">\(i\)</span> and cluster label <span class="math notranslate nohighlight">\(j\)</span>, where</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7947640e-be2f-41ce-a89f-62350fb29091">
-<span class="eqno">(34)<a class="headerlink" href="#equation-7947640e-be2f-41ce-a89f-62350fb29091" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-741544a7-f035-4af1-8f37-256c3d7037e8">
+<span class="eqno">(34)<a class="headerlink" href="#equation-741544a7-f035-4af1-8f37-256c3d7037e8" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \delta_{ij} 
 &amp;= \begin{cases}
 1 &amp; \text{if class $i$ is assigned to cluster $j$,}\\
@@ -1028,8 +1022,8 @@ C_i &amp;:=\Set{\M{p}|C(\M{p})=i}.
 \end{cases}
 \end{align}\]</div>
 <p>The accuracy for classes-to-clusters evaluation is then given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2e5815e1-0e52-4e34-b8fb-44662e66ba72">
-<span class="eqno">(35)<a class="headerlink" href="#equation-2e5815e1-0e52-4e34-b8fb-44662e66ba72" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-6bf64226-b2ab-491f-b7f7-e6ef5734cfc5">
+<span class="eqno">(35)<a class="headerlink" href="#equation-6bf64226-b2ab-491f-b7f7-e6ef5734cfc5" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \text{accuracy} &amp;= 
 \max_{[\delta_{ij}]} \sum_{i} \sum_{j} 
 \overbrace{\left|\{\boldsymbol{p}\in D|L(\boldsymbol{p})=i, C(\boldsymbol{p})=j\}\right|}^{n_{ij}:=} 
@@ -1071,17 +1065,51 @@ C_i &amp;:=\Set{\M{p}|C(\M{p})=i}.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">5</span><span class="o">-</span><span class="n">d62e02b44cf0</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">counts</span> <span class="o">=</span> <span class="n">class_cluster_counts</span><span class="p">(</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">],</span> <span class="n">labels</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">df_counts</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">df_counts</span>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
-<span class="ne">NameError</span>: name &#39;class_cluster_counts&#39; is not defined
-</pre></div>
-</div>
-</div>
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>50</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0</td>
+      <td>2</td>
+      <td>48</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0</td>
+      <td>46</td>
+      <td>4</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <p>We can use <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.linear_sum_assignment.html"><code class="docutils literal notranslate"><span class="pre">linear_sum_assignment</span></code></a> from <code class="docutils literal notranslate"><span class="pre">scipy.optimize</span></code> module to find the optimal assignment as follows.</p>
 <div class="cell docutils container">
@@ -1109,6 +1137,30 @@ C_i &amp;:=\Set{\M{p}|C(\M{p})=i}.
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style  type="text/css" >
+#T_2114c_row0_col0,#T_2114c_row1_col2,#T_2114c_row2_col1{
+            background-color:  yellow;
+        }</style><table id="T_2114c_" ><thead>    <tr>        <th class="blank level0" ></th>        <th class="col_heading level0 col0" >0</th>        <th class="col_heading level0 col1" >1</th>        <th class="col_heading level0 col2" >2</th>    </tr></thead><tbody>
+                <tr>
+                        <th id="T_2114c_level0_row0" class="row_heading level0 row0" >0</th>
+                        <td id="T_2114c_row0_col0" class="data row0 col0" >50</td>
+                        <td id="T_2114c_row0_col1" class="data row0 col1" >0</td>
+                        <td id="T_2114c_row0_col2" class="data row0 col2" >0</td>
+            </tr>
+            <tr>
+                        <th id="T_2114c_level0_row1" class="row_heading level0 row1" >1</th>
+                        <td id="T_2114c_row1_col0" class="data row1 col0" >0</td>
+                        <td id="T_2114c_row1_col1" class="data row1 col1" >2</td>
+                        <td id="T_2114c_row1_col2" class="data row1 col2" >48</td>
+            </tr>
+            <tr>
+                        <th id="T_2114c_level0_row2" class="row_heading level0 row2" >2</th>
+                        <td id="T_2114c_row2_col0" class="data row2 col0" >0</td>
+                        <td id="T_2114c_row2_col1" class="data row2 col1" >46</td>
+                        <td id="T_2114c_row2_col2" class="data row2 col2" >4</td>
+            </tr>
+    </tbody></table></div></div>
 </div>
 <p><strong>Exercise</strong> Complete the following class that implements the classes-to-cluster evaluation using <code class="docutils literal notranslate"><span class="pre">linear_sum_assignment</span></code> from <code class="docutils literal notranslate"><span class="pre">scipy.optimize</span></code> module. You solution may look like:</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span>        <span class="o">...</span>
