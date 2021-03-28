@@ -301,6 +301,18 @@ commentsRunWhenDOMLoaded(addUtterances);
   </a>
  </li>
 </ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Tutorial B
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../TutorialB/Frequent-Pattern%20Analysis.html">
+   Frequent-Pattern Analysis
+  </a>
+ </li>
+</ul>
 
 </nav> <!-- To handle the deprecated key -->
 
@@ -762,16 +774,16 @@ commentsRunWhenDOMLoaded(addUtterances);
 <div class="section" id="extrinsic-measures-of-cluster-quality">
 <h3>Extrinsic measures of cluster quality<a class="headerlink" href="#extrinsic-measures-of-cluster-quality" title="Permalink to this headline">¶</a></h3>
 <p>Suppose <span class="math notranslate nohighlight">\(L(\M{p})\)</span> and <span class="math notranslate nohighlight">\(C(\M{p})\)</span> are the class and cluster labels of each sample <span class="math notranslate nohighlight">\(\M{p}\in D\)</span>. An extrinsic measure compares how similar the corresponding partitions <span class="math notranslate nohighlight">\(\Set{L_i}\)</span> and <span class="math notranslate nohighlight">\(\Set{C_i}\)</span> are, where</p>
-<div class="amsmath math notranslate nohighlight" id="equation-427c06eb-be2a-46c2-9eff-ade679eb52fa">
-<span class="eqno">(31)<a class="headerlink" href="#equation-427c06eb-be2a-46c2-9eff-ade679eb52fa" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-4978113f-96dc-41a3-9fea-a9c4e9c18b2a">
+<span class="eqno">(31)<a class="headerlink" href="#equation-4978113f-96dc-41a3-9fea-a9c4e9c18b2a" title="Permalink to this equation">¶</a></span>\[\begin{align}
 L_i &amp;:=\Set{\M{p}|L(\M{p})=i}\\
 C_i &amp;:=\Set{\M{p}|C(\M{p})=i}.
 \end{align}\]</div>
 <div class="section" id="pairwise-correctness">
 <h4>Pairwise correctness<a class="headerlink" href="#pairwise-correctness" title="Permalink to this headline">¶</a></h4>
 <p>Define the indicator of correct clustering for a pair <span class="math notranslate nohighlight">\(\M{p}, \M{q}\in D\)</span> as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-bc50e216-26e9-4c15-bf37-43e616876218">
-<span class="eqno">(32)<a class="headerlink" href="#equation-bc50e216-26e9-4c15-bf37-43e616876218" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-b7ddb8c7-c29d-4966-b5ca-2732716c3a3b">
+<span class="eqno">(32)<a class="headerlink" href="#equation-b7ddb8c7-c29d-4966-b5ca-2732716c3a3b" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \op{correctness}(\M{p},\M{q}) := 
 \begin{cases}
 1 &amp; L(\M{p})=L(\M{q}) \iff C(\M{p})=C(\M{q})\\
@@ -886,8 +898,8 @@ C_i &amp;:=\Set{\M{p}|C(\M{p})=i}.
 <h4>B-Cubed metrics<a class="headerlink" href="#b-cubed-metrics" title="Permalink to this headline">¶</a></h4>
 <p>The accuracy computed from the pairwise correctness matrix can be misleading as it is dominated by true negatives. Similar to the class-imbalance problem, precision and recall can be used instead.</p>
 <p>For every point <span class="math notranslate nohighlight">\(\M{p}\in D\)</span>, the B-Cubed precision and recall are defined as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2fbf4364-b92f-430e-a238-a3c54b4bcdb8">
-<span class="eqno">(33)<a class="headerlink" href="#equation-2fbf4364-b92f-430e-a238-a3c54b4bcdb8" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-bfa0fba8-982f-48c0-8fe7-47c7f93af59f">
+<span class="eqno">(33)<a class="headerlink" href="#equation-bfa0fba8-982f-48c0-8fe7-47c7f93af59f" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \op{precision}(\M{p}) &amp;:= \frac{\abs{\Set{\M{q}\in D|C(\M{p})=C(\M{q}), L(\M{p})=L(\M{q})}}}{\abs{\Set{\M{q}\in D|C(\M{p})=C(\M{q})}}}\\
 \op{recall}(\M{p}) &amp;:= \frac{\abs{\Set{\M{q}\in D|C(\M{p})=C(\M{q}), L(\M{p})=L(\M{q})}}}{\abs{\Set{\M{q}\in D|L(\M{p})=L(\M{q})}}}.
 \end{align}\]</div>
@@ -1013,8 +1025,8 @@ C_i &amp;:=\Set{\M{p}|C(\M{p})=i}.
 <div class="section" id="classes-to-clusters-evaluation">
 <h4>Classes to Clusters Evaluation<a class="headerlink" href="#classes-to-clusters-evaluation" title="Permalink to this headline">¶</a></h4>
 <p>Instead of using pairwise comparison, Weka uses the classes-to-clusters evaluation. The computation of accuracy can be cast as a linear sum assignment problem (maximum weight matching in bipartite graphs). First, note that a classes-to-clusters assignment is a matching between the class and cluster labels, which can be represented by a boolean matrix <span class="math notranslate nohighlight">\([\delta_{ij}]\)</span> for class label <span class="math notranslate nohighlight">\(i\)</span> and cluster label <span class="math notranslate nohighlight">\(j\)</span>, where</p>
-<div class="amsmath math notranslate nohighlight" id="equation-741544a7-f035-4af1-8f37-256c3d7037e8">
-<span class="eqno">(34)<a class="headerlink" href="#equation-741544a7-f035-4af1-8f37-256c3d7037e8" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-5f5835d8-a4c5-4b54-8ab5-91001296578b">
+<span class="eqno">(34)<a class="headerlink" href="#equation-5f5835d8-a4c5-4b54-8ab5-91001296578b" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \delta_{ij} 
 &amp;= \begin{cases}
 1 &amp; \text{if class $i$ is assigned to cluster $j$,}\\
@@ -1022,8 +1034,8 @@ C_i &amp;:=\Set{\M{p}|C(\M{p})=i}.
 \end{cases}
 \end{align}\]</div>
 <p>The accuracy for classes-to-clusters evaluation is then given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6bf64226-b2ab-491f-b7f7-e6ef5734cfc5">
-<span class="eqno">(35)<a class="headerlink" href="#equation-6bf64226-b2ab-491f-b7f7-e6ef5734cfc5" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-bc9a7367-3024-42ac-8c4b-e57e73a3b82e">
+<span class="eqno">(35)<a class="headerlink" href="#equation-bc9a7367-3024-42ac-8c4b-e57e73a3b82e" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \text{accuracy} &amp;= 
 \max_{[\delta_{ij}]} \sum_{i} \sum_{j} 
 \overbrace{\left|\{\boldsymbol{p}\in D|L(\boldsymbol{p})=i, C(\boldsymbol{p})=j\}\right|}^{n_{ij}:=} 

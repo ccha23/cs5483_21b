@@ -301,6 +301,18 @@ commentsRunWhenDOMLoaded(addUtterances);
   </a>
  </li>
 </ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Tutorial B
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../TutorialB/Frequent-Pattern%20Analysis.html">
+   Frequent-Pattern Analysis
+  </a>
+ </li>
+</ul>
 
 </nav> <!-- To handle the deprecated key -->
 
@@ -444,16 +456,16 @@ commentsRunWhenDOMLoaded(addUtterances);
 <div class="section" id="information-measures">
 <h2>Information Measures<a class="headerlink" href="#information-measures" title="Permalink to this headline">¶</a></h2>
 <p>The followings are the mathemtical definitions of <em>entropy</em> and <em>mutual information</em>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8b0630b6-76b5-45c6-a15f-7d1a02be8e76">
-<span class="eqno">(1)<a class="headerlink" href="#equation-8b0630b6-76b5-45c6-a15f-7d1a02be8e76" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-2e2b2c99-a5ff-4afb-8366-56863b2ed556">
+<span class="eqno">(1)<a class="headerlink" href="#equation-2e2b2c99-a5ff-4afb-8366-56863b2ed556" title="Permalink to this equation">¶</a></span>\[\begin{align}
 H(Y) &amp;= E\left[\log \tfrac1{P_{Y}(Y)}\right] &amp;&amp; \text{entropy of $Y$}\\
 H(Y|X) &amp;= E\left[\log \tfrac1{P_{Y|X}(Y|X)}\right] &amp;&amp; \text{conditional entropy of $Y$ given $X$}\\
 I(X;Y) &amp;= E\left[\log \tfrac{P_{Y|X}(Y|X)}{P_Y(Y)}\right] &amp;&amp; \text{mutual information of $X$ and $Y$}\\
 \end{align}\]</div>
 <p>These information quantities can be related using a <em>Venn Diagram</em>:</p>
 <p><a title="KonradVoelkel, Public domain, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Entropy-mutual-information-relative-entropy-relation-diagram.svg"><img width="512" alt="Entropy-mutual-information-relative-entropy-relation-diagram" src="https://upload.wikimedia.org/wikipedia/commons/d/d4/Entropy-mutual-information-relative-entropy-relation-diagram.svg"></a></p>
-<div class="amsmath math notranslate nohighlight" id="equation-48fcf9d5-f05e-46ce-a78e-96e76a05081a">
-<span class="eqno">(2)<a class="headerlink" href="#equation-48fcf9d5-f05e-46ce-a78e-96e76a05081a" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-26f48dc7-18b1-41cd-b41b-6551cd0b9ccf">
+<span class="eqno">(2)<a class="headerlink" href="#equation-26f48dc7-18b1-41cd-b41b-6551cd0b9ccf" title="Permalink to this equation">¶</a></span>\[\begin{align}
 H(X,Y)&amp;=H(X)+H(Y|X) &amp;&amp; \text{chain rule of entropy}\\
 &amp;=H(Y)+H(X|Y)\\
 I(X;Y)&amp;=H(Y)-H(Y|X) &amp;&amp; \text{mutual information in terms of entropies}\\
@@ -464,8 +476,8 @@ I(X;Y)&amp;=H(Y)-H(Y|X) &amp;&amp; \text{mutual information in terms of entropie
 <div class="section" id="entropy">
 <h2>Entropy<a class="headerlink" href="#entropy" title="Permalink to this headline">¶</a></h2>
 <p>Consider the following distribution:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-dade3548-aed7-4536-aaac-8509ebf0343a">
-<span class="eqno">(3)<a class="headerlink" href="#equation-dade3548-aed7-4536-aaac-8509ebf0343a" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-93a1df05-42a8-4050-a15c-0ae14d84d645">
+<span class="eqno">(3)<a class="headerlink" href="#equation-93a1df05-42a8-4050-a15c-0ae14d84d645" title="Permalink to this equation">¶</a></span>\[\begin{align}
 p_k=\begin{cases}
 \frac12 &amp; k=0\\
 \frac14 &amp; k=1,2\\
