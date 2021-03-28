@@ -62,3 +62,8 @@
   chapters:
   - file: TutorialA/Evaluation of Clusters
   - file: TutorialA/Density-Based Clustering
+
+- part: Tutorial B
+  numbered: false
+  chapters:
+  - file: TutorialB/Frequent-Pattern Analysis
