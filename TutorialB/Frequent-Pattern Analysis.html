@@ -91,6 +91,7 @@ commentsRunWhenDOMLoaded(addUtterances);
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Computing Clusters" href="../Resources/Computing%20Clusters.html" />
     <link rel="prev" title="Density-Based Clustering" href="../TutorialA/Density-Based%20Clustering.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -312,6 +313,18 @@ commentsRunWhenDOMLoaded(addUtterances);
   </a>
  </li>
 </ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Resources
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Resources/Computing%20Clusters.html">
+   Computing Clusters
+  </a>
+ </li>
+</ul>
 
 </nav> <!-- To handle the deprecated key -->
 
@@ -472,8 +485,8 @@ commentsRunWhenDOMLoaded(addUtterances);
 <div class="section" id="transaction-data">
 <h3>Transaction data<a class="headerlink" href="#transaction-data" title="Permalink to this headline">¶</a></h3>
 <p>Each instance of the dataset is a transaction, i.e., the purchase of items in a supermarket by a customer. Mathematically, the dataset can be represented by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-76111237-6c35-4ae1-96b6-a6cf1eab226b">
-<span class="eqno">(38)<a class="headerlink" href="#equation-76111237-6c35-4ae1-96b6-a6cf1eab226b" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-d3c304ff-26a0-493b-9ec6-fcd17c73f386">
+<span class="eqno">(38)<a class="headerlink" href="#equation-d3c304ff-26a0-493b-9ec6-fcd17c73f386" title="Permalink to this equation">¶</a></span>\[\begin{align}
 D &amp;:= \Set{T_i}_{i=1}^{n} \quad \text{where}\\
 T_i&amp;\subseteq \mathcal{I},
 \end{align}\]</div>
@@ -513,13 +526,13 @@ T_i&amp;\subseteq \mathcal{I},
 <div class="section" id="association-rules">
 <h3>Association rules<a class="headerlink" href="#association-rules" title="Permalink to this headline">¶</a></h3>
 <p>An association rule can be represent as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-248fd51c-9825-426c-882b-679dd074fef7">
-<span class="eqno">(39)<a class="headerlink" href="#equation-248fd51c-9825-426c-882b-679dd074fef7" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-17e52cc9-4205-49d8-bfeb-ba4e757e46fd">
+<span class="eqno">(39)<a class="headerlink" href="#equation-17e52cc9-4205-49d8-bfeb-ba4e757e46fd" title="Permalink to this equation">¶</a></span>\[\begin{align}
 A \implies B,
 \end{align}\]</div>
 <p>which means that a transaction contains all items in <span class="math notranslate nohighlight">\(B\)</span> if it contains all items in <span class="math notranslate nohighlight">\(A\)</span>, i.e.,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-fbbda938-101c-4d63-91c9-009f7394c26e">
-<span class="eqno">(40)<a class="headerlink" href="#equation-fbbda938-101c-4d63-91c9-009f7394c26e" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-dfe88b0d-2bce-410d-8886-af14a829fa1d">
+<span class="eqno">(40)<a class="headerlink" href="#equation-dfe88b0d-2bce-410d-8886-af14a829fa1d" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \underbrace{A\subseteq T}_{\text{premise}} \implies \underbrace{B\subseteq T}_{\text{consequence}}
 \end{align}\]</div>
 <p>for transaction <span class="math notranslate nohighlight">\(T\in D\)</span>.</p>
@@ -578,8 +591,8 @@ A \implies B,
 </div>
 </div>
 <p>The apriori algorithm returns rules with large enough support:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5e600e84-efaf-47b3-8af0-ca61936730c6">
-<span class="eqno">(41)<a class="headerlink" href="#equation-5e600e84-efaf-47b3-8af0-ca61936730c6" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-b936d27b-f2c2-4117-9e55-6efa9bd06812">
+<span class="eqno">(41)<a class="headerlink" href="#equation-b936d27b-f2c2-4117-9e55-6efa9bd06812" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \op{support}(A \implies B) &amp;= \op{support}(A \cup B) :=
 \frac{\op{count}(A \cup B)}{|D|}\quad \text{where}\\
 \op{count(A \cup B)} &amp;:= \abs{\Set{T\in D|T\supseteq A\cup B}}.
@@ -605,8 +618,8 @@ A \implies B,
 </div>
 </div>
 <p>By default, the rules are ranked by confidence.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-034be392-0804-4302-9ce7-17df5fffd6b6">
-<span class="eqno">(42)<a class="headerlink" href="#equation-034be392-0804-4302-9ce7-17df5fffd6b6" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-8ba0842e-65ed-4e06-8931-3cffb160b4bd">
+<span class="eqno">(42)<a class="headerlink" href="#equation-8ba0842e-65ed-4e06-8931-3cffb160b4bd" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \op{confidence}(A\implies B) &amp;:= \frac{\op{support(A \cup B)}}{\op{support(A)}},
 \end{align}\]</div>
 <p>where the denominator <span class="math notranslate nohighlight">\(\op{support}(A)\)</span> is the support of the premise. It gives, out of the transactions containing <span class="math notranslate nohighlight">\(A\)</span>, the fraction of transactions containing <span class="math notranslate nohighlight">\(B\)</span>.</p>
@@ -637,19 +650,19 @@ A \implies B,
 </div>
 </div>
 <p>Lift is another rule quality measure defined as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-fd74c5c8-18c7-4c62-886b-ec273ebe0c50">
-<span class="eqno">(43)<a class="headerlink" href="#equation-fd74c5c8-18c7-4c62-886b-ec273ebe0c50" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-2d52cd25-c2ea-456c-953e-b57b90fdb4d4">
+<span class="eqno">(43)<a class="headerlink" href="#equation-2d52cd25-c2ea-456c-953e-b57b90fdb4d4" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \op{lift}(A\implies B) &amp;:= \frac{\op{confidence}(A\implies B)}{\op{support(B)}}\\
 &amp;= \frac{\op{support(A \cup B)}}{\op{support(A)}\op{support(B)}}.
 \end{align}\]</div>
 <p><span class="math notranslate nohighlight">\(\op{support}(B)\)</span> in the denominator is the support of the consequence, which can be rewritten as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-67ba52be-ea68-4b64-9fa3-eef6e238cfda">
-<span class="eqno">(44)<a class="headerlink" href="#equation-67ba52be-ea68-4b64-9fa3-eef6e238cfda" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-71346415-e1a2-4a5b-b6a7-86884aededcd">
+<span class="eqno">(44)<a class="headerlink" href="#equation-71346415-e1a2-4a5b-b6a7-86884aededcd" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \op{confidence}(\emptyset \implies B) &amp;= \frac{\op{support}(B)}{\op{support}(\emptyset)} = \op{support}(B)
 \end{align}\]</div>
 <p>and so</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0ba20719-754b-4d82-9899-98f68622d3f7">
-<span class="eqno">(45)<a class="headerlink" href="#equation-0ba20719-754b-4d82-9899-98f68622d3f7" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-1da4d702-ad24-498e-b50d-0e5b1c6c4370">
+<span class="eqno">(45)<a class="headerlink" href="#equation-1da4d702-ad24-498e-b50d-0e5b1c6c4370" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \op{lift}(A\implies B) &amp;:= \frac{\op{confidence}(A\implies B)}{\op{confidence}(\emptyset \implies B)}.
 \end{align}\]</div>
 <p>In other words, lift is the fractional increase in confidence by imposing the premise.</p>
@@ -712,6 +725,7 @@ A \implies B,
     <div class='prev-next-bottom'>
         
     <a class='left-prev' id="prev-link" href="../TutorialA/Density-Based%20Clustering.html" title="previous page">Density-Based Clustering</a>
+    <a class='right-next' id="next-link" href="../Resources/Computing%20Clusters.html" title="next page">Computing Clusters</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

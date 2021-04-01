@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Project 1 &#8212; CS5483</title>
+    <title>Computing Clusters &#8212; CS5483</title>
     
   <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
 
@@ -89,8 +89,7 @@ commentsRunWhenDOMLoaded(addUtterances);
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Evaluation for Skewed Dataset" href="../Tutorial5/Evaluation%20for%20Skewed%20Dataset.html" />
-    <link rel="prev" title="Different Classifiers with scikit-learn" href="../Tutorial4/Different%20Classifiers%20with%20scikit-learn.html" />
+    <link rel="prev" title="Frequent-Pattern Analysis" href="../TutorialB/Frequent-Pattern%20Analysis.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -210,9 +209,9 @@ commentsRunWhenDOMLoaded(addUtterances);
   Project 1
  </span>
 </p>
-<ul class="current nav sidenav_l1">
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Project1/Project1.html">
    Project 1
   </a>
  </li>
@@ -316,9 +315,9 @@ commentsRunWhenDOMLoaded(addUtterances);
   Resources
  </span>
 </p>
-<ul class="nav sidenav_l1">
- <li class="toctree-l1">
-  <a class="reference internal" href="../Resources/Computing%20Clusters.html">
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    Computing Clusters
   </a>
  </li>
@@ -362,7 +361,7 @@ commentsRunWhenDOMLoaded(addUtterances);
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/Project1/Project1.ipynb"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/Resources/Computing Clusters.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
@@ -388,14 +387,14 @@ commentsRunWhenDOMLoaded(addUtterances);
     <div class="dropdown-buttons">
         
         
-        <a class="jupyterhub-button" href="https://ltjh.cs.cityu.edu.hk/hub/user-redirect/git-pull?repo=https://github.com/ccha23/cs5483&urlpath=tree/cs5483/Project1/Project1.ipynb&branch=main"><button type="button"
+        <a class="jupyterhub-button" href="https://ltjh.cs.cityu.edu.hk/hub/user-redirect/git-pull?repo=https://github.com/ccha23/cs5483&urlpath=tree/cs5483/Resources/Computing Clusters.ipynb&branch=main"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch JupyterHub" data-toggle="tooltip"
                 data-placement="left"><img class="jupyterhub-button-logo"
                     src="../_static/images/logo_jupyterhub.svg"
                     alt="Interact on JupyterHub">JupyterHub</button></a>
         
         
-        <a class="colab-button" href="https://colab.research.google.com/github/ccha23/cs5483/blob/main/Project1/Project1.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+        <a class="colab-button" href="https://colab.research.google.com/github/ccha23/cs5483/blob/main/Resources/Computing Clusters.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
                 title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
                     src="../_static/images/logo_colab.png"
                     alt="Interact on Colab">Colab</button></a>
@@ -418,18 +417,40 @@ commentsRunWhenDOMLoaded(addUtterances);
         <nav id="bd-toc-nav">
             <ul class="nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#visualizing-decision-trees-and-rule-sets">
-   Visualizing Decision Trees and Rule Sets
+  <a class="reference internal nav-link" href="#prerequisites">
+   Prerequisites
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#attribute-selection">
-   Attribute Selection
+  <a class="reference internal nav-link" href="#connecting-to-the-clusters">
+   Connecting to the clusters
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#using-a-terminal">
+     Using a terminal
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#using-vs-code">
+     Using VS Code
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#preparing-conda-environment">
+   Preparing conda environment
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#automatic-attribute-selection">
-   Automatic Attribute Selection
+  <a class="reference internal nav-link" href="#job-submission">
+   Job submission
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#more-details">
+   More details
   </a>
  </li>
 </ul>
@@ -443,67 +464,142 @@ commentsRunWhenDOMLoaded(addUtterances);
         
               <div>
                 
-  <div class="section" id="project-1">
-<h1>Project 1<a class="headerlink" href="#project-1" title="Permalink to this headline">¶</a></h1>
-<p><strong>Instructions:</strong></p>
+  <div class="section" id="computing-clusters">
+<h1>Computing Clusters<a class="headerlink" href="#computing-clusters" title="Permalink to this headline">¶</a></h1>
+<p>This notebook gives a brief instruction on how to use CSLab computing clusters. For more information about the clusters, please refer to
+<a class="reference external" href="https://cslab.cs.cityu.edu.hk/services/high-throughput-computing-cluster-htcc">HTCC</a>,
+<a class="reference external" href="https://cslab.cs.cityu.edu.hk/services/high-throughput-computing-cluster-htcc">HTGC1</a>,
+<a class="reference external" href="https://cslab.cs.cityu.edu.hk/services/high-throughput-computing-cluster-htcc">HTGC2</a>,
+<a class="reference external" href="https://cslab.cs.cityu.edu.hk/services/high-throughput-computing-cluster-htcc">HTGC3</a>.</p>
+<div class="section" id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h2>
+<p>You would need:</p>
+<ol class="simple">
+<li><p>A valid CSLab UNIX account</p></li>
+<li><p>A SSH client (<strong>Visual Studio Code</strong> is highly recommended)</p></li>
+<li><p>A VPN to connect to CS network if not physically in the Labs</p></li>
+</ol>
 <ul class="simple">
-<li><p>Access <a class="reference external" href="https://ebookcentral.proquest.com/lib/cityuhk/reader.action?docID=634862&amp;ppg=602">[Witten11]</a> for the hands-on exercises. You may use Weka or other tools such as the <code class="docutils literal notranslate"><span class="pre">python-weka-wrapper</span></code> to complete the exercises.</p></li>
-<li><p>You must provide your final answer in the designated solution cells. You may add additional cells to detail the steps.</p></li>
-<li><p>Same as tutorial exercises, you can submit multiple times via JupyterHub by the deadline. Technical difficulties are not valid justifications for any late submissions.</p></li>
-<li><p>It is your responsibility to take proper measures to avoid suspicion of plagiarism.</p></li>
+<li><p>https://cslab.cs.cityu.edu.hk/services/cslab-vpn-sonicwall</p></li>
 </ul>
-<hr class="docutils" />
-<p><strong>Rubric</strong></p>
+</div>
+<div class="section" id="connecting-to-the-clusters">
+<h2>Connecting to the clusters<a class="headerlink" href="#connecting-to-the-clusters" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="using-a-terminal">
+<h3>Using a terminal<a class="headerlink" href="#using-a-terminal" title="Permalink to this headline">¶</a></h3>
+<p>Run in a termial (hostname depends on which cluster you want to use):</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ssh your_eid@htcc1.cs.cityu.edu.hk
+</pre></div>
+</div>
+</div>
+<div class="section" id="using-vs-code">
+<h3>Using VS Code<a class="headerlink" href="#using-vs-code" title="Permalink to this headline">¶</a></h3>
+<p>You can access the clusters using the VS Code</p>
 <ul class="simple">
-<li><p>This project worths 75 points, which constitute 15% of your course grade.</p></li>
-<li><p>There are 14 exercises, each of which worths 5 points:</p>
-<ul>
-<li><p>5 points for correct answer and excellent understanding.</p></li>
-<li><p>3 points for partially correct answer and some understanding.</p></li>
-<li><p>1 point for having reasonable attempts.</p></li>
+<li><p>installed locally on your computer or</p></li>
+<li><p>in Xpra remote desktop.</p></li>
+</ul>
+<p>VS Code from JupyterHub does not support this yet.</p>
+<ol class="simple">
+<li><p>Install <strong>Remote - SSH</strong> extension</p></li>
+<li><p>Press <code class="docutils literal notranslate"><span class="pre">F1</span></code> and run the <code class="docutils literal notranslate"><span class="pre">Remote-SSH:</span> <span class="pre">Connect</span> <span class="pre">to</span> <span class="pre">SSH</span> <span class="pre">Host...</span></code> command</p></li>
+<li><p>Enter <code class="docutils literal notranslate"><span class="pre">your_eid&#64;htcc1.cs.cityu.edu.hk</span></code></p></li>
+</ol>
+<p>See <a class="reference external" href="https://code.visualstudio.com/docs/remote/ssh">Remote Development using SSH</a> for more details.</p>
+</div>
+</div>
+<div class="section" id="preparing-conda-environment">
+<h2>Preparing conda environment<a class="headerlink" href="#preparing-conda-environment" title="Permalink to this headline">¶</a></h2>
+<ol class="simple">
+<li><p>Connect to any host that can access to your home dictionary, including</p>
+<ul class="simple">
+<li><p>htcc1.cs.cityu.edu.hk</p></li>
+<li><p>htgc1.cs.cityu.edu.hk</p></li>
+<li><p>htgc2.cs.cityu.edu.hk</p></li>
+<li><p>htgc3.cs.cityu.edu.hk</p></li>
+<li><p>ltjh.cs.cityu.edu.hk</p></li>
+<li><p>gateway.cs.cityu.edu.hk</p></li>
 </ul>
 </li>
-<li><p>The remaining 5 points are given for <em>clear presentation</em>.</p></li>
-</ul>
-<div class="section" id="visualizing-decision-trees-and-rule-sets">
-<h2>Visualizing Decision Trees and Rule Sets<a class="headerlink" href="#visualizing-decision-trees-and-rule-sets" title="Permalink to this headline">¶</a></h2>
-<p>Complete the following exercises in <strong>Section 17.3</strong>.</p>
-<p><strong>Ex 17.3.8</strong></p>
-<p>YOUR ANSWER HERE</p>
-<p><strong>Ex 17.3.9</strong></p>
-<p>YOUR ANSWER HERE</p>
-<p><strong>Ex 17.3.10</strong></p>
-<p>YOUR ANSWER HERE</p>
-<p><strong>Ex 17.3.11</strong></p>
-<p>YOUR ANSWER HERE</p>
-<p><strong>Ex 17.3.12</strong></p>
-<p>YOUR ANSWER HERE</p>
+<li><p>Open <a class="reference external" href="https://www.anaconda.com/products/individual">Anaconda</a> webpage.</p></li>
+<li><p>Find and copy the download link of <code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">64-Bit</span> <span class="pre">(x86)</span> <span class="pre">installer</span></code>.</p></li>
+<li><p>Download the installer to your dictionary by running</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>wget the_link_you_copied
+</pre></div>
 </div>
-<div class="section" id="attribute-selection">
-<h2>Attribute Selection<a class="headerlink" href="#attribute-selection" title="Permalink to this headline">¶</a></h2>
-<p>Complete the following exercises in <strong>Section 17.2</strong> and one additional exercise.</p>
-<p><strong>Ex 17.2.4</strong></p>
-<p>YOUR ANSWER HERE</p>
-<p><strong>Ex 17.2.5</strong></p>
-<p>YOUR ANSWER HERE</p>
-<p><strong>Additional exercise</strong> If your answer to Ex 17.2.5 is “no”, give a better performance estimate and the best subset of features for <em>deployment</em>. Explain how you obtain the estimate and subset, i.e., how you subdivide the dataset for training, validation and testing, and which accuracy values you use to select the features for deployment.</p>
-<p>YOUR ANSWER HERE</p>
+<ol class="simple">
+<li><p>Install Anaconda by running (run <code class="docutils literal notranslate"><span class="pre">ls</span></code> to see the file name)</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sh the_file_you_downloaded
+</pre></div>
 </div>
-<div class="section" id="automatic-attribute-selection">
-<h2>Automatic Attribute Selection<a class="headerlink" href="#automatic-attribute-selection" title="Permalink to this headline">¶</a></h2>
-<p>Complete the following exercises in <strong>Section 17.4</strong>.</p>
-<p><strong>Ex 17.4.8</strong></p>
-<p>YOUR ANSWER HERE</p>
-<p><strong>Ex 17.4.9</strong></p>
-<p>YOUR ANSWER HERE</p>
-<p><strong>Ex 17.4.10</strong></p>
-<p>YOUR ANSWER HERE</p>
-<p><strong>Ex 17.4.11</strong></p>
-<p>YOUR ANSWER HERE</p>
-<p><strong>Ex 17.4.12</strong></p>
-<p>YOUR ANSWER HERE</p>
-<p><strong>Ex 17.4.13</strong></p>
-<p>YOUR ANSWER HERE</p>
+<ol class="simple">
+<li><p>Try launch the Python interpreter installed by Anaconda by running</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>/anaconda3/bin/python
+</pre></div>
+</div>
+<p>press <code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">D</span></code> to escape the interpreter</p>
+<ol class="simple">
+<li><p>If everything works, you can use conda to install any packages you need such as TensorFlow, PyTorch, etc.</p></li>
+</ol>
+</div>
+<div class="section" id="job-submission">
+<h2>Job submission<a class="headerlink" href="#job-submission" title="Permalink to this headline">¶</a></h2>
+<ol class="simple">
+<li><p>Prepare a job submission file <strong>run_hello.condor</strong>. A minimal example is</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">eid</span>             <span class="o">=</span> your_eid
+<span class="nv">name</span>            <span class="o">=</span> job_name_you_want
+<span class="nv">environment</span>     <span class="o">=</span> <span class="nv">PYTHONHOME</span><span class="o">=</span>/home/grads/<span class="k">$(</span>eid<span class="k">)</span>/anaconda3/
+<span class="c1"># CUDA device name depends on which node you are using</span>
+<span class="c1"># check CSLab web page to find the names</span>
+<span class="nv">requirements</span> <span class="o">=</span> <span class="o">(</span><span class="nv">CUDADeviceName</span> <span class="o">==</span> <span class="s2">&quot;GeForce RTX 2080 Ti&quot;</span><span class="o">)</span> 
+<span class="nv">executable</span>      <span class="o">=</span> /home/grads/<span class="k">$(</span>eid<span class="k">)</span>/anaconda3/bin/python
+<span class="nv">arguments</span>       <span class="o">=</span> /home/grads/<span class="k">$(</span>eid<span class="k">)</span>/hello.py --para1 <span class="m">123</span>
+<span class="nv">error</span>           <span class="o">=</span> <span class="k">$(</span>name<span class="k">)</span>.err
+<span class="nv">log</span>             <span class="o">=</span> <span class="k">$(</span>name<span class="k">)</span>.log
+queue
+</pre></div>
+</div>
+<ol class="simple">
+<li><p>Submit the job by running <code class="docutils literal notranslate"><span class="pre">condor_submit</span> <span class="pre">run_hello.condor</span></code>.</p></li>
+<li><p>Check the job status by running <code class="docutils literal notranslate"><span class="pre">condor_q</span></code>.</p></li>
+<li><p>If your job completes much faster than you expected, something may be wrong. You need to check the <code class="docutils literal notranslate"><span class="pre">err</span></code> file.</p></li>
+<li><p>If you want to remove a job, run <code class="docutils literal notranslate"><span class="pre">condor_rm</span> <span class="pre">your_eid</span></code>.</p></li>
+<li><p>A user can launch five jobs concurrently by calling <code class="docutils literal notranslate"><span class="pre">queue</span></code> multiple times. For example:</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">eid</span>             <span class="o">=</span> your_eid
+<span class="nv">name</span>            <span class="o">=</span> job1_name_you_want
+<span class="nv">environment</span>     <span class="o">=</span> <span class="nv">PYTHONHOME</span><span class="o">=</span>/home/grads/<span class="k">$(</span>eid<span class="k">)</span>/anaconda3/
+<span class="c1"># CUDA device name depends on which node you are using</span>
+<span class="c1"># check CSLab web page to find the names</span>
+<span class="nv">requirements</span> <span class="o">=</span> <span class="o">(</span><span class="nv">CUDADeviceName</span> <span class="o">==</span> <span class="s2">&quot;GeForce RTX 2080 Ti&quot;</span><span class="o">)</span> 
+<span class="nv">executable</span>      <span class="o">=</span> /home/grads/<span class="k">$(</span>eid<span class="k">)</span>/anaconda3/bin/python
+<span class="nv">arguments</span>       <span class="o">=</span> /home/grads/<span class="k">$(</span>eid<span class="k">)</span>/hello1.py
+<span class="nv">error</span>           <span class="o">=</span> <span class="k">$(</span>name<span class="k">)</span>.err
+<span class="nv">log</span>             <span class="o">=</span> <span class="k">$(</span>name<span class="k">)</span>.log
+queue
+</pre></div>
+</div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">eid</span>             <span class="o">=</span> your_eid
+<span class="nv">name</span>            <span class="o">=</span> job2_name_you_want
+<span class="nv">environment</span>     <span class="o">=</span> <span class="nv">PYTHONHOME</span><span class="o">=</span>/home/grads/<span class="k">$(</span>eid<span class="k">)</span>/anaconda3/
+<span class="c1"># CUDA device name depends on which node you are using</span>
+<span class="c1"># check CSLab web page to find the names</span>
+<span class="nv">requirements</span> <span class="o">=</span> <span class="o">(</span><span class="nv">CUDADeviceName</span> <span class="o">==</span> <span class="s2">&quot;GeForce RTX 2080 Ti&quot;</span><span class="o">)</span> 
+<span class="nv">executable</span>      <span class="o">=</span> /home/grads/<span class="k">$(</span>eid<span class="k">)</span>/anaconda3/bin/python
+<span class="nv">arguments</span>       <span class="o">=</span> /home/grads/<span class="k">$(</span>eid<span class="k">)</span>/hello2.py
+<span class="nv">error</span>           <span class="o">=</span> <span class="k">$(</span>name<span class="k">)</span>.err
+<span class="nv">log</span>             <span class="o">=</span> <span class="k">$(</span>name<span class="k">)</span>.log
+queue
+</pre></div>
+</div>
+</div>
+<div class="section" id="more-details">
+<h2>More details<a class="headerlink" href="#more-details" title="Permalink to this headline">¶</a></h2>
+<p>Additional instructions and sample condor demo files can be found at <code class="docutils literal notranslate"><span class="pre">/public/condor_demo</span></code> of the servers.</p>
 </div>
 </div>
 
@@ -520,7 +616,7 @@ commentsRunWhenDOMLoaded(addUtterances);
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./Project1"
+            path: "./Resources"
         },
         predefinedOutput: true
     }
@@ -535,8 +631,7 @@ commentsRunWhenDOMLoaded(addUtterances);
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="../Tutorial4/Different%20Classifiers%20with%20scikit-learn.html" title="previous page">Different Classifiers with scikit-learn</a>
-    <a class='right-next' id="next-link" href="../Tutorial5/Evaluation%20for%20Skewed%20Dataset.html" title="next page">Evaluation for Skewed Dataset</a>
+    <a class='left-prev' id="prev-link" href="../TutorialB/Frequent-Pattern%20Analysis.html" title="previous page">Frequent-Pattern Analysis</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

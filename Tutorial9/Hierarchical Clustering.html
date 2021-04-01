@@ -313,6 +313,18 @@ commentsRunWhenDOMLoaded(addUtterances);
   </a>
  </li>
 </ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Resources
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Resources/Computing%20Clusters.html">
+   Computing Clusters
+  </a>
+ </li>
+</ul>
 
 </nav> <!-- To handle the deprecated key -->
 
@@ -495,8 +507,8 @@ commentsRunWhenDOMLoaded(addUtterances);
 <div class="section" id="single-linkage">
 <h3>Single-linkage<a class="headerlink" href="#single-linkage" title="Permalink to this headline">¶</a></h3>
 <p>The default <code class="docutils literal notranslate"><span class="pre">linkType</span></code> is <code class="docutils literal notranslate"><span class="pre">SINGLE</span></code>, which measures the distance between two clusters, say <span class="math notranslate nohighlight">\(C\)</span> and <span class="math notranslate nohighlight">\(C'\)</span>, by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-02e5a0cc-5203-4c9f-973d-cfab3da76a51">
-<span class="eqno">(29)<a class="headerlink" href="#equation-02e5a0cc-5203-4c9f-973d-cfab3da76a51" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-f08f3c16-e390-42d7-853f-2bf319176f86">
+<span class="eqno">(29)<a class="headerlink" href="#equation-f08f3c16-e390-42d7-853f-2bf319176f86" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \min_{\boldsymbol{p}\in C, \boldsymbol{p'}\in C'} \operatorname{dist}(\boldsymbol{p}, \boldsymbol{p'}),
 \end{align}\]</div>
 <p>which is the minimum distance between points in different clusters. This gives the <a class="reference external" href="https://en.wikipedia.org/wiki/Single-linkage_clustering">single-linkage clustering solution</a>.</p>
@@ -523,8 +535,8 @@ commentsRunWhenDOMLoaded(addUtterances);
 <div class="section" id="complete-linkage">
 <h3>Complete-linkage<a class="headerlink" href="#complete-linkage" title="Permalink to this headline">¶</a></h3>
 <p>Repeat the hierarchical clustering procedure but with the complete linkage algorithm by setting the <code class="docutils literal notranslate"><span class="pre">linkType</span></code> to COMPLETE. The distance between two clusters is measured by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-48bcca73-4f6b-4312-a6df-bd54c3c04e1d">
-<span class="eqno">(30)<a class="headerlink" href="#equation-48bcca73-4f6b-4312-a6df-bd54c3c04e1d" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-34b2a2ef-12f3-47af-ba91-dc5aa725579a">
+<span class="eqno">(30)<a class="headerlink" href="#equation-34b2a2ef-12f3-47af-ba91-dc5aa725579a" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \max_{\boldsymbol{p}\in C, \boldsymbol{p'}\in C'} \operatorname{dist}(\boldsymbol{p}, \boldsymbol{p'}),
 \end{align}\]</div>
 <p>which is the maximum distance between points in different clusters. This gives the <a class="reference external" href="https://en.wikipedia.org/wiki/Complete_linkage">complete-linkage clustering solution</a>.</p>
