@@ -67,3 +67,8 @@
   numbered: false
   chapters:
   - file: TutorialB/Frequent-Pattern Analysis
+  
+- part: Resources
+  numbered: false
+  chapters:
+  - file: Resources/Computing Clusters
